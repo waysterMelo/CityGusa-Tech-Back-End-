@@ -1,0 +1,48 @@
+package com.citygusa.citygusatech.Services;
+
+import com.citygusa.citygusatech.Dto.RoleDto;
+import com.citygusa.citygusatech.Entity.Roles;
+import com.citygusa.citygusatech.Repositories.RoleRepositories;
+import com.citygusa.citygusatech.Repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class RoleService {
+
+    @Autowired
+    private RoleRepositories roleRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+
+    public void copyDtoToEntity(RoleDto dto, Roles role) {
+        role.setRole(dto.getRole());
+    }
+
+    @Transactional
+    public RoleDto insertRole(RoleDto roleDto){
+        Roles roleEntity = new Roles();
+        copyDtoToEntity(roleDto, roleEntity);
+        roleEntity = roleRepository.save(roleEntity);
+        return new RoleDto(roleEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<RoleDto> getRoleDtoList(){
+        List<Roles> lista = roleRepository.findAll();
+        return lista.stream().map(RoleDto::new).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public RoleDto updateRole(RoleDto dto, Long id){
+        Roles entity = roleRepository.getById(id);
+        copyDtoToEntity(dto, entity);
+        entity = roleRepository.save(entity);
+        return new RoleDto(entity);
+    }
+}
