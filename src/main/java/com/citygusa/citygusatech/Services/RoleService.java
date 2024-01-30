@@ -2,13 +2,16 @@ package com.citygusa.citygusatech.Services;
 
 import com.citygusa.citygusatech.Dto.RoleDto;
 import com.citygusa.citygusatech.Entity.Roles;
+import com.citygusa.citygusatech.Entity.Users;
 import com.citygusa.citygusatech.Repositories.RoleRepositories;
 import com.citygusa.citygusatech.Repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,5 +47,23 @@ public class RoleService {
         copyDtoToEntity(dto, entity);
         entity = roleRepository.save(entity);
         return new RoleDto(entity);
+    }
+
+    @Transactional
+    public void deleteRoleWithRoles(Long id) {
+        Optional<Roles> roles = roleRepository.findById(id);
+        if (roles.isPresent()) {
+            Roles rolesEntity = roles.get();
+
+            // Desassocia a role dos usuários
+            List<Users> usersWithRole = userRepository.findByRole(rolesEntity);
+            for (Users u : usersWithRole) {
+                u.setRoles(null);
+            }
+            roleRepository.delete(rolesEntity);
+        } else {
+            // Lidar com a situação em que o papel não foi encontrado
+            throw new EntityNotFoundException("Função não econtrada com o id : " + id);
+        }
     }
 }

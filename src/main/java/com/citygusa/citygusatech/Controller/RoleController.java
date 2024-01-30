@@ -2,7 +2,9 @@ package com.citygusa.citygusatech.Controller;
 
 import com.citygusa.citygusatech.Dto.RoleDto;
 import com.citygusa.citygusatech.Services.RoleService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -35,4 +37,16 @@ public class RoleController {
         RoleDto updatedDto = roleService.updateRole(dto, id);
         return ResponseEntity.ok().body(updatedDto);
     }
-}
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteRolesWithUsers(@PathVariable Long id){
+        try {
+            roleService.deleteRoleWithRoles(id);
+            return new ResponseEntity<>("Role and associated users deleted successfully", HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred while deleting role and associated users", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    }
