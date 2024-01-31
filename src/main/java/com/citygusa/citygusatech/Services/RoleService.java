@@ -43,7 +43,7 @@ public class RoleService {
 
     @Transactional
     public RoleDto updateRole(RoleDto dto, Long id){
-        Roles entity = roleRepository.getById(id);
+        Roles entity = roleRepository.getReferenceById(id);
         copyDtoToEntity(dto, entity);
         entity = roleRepository.save(entity);
         return new RoleDto(entity);

@@ -8,7 +8,6 @@ import com.citygusa.citygusatech.Resources.exceptions.FieldMessagens;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.aspectj.apache.bcel.classfile.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
