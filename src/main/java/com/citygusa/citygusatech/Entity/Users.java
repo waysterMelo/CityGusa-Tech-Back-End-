@@ -1,6 +1,8 @@
 package com.citygusa.citygusatech.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,9 +23,11 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String login;
+    private String email;
+
     @Column
     private String password;
+
     @Column
     private String name;
 

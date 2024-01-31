@@ -4,6 +4,7 @@ import com.citygusa.citygusatech.Dto.UserDto;
 import com.citygusa.citygusatech.Dto.UserInsertDto;
 import com.citygusa.citygusatech.Dto.UserUpdateDto;
 import com.citygusa.citygusatech.Services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDto> saveUser(@RequestBody UserInsertDto userInsertDto){
+    public ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserInsertDto userInsertDto){
         UserDto newUser = userService.insert(userInsertDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("{/id}").buildAndExpand(newUser.getId()).toUri();
@@ -40,7 +41,7 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserUpdateDto dto){
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto dto){
         UserDto result = userService.update(dto, id);
         return ResponseEntity.ok(result);
     }

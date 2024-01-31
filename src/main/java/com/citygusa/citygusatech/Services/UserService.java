@@ -44,7 +44,7 @@ public class UserService implements Serializable {
 
     private void copyDtoToEntity(UserDto dto, Users user) {
         user.setName(dto.getName());
-        user.setLogin(dto.getLogin());
+        user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.getRoles().clear();
         for (RoleDto roleDto : dto.getRoles()){

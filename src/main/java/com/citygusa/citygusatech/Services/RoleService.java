@@ -56,7 +56,7 @@ public class RoleService {
             Roles rolesEntity = roles.get();
 
             // Desassocia a role dos usuários
-            List<Users> usersWithRole = userRepository.findByRole(rolesEntity);
+            List<Users> usersWithRole = userRepository.findByRoles(rolesEntity);
             for (Users u : usersWithRole) {
                 u.setRoles(null);
             }
