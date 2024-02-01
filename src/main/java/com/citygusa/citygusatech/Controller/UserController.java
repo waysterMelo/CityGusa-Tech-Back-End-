@@ -4,7 +4,7 @@ import com.citygusa.citygusatech.Dto.UserDto;
 import com.citygusa.citygusatech.Dto.UserInsertDto;
 import com.citygusa.citygusatech.Dto.UserUpdateDto;
 import com.citygusa.citygusatech.Services.UserService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

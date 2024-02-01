@@ -9,15 +9,11 @@ import com.citygusa.citygusatech.Entity.Users;
 import com.citygusa.citygusatech.Repositories.RoleRepositories;
 import com.citygusa.citygusatech.Repositories.UserRepository;
 import com.citygusa.citygusatech.Services.ExceptionsService.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.Data;
-import lombok.experimental.Delegate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,10 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.io.Serializable;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.ErrorManager;
 import java.util.stream.Collectors;
 
 @Data
@@ -53,7 +48,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(dto.getPassword());
         user.getRoles().clear();
         for (RoleDto roleDto : dto.getRoles()){
-            Roles roleEntity = roleRepository.getReferenceById(roleDto.getId());
+            Roles roleEntity = roleRepository.getOne(roleDto.getId());
             user.getRoles().add(roleEntity);
         }
 
@@ -89,7 +84,7 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDto update(UserUpdateDto updateDto, Long id){
         try {
-            Users users = userRepository.getReferenceById(id);
+            Users users = userRepository.getOne(id);
             copyDtoToEntity(updateDto, users);
             users = userRepository.save(users);
             return new UserDto(users);

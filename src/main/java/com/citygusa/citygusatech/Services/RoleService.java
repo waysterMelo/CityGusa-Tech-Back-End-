@@ -5,7 +5,7 @@ import com.citygusa.citygusatech.Entity.Roles;
 import com.citygusa.citygusatech.Entity.Users;
 import com.citygusa.citygusatech.Repositories.RoleRepositories;
 import com.citygusa.citygusatech.Repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +43,7 @@ public class RoleService {
 
     @Transactional
     public RoleDto updateRole(RoleDto dto, Long id){
-        Roles entity = roleRepository.getReferenceById(id);
+        Roles entity = roleRepository.getOne(id);
         copyDtoToEntity(dto, entity);
         entity = roleRepository.save(entity);
         return new RoleDto(entity);

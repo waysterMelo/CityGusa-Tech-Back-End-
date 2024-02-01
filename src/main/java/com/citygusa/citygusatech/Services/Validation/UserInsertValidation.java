@@ -4,10 +4,9 @@ import com.citygusa.citygusatech.Dto.UserInsertDto;
 import com.citygusa.citygusatech.Entity.Users;
 import com.citygusa.citygusatech.Repositories.UserRepository;
 import com.citygusa.citygusatech.Resources.exceptions.FieldMessagens;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
 
