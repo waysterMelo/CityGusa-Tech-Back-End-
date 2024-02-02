@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping(value = "/register")
     public ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserInsertDto userInsertDto){
         UserDto newUser = userService.insert(userInsertDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
