@@ -5,8 +5,8 @@ import logo from './images/logo.png';
 function App() {
 
   return (
-      <div className="container-fluid p-0">
-          <header className="backgroundImg">
+      <div className="container-fluid p-0 backgroundImg">
+          <header className="">
               <section className="gradient-form">
                   <div className="container h-100">
                       <div className="row d-flex justify-content-center align-items-center h-100">
