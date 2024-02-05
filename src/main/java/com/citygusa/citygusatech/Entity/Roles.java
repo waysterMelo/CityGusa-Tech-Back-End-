@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "tb_roles")
+@Table(name = "roles")
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -16,7 +16,8 @@ public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+
+    @Column(name = "roles")
     private String role;
 
 }

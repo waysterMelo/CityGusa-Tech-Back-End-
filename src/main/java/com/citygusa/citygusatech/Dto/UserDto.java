@@ -3,6 +3,7 @@ package com.citygusa.citygusatech.Dto;
 import com.citygusa.citygusatech.Entity.Users;
 import lombok.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.Set;
 @EqualsAndHashCode
 @ToString
 public class UserDto implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
 

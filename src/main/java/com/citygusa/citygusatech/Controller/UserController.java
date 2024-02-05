@@ -25,7 +25,7 @@ public class UserController {
     public ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserInsertDto userInsertDto){
         UserDto newUser = userService.insert(userInsertDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("{/id}").buildAndExpand(newUser.getId()).toUri();
+                .path("/{id}").buildAndExpand(newUser.getId()).toUri();
         return ResponseEntity.created(location).body(newUser);
     }
 

@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "users")
 @Data
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -25,13 +25,11 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(name = "email")
     private String email;
-
-    @Column
+    @Column(name = "senha")
     private String password;
-
-    @Column
+    @Column(name = "nome")
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -70,4 +70,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .scopes("read", "write")
                 .authorizedGrantTypes("password").accessTokenValiditySeconds(jwtDuration);
     }
+
+
 }

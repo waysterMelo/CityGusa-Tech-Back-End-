@@ -24,7 +24,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     private Environment environment;
 
-    private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**", "/users/register"};
+    private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**", "/users/register",
+            "/roles/inserir", "/datas"};
     private static final String[] OPERATOR_OR_ADMIN = {"/forno/**", "/analise/**", "/gusa/**", "/carvao/**", "/users/**"};
     private static final String[] ADMIN = {"/roles/**}"};
 
@@ -56,6 +57,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, OPERATOR_OR_ADMIN).permitAll()
                 .antMatchers(OPERATOR_OR_ADMIN).hasAnyRole("OPERATOR","ADMIN")
                 .antMatchers(ADMIN).hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, PUBLIC).permitAll()
                 .anyRequest().authenticated();
     }
 

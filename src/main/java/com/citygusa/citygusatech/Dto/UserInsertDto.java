@@ -26,7 +26,7 @@ public class UserInsertDto extends UserDto implements Serializable {
     private String password;
     @Email
     private String email;
-    @NotEmpty(message = "Field name must not be empty")
+    @NotEmpty(message = "O campo nome não pode estar vazio")
     private String name;
 
 }

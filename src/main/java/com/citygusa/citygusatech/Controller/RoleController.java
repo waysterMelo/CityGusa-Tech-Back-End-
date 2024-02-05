@@ -20,7 +20,7 @@ public class RoleController {
     private RoleService roleService;
 
 
-    @PostMapping
+    @PostMapping(value = "/inserir")
     public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto dto) {
         RoleDto newDto = roleService.insertRole(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newDto.getId()).toUri();
