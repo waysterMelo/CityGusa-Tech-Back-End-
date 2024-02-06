@@ -1,10 +1,8 @@
 package com.citygusa.citygusatech.Dto;
 
 import com.citygusa.citygusatech.Entity.DatasEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class DatasDto implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
@@ -25,6 +24,6 @@ public class DatasDto implements Serializable{
     public DatasDto(DatasEntity entity) {
         this.id = entity.getId();
         this.data = entity.getData();
-        entity.getHoras().forEach(horas -> this.horas.add(new HorasDto()));
+        entity.getHoras().forEach(horas -> this.horas.add(new HorasDto(horas)));
     }
 }

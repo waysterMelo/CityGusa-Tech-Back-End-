@@ -20,17 +20,21 @@ public class DatasService {
     @Autowired
     HorasRepository horasRepository;
 
-    @Transactional
-    public DatasDto insertDatas(DatasDto datasDto){
-        DatasEntity datasEntity = new DatasEntity();
-        datasDto.setData(datasEntity.getData());
-        datasEntity.getHoras().clear();
-        for (HorasDto horasDto : datasDto.getHoras()){
+    private void copyToEntity(DatasEntity entity, DatasDto dto){
+        entity.setData(dto.getData());
+        entity.getHoras().clear();
+        for (HorasDto horasDto : dto.getHoras()){
              HorasEntity idHoras = horasRepository.getOne(horasDto.getId());
-             datasEntity.getHoras().add(idHoras);
+             entity.getHoras().add(idHoras);
         }
+    }
+
+
+    @Transactional
+    public DatasDto insertDatas(DatasDto dto) {
+        DatasEntity datasEntity = new DatasEntity();
+        copyToEntity(datasEntity, dto);
         datasEntity = datasRepository.save(datasEntity);
         return new DatasDto(datasEntity);
     }
-
 }
