@@ -1,18 +1,18 @@
-package com.citygusa.citygusatech.Dto;
+package com.citygusa.citygusatech.Api.Dto;
 
-import com.citygusa.citygusatech.Entity.Users;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import com.citygusa.citygusatech.Api.Entity.Users;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@ToString
+@Builder
 public class UserDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

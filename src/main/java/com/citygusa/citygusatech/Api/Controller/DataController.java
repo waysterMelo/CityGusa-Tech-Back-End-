@@ -1,6 +1,6 @@
-package com.citygusa.citygusatech.Controller;
+package com.citygusa.citygusatech.Api.Controller;
 
-import com.citygusa.citygusatech.Dto.DatasDto;
+import com.citygusa.citygusatech.Api.Dto.DatasDto;
 import com.citygusa.citygusatech.Services.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

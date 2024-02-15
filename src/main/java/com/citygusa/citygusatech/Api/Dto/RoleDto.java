@@ -1,12 +1,11 @@
-package com.citygusa.citygusatech.Dto;
+package com.citygusa.citygusatech.Api.Dto;
 
-import com.citygusa.citygusatech.Entity.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
+import com.citygusa.citygusatech.Api.Entity.Roles;
 
 @Data
 @NoArgsConstructor

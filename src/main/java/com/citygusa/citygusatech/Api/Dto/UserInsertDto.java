@@ -1,7 +1,8 @@
-package com.citygusa.citygusatech.Dto;
+package com.citygusa.citygusatech.Api.Dto;
 
 import com.citygusa.citygusatech.Services.Validation.UserInsertDtoValid;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

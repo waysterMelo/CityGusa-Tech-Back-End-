@@ -1,8 +1,8 @@
 package com.citygusa.citygusatech.Services;
 
-import com.citygusa.citygusatech.Dto.RoleDto;
-import com.citygusa.citygusatech.Entity.Roles;
-import com.citygusa.citygusatech.Entity.Users;
+import com.citygusa.citygusatech.Api.Dto.RoleDto;
+import com.citygusa.citygusatech.Api.Entity.Roles;
+import com.citygusa.citygusatech.Api.Entity.Users;
 import com.citygusa.citygusatech.Repositories.RoleRepositories;
 import com.citygusa.citygusatech.Repositories.UserRepository;
 import javax.persistence.EntityNotFoundException;

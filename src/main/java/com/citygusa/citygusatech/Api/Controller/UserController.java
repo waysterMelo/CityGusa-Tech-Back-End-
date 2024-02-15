@@ -1,8 +1,8 @@
-package com.citygusa.citygusatech.Controller;
+package com.citygusa.citygusatech.Api.Controller;
 
-import com.citygusa.citygusatech.Dto.UserDto;
-import com.citygusa.citygusatech.Dto.UserInsertDto;
-import com.citygusa.citygusatech.Dto.UserUpdateDto;
+import com.citygusa.citygusatech.Api.Dto.UserDto;
+import com.citygusa.citygusatech.Api.Dto.UserInsertDto;
+import com.citygusa.citygusatech.Api.Dto.UserUpdateDto;
 import com.citygusa.citygusatech.Services.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     @PostMapping(value = "/register")
     public ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserInsertDto userInsertDto){

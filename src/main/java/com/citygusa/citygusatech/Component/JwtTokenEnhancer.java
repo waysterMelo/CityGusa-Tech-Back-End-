@@ -1,6 +1,6 @@
 package com.citygusa.citygusatech.Component;
 
-import com.citygusa.citygusatech.Entity.Users;
+import com.citygusa.citygusatech.Api.Entity.Users;
 import com.citygusa.citygusatech.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("deprecation")
 @Component
 public class JwtTokenEnhancer implements TokenEnhancer {
 

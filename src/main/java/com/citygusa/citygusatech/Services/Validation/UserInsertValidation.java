@@ -1,7 +1,7 @@
 package com.citygusa.citygusatech.Services.Validation;
 
-import com.citygusa.citygusatech.Dto.UserInsertDto;
-import com.citygusa.citygusatech.Entity.Users;
+import com.citygusa.citygusatech.Api.Dto.UserInsertDto;
+import com.citygusa.citygusatech.Api.Entity.Users;
 import com.citygusa.citygusatech.Repositories.UserRepository;
 import com.citygusa.citygusatech.Resources.exceptions.FieldMessagens;
 import org.springframework.beans.factory.annotation.Autowired;

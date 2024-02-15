@@ -1,13 +1,14 @@
 package com.citygusa.citygusatech.Services;
 
-import com.citygusa.citygusatech.Dto.RoleDto;
-import com.citygusa.citygusatech.Dto.UserDto;
-import com.citygusa.citygusatech.Dto.UserInsertDto;
-import com.citygusa.citygusatech.Dto.UserUpdateDto;
-import com.citygusa.citygusatech.Entity.Roles;
-import com.citygusa.citygusatech.Entity.Users;
+import com.citygusa.citygusatech.Api.Dto.RoleDto;
+import com.citygusa.citygusatech.Api.Dto.UserDto;
+import com.citygusa.citygusatech.Api.Dto.UserInsertDto;
+import com.citygusa.citygusatech.Api.Dto.UserUpdateDto;
+import com.citygusa.citygusatech.Api.Entity.Roles;
+import com.citygusa.citygusatech.Api.Entity.Users;
 import com.citygusa.citygusatech.Repositories.RoleRepositories;
 import com.citygusa.citygusatech.Repositories.UserRepository;
+import com.citygusa.citygusatech.Services.ExceptionsService.RegraNegocioException;
 import com.citygusa.citygusatech.Services.ExceptionsService.ResourceNotFoundException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @Data
 @Service
 @Slf4j
+@SuppressWarnings("null")
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -48,6 +50,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(dto.getPassword());
         user.getRoles().clear();
         for (RoleDto roleDto : dto.getRoles()){
+           
             Roles roleEntity = roleRepository.getOne(roleDto.getId());
             user.getRoles().add(roleEntity);
         }
@@ -108,4 +111,20 @@ public class UserService implements UserDetailsService {
         log.info("Usuário encontrado " + username);
         return users;
     }
+
+    public void validarEmail(String email) {
+        boolean existeEmail =  roleRepository.existsByEmail(email);
+        if (existeEmail) {
+            throw new RegraNegocioException("Já existe um usuário cadastrado com este email.");
+        }
+    }
+
+
+    // @Override
+	// public void validarEmail(String email) {
+	// 	boolean existe = repository.existsByEmail(email);
+	// 	if(existe) {
+	// 		throw new RegraNegocioException("Já existe um usuário cadastrado com este email.");
+	// 	}
+	// }
 }

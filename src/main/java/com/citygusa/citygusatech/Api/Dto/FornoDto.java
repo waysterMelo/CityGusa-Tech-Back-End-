@@ -1,13 +1,12 @@
-package com.citygusa.citygusatech.Dto;
+package com.citygusa.citygusatech.Api.Dto;
 
-import com.citygusa.citygusatech.Entity.DataEntity;
-import com.citygusa.citygusatech.Entity.FornoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.HashSet;
 import java.util.Set;
+import com.citygusa.citygusatech.Api.Entity.DataEntity;
+import com.citygusa.citygusatech.Api.Entity.FornoEntity;
 
 @Data
 @NoArgsConstructor

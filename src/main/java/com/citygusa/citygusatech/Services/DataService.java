@@ -1,18 +1,12 @@
 package com.citygusa.citygusatech.Services;
 
-import com.citygusa.citygusatech.Dto.DatasDto;
-import com.citygusa.citygusatech.Entity.DataEntity;
-import com.citygusa.citygusatech.Entity.DatasEntity;
-import com.citygusa.citygusatech.Repositories.DatasRepository;
-import com.citygusa.citygusatech.Services.ExceptionsService.DataAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import com.citygusa.citygusatech.Api.Dto.DatasDto;
+import com.citygusa.citygusatech.Api.Entity.DatasEntity;
+import com.citygusa.citygusatech.Repositories.DatasRepository;
+import com.citygusa.citygusatech.Services.ExceptionsService.DataAlreadyExistsException;
 
 @Service
 public class DataService {

@@ -1,4 +1,4 @@
-package com.citygusa.citygusatech.Entity;
+package com.citygusa.citygusatech.Api.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

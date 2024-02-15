@@ -1,8 +1,7 @@
 package com.citygusa.citygusatech.Services;
 
-import com.citygusa.citygusatech.Dto.FornoDto;
-import com.citygusa.citygusatech.Entity.DatasEntity;
-import com.citygusa.citygusatech.Entity.FornoEntity;
+import com.citygusa.citygusatech.Api.Dto.FornoDto;
+import com.citygusa.citygusatech.Api.Entity.FornoEntity;
 import com.citygusa.citygusatech.Repositories.FornoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

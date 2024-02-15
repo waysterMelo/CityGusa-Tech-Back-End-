@@ -1,17 +1,12 @@
-package com.citygusa.citygusatech.Dto;
-
-import com.citygusa.citygusatech.Entity.DatasEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+package com.citygusa.citygusatech.Api.Dto;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import com.citygusa.citygusatech.Api.Entity.DatasEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
