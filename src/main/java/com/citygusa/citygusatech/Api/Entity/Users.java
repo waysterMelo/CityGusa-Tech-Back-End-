@@ -46,6 +46,25 @@ public class Users implements UserDetails {
     @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Roles> roles = new HashSet<>();
 
+    
+
+
+    public Users(Long id, @NotBlank(message = "Nome não pode estar em branco") String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+
+    //constructor for test only findallpageable
+    public Users(Long id, @NotBlank(message = "Email não deve estar em branco") String email, String password,
+            @NotBlank(message = "Nome não pode estar em branco") String name) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

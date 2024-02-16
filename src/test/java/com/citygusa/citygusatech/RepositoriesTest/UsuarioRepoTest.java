@@ -9,10 +9,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import com.citygusa.citygusatech.Api.Entity.Users;
 import com.citygusa.citygusatech.Repositories.UserRepository;
 
+@SuppressWarnings("null")
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @DataJpaTest
@@ -27,6 +27,9 @@ public class UsuarioRepoTest {
             .password("123").build();
     }
 
+    
+
+    
     @Test
     public void shouldVerifyEmailExists(){
         Users user = criarUser();

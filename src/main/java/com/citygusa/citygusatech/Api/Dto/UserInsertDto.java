@@ -19,6 +19,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @UserInsertDtoValid
+@Builder
 public class UserInsertDto extends UserDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

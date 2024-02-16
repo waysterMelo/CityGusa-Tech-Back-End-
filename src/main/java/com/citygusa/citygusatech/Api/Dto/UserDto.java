@@ -4,15 +4,17 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.citygusa.citygusatech.Api.Entity.Roles;
 import com.citygusa.citygusatech.Api.Entity.Users;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Builder
 public class UserDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -31,4 +33,6 @@ public class UserDto implements Serializable {
         password = entity.getPassword();
         entity.getRoles().forEach(role -> this.roles.add(new RoleDto(role)));
     }
+
+   
 }
