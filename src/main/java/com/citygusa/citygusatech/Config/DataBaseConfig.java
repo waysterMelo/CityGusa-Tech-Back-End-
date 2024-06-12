@@ -15,7 +15,7 @@ public class DataBaseConfig {
         managerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         managerDataSource.setUrl("jdbc:mysql://localhost:3306/citygusatech");
         managerDataSource.setUsername("root");
-        managerDataSource.setPassword("3675");
+        managerDataSource.setPassword("deus");
         return managerDataSource;
     }
 }

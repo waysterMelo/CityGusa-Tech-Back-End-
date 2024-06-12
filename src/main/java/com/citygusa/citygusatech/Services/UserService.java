@@ -113,7 +113,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void validarEmail(String email) {
-        boolean existeEmail =  roleRepository.existsByEmail(email);
+        boolean existeEmail =  userRepository.existsByEmail(email);
         if (existeEmail) {
             throw new RegraNegocioException("Já existe um usuário cadastrado com este email.");
         }
