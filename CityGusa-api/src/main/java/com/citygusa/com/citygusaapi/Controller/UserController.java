@@ -49,4 +49,12 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto){
+        UserEntity entity = new UserEntity();
+        copyEntityToDto(entity, userDto);
+        UserEntity user_saved = userService.saveUser(entity);
+        return ResponseEntity.ok(user_saved);
+    }
 }

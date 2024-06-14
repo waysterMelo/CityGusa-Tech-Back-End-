@@ -3,16 +3,18 @@ package com.citygusa.com.citygusaapi.Service.IMPL;
 import com.citygusa.com.citygusaapi.Entity.UserEntity;
 import com.citygusa.com.citygusaapi.Exceptions.ErrorAuthentication;
 import com.citygusa.com.citygusaapi.Repository.UserRepo;
-import com.citygusa.com.citygusaapi.Service.UserServie;
+import com.citygusa.com.citygusaapi.Service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserServie {
+public class UserServiceImpl implements UserService {
 
     private UserRepo userRepo;
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -52,5 +54,11 @@ public class UserServiceImpl implements UserServie {
           throw new RuntimeException(e);
       }
 
+    }
+
+
+    @Transactional
+    public UserEntity saveUser(@RequestBody UserEntity user) {
+        return userRepo.save(user);
     }
 }
