@@ -3,9 +3,8 @@ package com.citygusa.com.citygusaapi.Controller;
 import com.citygusa.com.citygusaapi.Dto.UserDto;
 import com.citygusa.com.citygusaapi.Entity.UserEntity;
 import com.citygusa.com.citygusaapi.Exceptions.ErrorAuthentication;
-import com.citygusa.com.citygusaapi.Repository.UserRepo;
 import com.citygusa.com.citygusaapi.Service.IMPL.UserServiceImpl;
-import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,25 +14,20 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserServiceImpl userServiceImpl;
+    @Autowired
     private UserServiceImpl userService;
-
-    public UserController(UserServiceImpl userService, UserServiceImpl userServiceImpl) {
-        this.userService = userService;
-        this.userServiceImpl = userServiceImpl;
-    }
 
     public void copyEntityToDto(UserEntity entity, UserDto dto){
         entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        entity.setPassword(dto.getPassword());
+        entity.setNome(dto.getNome());
+        entity.setSenha(dto.getSenha());
         entity.setDateRegistration(dto.getDateRegistration());
     }
 
-    @PostMapping("/authenticated")
-    private ResponseEntity<?> authenticated(@RequestBody UserDto userDto) {
+    @PostMapping("/authenticate")
+    private ResponseEntity<?> authenticate(@RequestBody UserDto userDto) {
        try {
-           UserEntity userEntity = userServiceImpl.authenticate(userDto.getName(), userDto.getPassword());
+           UserEntity userEntity = userService.authenticate(userDto.getNome(), userDto.getSenha());
            return ResponseEntity.ok(userEntity);
        }catch (ErrorAuthentication e){
            return ResponseEntity.badRequest().body(e.getMessage());

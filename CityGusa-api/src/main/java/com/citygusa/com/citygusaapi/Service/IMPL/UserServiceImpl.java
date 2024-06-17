@@ -24,16 +24,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity authenticate(String name, String password) {
-        Optional<UserEntity> user_name =  userRepo.findByName(name);
+    public UserEntity authenticate(String nome, String password) {
+        Optional<UserEntity> user_name =  userRepo.findByNome(nome);
         if (!user_name.isPresent()) {
             throw new ErrorAuthentication("Usuário não encontrado para o email informado.");
         }
-        boolean key_ok = user_name.get().getPassword().equals(password);
-        if (!key_ok) {
-            throw new ErrorAuthentication("Senha Inválida");
+       UserEntity userEntity = user_name.get();
+        if (!userEntity.getSenha().equals(password)) {
+            throw new ErrorAuthentication("Senha incorreta.");
         }
-        return user_name.get();
+        return userEntity;
     }
 
     @Override
@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
       }
 
     }
-
 
     @Transactional
     public UserEntity saveUser(@RequestBody UserEntity user) {

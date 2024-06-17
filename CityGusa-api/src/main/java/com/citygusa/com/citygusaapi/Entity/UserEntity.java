@@ -21,9 +21,9 @@ public class UserEntity {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column
-    String name;
+    String nome;
     @Column
-    String password;
+    String senha;
     @Column(name = "date_registry")
     LocalDate dateRegistration;
 
