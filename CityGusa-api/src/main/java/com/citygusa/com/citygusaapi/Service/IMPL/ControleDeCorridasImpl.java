@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ControleDeCorridasImpl implements ControleDeCorridasService {
@@ -48,5 +50,11 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         ControleDeCorridasDto corridasDto = convertToDto(corridasSaved);
         logger.info("Corrida salva com sucesso: {}", corridasDto);
         return Optional.of(corridasDto);
+    }
+
+    @Override
+    public List<ControleDeCorridasDto> getAllCorridas(ControleCorridas controleCorridas) {
+       List<ControleCorridas> corridas  = controleDeCorridasRepository.findAll();
+       return corridas.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 }
