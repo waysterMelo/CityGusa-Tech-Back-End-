@@ -18,8 +18,8 @@ public class ControleDeCorridasDto {
     private Long id;
     private String data;
     private Integer cacambas;
-    private LocalTime horaAbertura;
-    private LocalTime horaTampa;
+    private String horaAbertura;
+    private String horaTampa;
     private Double temperatura;
     private Double reducao;
     private Double reservaFundida;
@@ -31,12 +31,13 @@ public class ControleDeCorridasDto {
     private Double cecDiaKg;
 
     public ControleDeCorridasDto(ControleCorridas entity){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter horaFormatted = DateTimeFormatter.ofPattern("HH:mm");
         this.id = entity.getId();
         this.data = entity.getData().format(dateTimeFormatter);
         this.cacambas = entity.getCacambas();
-        this.horaAbertura = entity.getHoraAbertura();
-        this.horaTampa = entity.getHoraTampa();
+        this.horaAbertura = entity.getHoraAbertura().format(horaFormatted);
+        this.horaTampa = entity.getHoraTampa().format(horaFormatted);
         this.temperatura = entity.getTemperatura();
         this.reducao = entity.getReducao();
         this.reservaFundida = entity.getReservaFundida();

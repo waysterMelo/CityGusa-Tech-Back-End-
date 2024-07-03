@@ -22,7 +22,8 @@ import java.util.stream.Collectors;
 public class ControleDeCorridasImpl implements ControleDeCorridasService {
 
     private static final Logger logger = LoggerFactory.getLogger(ControleDeCorridasController.class);
-    private static final DateTimeFormatter FORMATTER  = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter FORMATTED_DATE = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter FORMATTED_HOUR = DateTimeFormatter.ofPattern("HH:mm");
 
     @Autowired
     private ControleDeCorridasRepository controleDeCorridasRepository;
@@ -30,10 +31,10 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas) {
         ControleDeCorridasDto dto = new ControleDeCorridasDto();
         dto.setId(controleCorridas.getId());
-        dto.setData(controleCorridas.getData().format(FORMATTER));
+        dto.setData(controleCorridas.getData().format(FORMATTED_DATE));
         dto.setCacambas(controleCorridas.getCacambas());
-        dto.setHoraAbertura(controleCorridas.getHoraAbertura());
-        dto.setHoraTampa(controleCorridas.getHoraTampa());
+        dto.setHoraAbertura(controleCorridas.getHoraAbertura().format(FORMATTED_HOUR));
+        dto.setHoraTampa(controleCorridas.getHoraTampa().format(FORMATTED_HOUR));
         dto.setTemperatura(controleCorridas.getTemperatura());
         dto.setReducao(controleCorridas.getReducao());
         dto.setReservaFundida(controleCorridas.getReservaFundida());
@@ -58,7 +59,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     @Override
     public List<ControleDeCorridasDto> getAllCorridasByDate(ControleCorridas controleCorridas, String data) {
 
-        LocalDate dataCorridaFormatada = LocalDate.parse(data, FORMATTER);
+        LocalDate dataCorridaFormatada = LocalDate.parse(data, FORMATTED_DATE);
 
         List<ControleCorridas> corridas  = controleDeCorridasRepository.findByData(dataCorridaFormatada);
 
