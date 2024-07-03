@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface ControleDeCorridasService {
 
     Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas);
-    List<ControleDeCorridasDto> getAllCorridas(ControleCorridas controleCorridas);
+
+    List<ControleDeCorridasDto> getAllCorridasByDate(ControleCorridas controleCorridas, String dataCorrida);
 
 }

@@ -4,6 +4,7 @@ import com.citygusa.com.citygusaapi.Dto.ControleDeCorridasDto;
 import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
 import com.citygusa.com.citygusaapi.Service.ControleDeCorridasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/corridas")
+@RequestMapping("/runs")
 public class ControleDeCorridasController {
 
     @Autowired
@@ -23,8 +24,8 @@ public class ControleDeCorridasController {
         return savedCorridas.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(500).build());
     }
 
-    @GetMapping("/allresults")
-    public List<ControleDeCorridasDto> getAllCorridas(ControleCorridas entity) {
-        return controleDeCorridasService.getAllCorridas(entity);
+    @GetMapping("/date-today")
+    public List<ControleDeCorridasDto> getAllCorridas(@RequestParam("data") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String data) {
+        return controleDeCorridasService.getAllCorridasByDate(new ControleCorridas(), data);
     }
 }

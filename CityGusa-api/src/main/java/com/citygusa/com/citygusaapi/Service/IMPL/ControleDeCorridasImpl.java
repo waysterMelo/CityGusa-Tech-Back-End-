@@ -10,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -53,8 +56,12 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     }
 
     @Override
-    public List<ControleDeCorridasDto> getAllCorridas(ControleCorridas controleCorridas) {
-       List<ControleCorridas> corridas  = controleDeCorridasRepository.findAll();
+    public List<ControleDeCorridasDto> getAllCorridasByDate(ControleCorridas controleCorridas, String data) {
+
+        LocalDate dataCorridaFormatada = LocalDate.parse(data, DateTimeFormatter.ISO_DATE);
+
+        List<ControleCorridas> corridas  = controleDeCorridasRepository.findByData(dataCorridaFormatada);
+
        return corridas.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 }
