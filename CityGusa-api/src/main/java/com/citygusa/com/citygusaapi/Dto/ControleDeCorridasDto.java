@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ import java.time.LocalTime;
 public class ControleDeCorridasDto {
 
     private Long id;
-    private LocalDate data = LocalDate.now();
+    private String data;
     private Integer cacambas;
     private LocalTime horaAbertura;
     private LocalTime horaTampa;
@@ -30,8 +31,9 @@ public class ControleDeCorridasDto {
     private Double cecDiaKg;
 
     public ControleDeCorridasDto(ControleCorridas entity){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.id = entity.getId();
-        this.data = entity.getData();
+        this.data = entity.getData().format(dateTimeFormatter);
         this.cacambas = entity.getCacambas();
         this.horaAbertura = entity.getHoraAbertura();
         this.horaTampa = entity.getHoraTampa();
