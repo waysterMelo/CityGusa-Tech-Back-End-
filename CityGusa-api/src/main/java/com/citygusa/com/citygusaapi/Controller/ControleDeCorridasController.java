@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequestMapping("/runs")
 public class ControleDeCorridasController {
 
-    private static DateTimeFormatter FORMATTER_DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter FORMATTER_DATE = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Autowired
     private ControleDeCorridasService controleDeCorridasService;

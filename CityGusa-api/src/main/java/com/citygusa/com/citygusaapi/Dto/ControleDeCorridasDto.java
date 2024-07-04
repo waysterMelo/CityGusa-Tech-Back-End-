@@ -1,6 +1,7 @@
 package com.citygusa.com.citygusaapi.Dto;
 
 import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,10 @@ import java.time.format.DateTimeFormatter;
 public class ControleDeCorridasDto {
 
     private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String data;
+
     private Integer cacambas;
     private String horaAbertura;
     private String horaTampa;
