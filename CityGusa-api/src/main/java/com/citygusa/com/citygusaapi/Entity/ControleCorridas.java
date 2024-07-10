@@ -34,10 +34,10 @@ public class ControleCorridas {
     @Column(name = "temperatura", nullable = false)
     private Double temperatura;
 
-    @Column(name = "reducao", nullable = false)
+    @Column(name = "reducao", nullable = true)
     private Double reducao;
 
-    @Column(name = "reserva_fundida", nullable = false)
+    @Column(name = "reserva_fundida", nullable = true)
     private Double reservaFundida;
 
     @Column(name = "escoria_visual", nullable = false)
@@ -46,10 +46,10 @@ public class ControleCorridas {
     @Column(name = "producao", nullable = false)
     private Double producao;
 
-    @Column(name = "producao_acumulada", nullable = false)
+    @Column(name = "producao_acumulada", nullable = true)
     private Double producaoAcumulada;
 
-    @Column(name = "media", nullable = false)
+    @Column(name = "media", nullable = true)
     private Double media;
 
     @Column(name = "cec_dia_m3", nullable = false)
