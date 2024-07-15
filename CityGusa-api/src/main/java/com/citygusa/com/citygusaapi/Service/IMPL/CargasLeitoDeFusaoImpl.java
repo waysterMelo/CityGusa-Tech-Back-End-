@@ -27,27 +27,34 @@ public class CargasLeitoDeFusaoImpl implements CargasLeitoDeFusaoService {
         dto.setData_atual(cargasLeitoDeFusao.getData_atual());
         dto.setHoras(cargasLeitoDeFusao.getHoras());
         dto.setNumeroDaCarga(cargasLeitoDeFusao.getNumeroDaCarga());
-        dto.setPorcentagem(cargasLeitoDeFusao.getPorcentagem());
         dto.setTipoMinerio(cargasLeitoDeFusao.getTipoMinerio());
         dto.setQuantidade(cargasLeitoDeFusao.getQuantidade());
         dto.setCalcareo(cargasLeitoDeFusao.getCalcareo());
         dto.setBauxita(cargasLeitoDeFusao.getBauxita());
         dto.setCoque(cargasLeitoDeFusao.getCoque());
         dto.setSecas(cargasLeitoDeFusao.getSecas());
-        dto.setNumeroCargas(cargasLeitoDeFusao.getNumeroCargas());
+        dto.setTotalCargas(cargasLeitoDeFusao.getTotalCargas());
         dto.setSucataGusa(cargasLeitoDeFusao.getSucataGusa());
         dto.setSucataAco(cargasLeitoDeFusao.getSucataAco());
         return dto;
     }
 
 
-
     @Override
     public Optional<CargasLeitoDeFusaoDto> salvarLeito(CargasLeitoDeFusao cargasLeitoDeFusao) {
-        logger.info("Tentativa de salvar cargas leito de fusao", cargasLeitoDeFusao);
-        CargasLeitoDeFusao entity =  repository.save(cargasLeitoDeFusao);
-        CargasLeitoDeFusaoDto dto = convertToDto(entity);
-        logger.info("Tentativa de salvar cargas leito de fusao", dto);
-        return Optional.of(dto);
+        logger.info("Tentativa de salvar cargas leito de fusao {}", cargasLeitoDeFusao);
+        CargasLeitoDeFusao entity = repository.save(cargasLeitoDeFusao);
+
+        if (cargasLeitoDeFusao != null && cargasLeitoDeFusao.getId() != null) {
+            CargasLeitoDeFusaoDto dto = convertToDto(entity);
+            logger.info("Informaçoes salva com sucesso", dto);
+            return Optional.of(dto);
+        } else {
+
+        }
+        logger.warn("Falha ao salvar cargas leito de fusão: {}", cargasLeitoDeFusao);
+        return Optional.empty();
+
     }
+
 }

@@ -1,15 +1,10 @@
 package com.citygusa.com.citygusaapi.Dto;
 
 import com.citygusa.com.citygusaapi.Entity.CargasLeitoDeFusao;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Data
 @AllArgsConstructor
@@ -28,7 +23,7 @@ public class CargasLeitoDeFusaoDto extends CargasLeitoDeFusao {
     private Integer bauxita;
     private Integer coque;
     private Integer secas;
-    private Integer numeroCargas;
+    private Integer totalCargas;
     private Integer sucataGusa;
     private Integer sucataAco;
 
@@ -45,7 +40,7 @@ public class CargasLeitoDeFusaoDto extends CargasLeitoDeFusao {
         this.bauxita = cargasLeitoDeFusao.getBauxita();
         this.coque = cargasLeitoDeFusao.getCoque();
         this.secas = cargasLeitoDeFusao.getSecas();
-        this.numeroCargas = cargasLeitoDeFusao.getNumeroCargas();
+        this.totalCargas = cargasLeitoDeFusao.getTotalCargas();
         this.sucataGusa = cargasLeitoDeFusao.getSucataGusa();
         this.sucataAco = cargasLeitoDeFusao.getSucataAco();
     }

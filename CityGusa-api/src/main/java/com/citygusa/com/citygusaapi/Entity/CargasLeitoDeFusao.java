@@ -30,7 +30,7 @@ public class CargasLeitoDeFusao {
     private Integer bauxita;
     private Integer coque;
     private Integer secas;
-    private Integer numeroCargas;
+    private Integer totalCargas;
     private Integer sucataGusa;
     private Integer sucataAco;
 

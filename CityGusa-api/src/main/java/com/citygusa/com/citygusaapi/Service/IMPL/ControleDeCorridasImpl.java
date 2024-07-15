@@ -65,6 +65,6 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
             throw new NoCorridasFoundException("Não há corridas para retornar na data informada! " + dataCorridaFormatada);
         }
 
-       return corridas.stream().map(this::convertToDto).collect(Collectors.toList());
+        return corridas.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 }
