@@ -1,12 +1,12 @@
 package com.citygusa.com.citygusaapi.Dto;
 
 import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.format.DateTimeFormatter;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,40 +14,69 @@ import java.time.format.DateTimeFormatter;
 public class ControleDeCorridasDto {
 
     private Long id;
+    private String vazamento_inicio;
+    private String vazamento_fim;
+    private Integer minutos;
+    private Integer conchas;
+    private Integer silicio_visual;
+    private Integer silicio_real;
+    private String fosforo;
+    private String manganes;
+    private String silica;
+    private String escoria_inicio;
+    private String escoria_fim;
+    private String tipo_escoria;
+    private Integer carga_fundida_de;
+    private Integer carga_fundida_ate;
+    private Integer quantidade;
+    private Integer fe_gusa_kg;
+    private BigDecimal ferro;
+    private BigDecimal realTn;
+    private BigDecimal tempo_corrida;
+    private BigDecimal gusa_minuto;
+    private Integer carvao_kg;
+    private Integer carvao_metros;
+    private BigDecimal mt;
+    private Integer sopradores_1;
+    private Integer sopradores_2;
+    private Integer sopradores_3;
+    private Integer sopradores_4;
+    private Integer sopradores_5;
+    private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private String data;
-
-    private Integer cacambas;
-    private String horaAbertura;
-    private String horaTampa;
-    private Double temperatura;
-    private Double reducao;
-    private Double reservaFundida;
-    private String escoriaVisual;
-    private Double producao;
-    private Double producaoAcumulada;
-    private Double media;
-    private Double cecDiaM3;
-    private Double cecDiaKg;
 
     public ControleDeCorridasDto(ControleCorridas entity){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        DateTimeFormatter horaFormatted = DateTimeFormatter.ofPattern("HH:mm");
-        this.id = entity.getId();
-        this.data = entity.getData().format(dateTimeFormatter);
-        this.cacambas = entity.getCacambas();
-        this.horaAbertura = entity.getHoraAbertura().format(horaFormatted);
-        this.horaTampa = entity.getHoraTampa().format(horaFormatted);
-        this.temperatura = entity.getTemperatura();
-        this.reducao = entity.getReducao();
-        this.reservaFundida = entity.getReservaFundida();
-        this.escoriaVisual = entity.getEscoriaVisual();
-        this.producao = entity.getProducao();
-        this.producaoAcumulada = entity.getProducaoAcumulada();
-        this.media = entity.getMedia();
-        this.cecDiaM3 = entity.getCecDiaM3();
-        this.cecDiaKg = entity.getCecDiaKg();
-    }
+        // Construtor que aceita uma entidade ControleCorridas
+            this.id = entity.getId();
+            this.vazamento_inicio = entity.getVazamento_inicio();
+            this.vazamento_fim = entity.getVazamento_fim();
+            this.minutos = entity.getMinutos();
+            this.conchas = entity.getConchas();
+            this.silicio_visual = entity.getSilicio_visual();
+            this.silicio_real = entity.getSilicio_real();
+            this.fosforo = entity.getFosforo();
+            this.manganes = entity.getManganes();
+            this.silica = entity.getSilica();
+            this.escoria_inicio = entity.getEscoria_inicio();
+            this.escoria_fim = entity.getEscoria_fim();
+            this.tipo_escoria = entity.getTipo_escoria();
+            this.carga_fundida_de = entity.getCarga_fundida_de();
+            this.carga_fundida_ate = entity.getCarga_fundida_ate();
+            this.quantidade = entity.getQuantidade();
+            this.fe_gusa_kg = entity.getFe_gusa_kg();
+            this.ferro = entity.getFerro();
+            this.realTn = entity.getRealTn();
+            this.tempo_corrida = entity.getTempo_corrida();
+            this.gusa_minuto = entity.getGusa_minuto();
+            this.carvao_kg = entity.getCarvao_kg();
+            this.carvao_metros = entity.getCarvao_metros();
+            this.mt = entity.getMt();
+            this.sopradores_1 = entity.getSopradores_1();
+            this.sopradores_2 = entity.getSopradores_2();
+            this.sopradores_3 = entity.getSopradores_3();
+            this.sopradores_4 = entity.getSopradores_4();
+            this.sopradores_5 = entity.getSopradores_5();
+            this.createdAt = entity.getCreatedAt();
+        }
 
 }

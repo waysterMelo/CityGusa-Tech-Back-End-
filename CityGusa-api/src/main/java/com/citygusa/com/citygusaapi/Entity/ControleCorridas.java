@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "controle_de_corridas")
@@ -19,42 +19,96 @@ public class ControleCorridas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "data", nullable = false)
-    private LocalDate data;
+    @Column(unique = true, nullable = true)
+    private String vazamento_inicio;
 
-    @Column(name = "cacambas", nullable = false)
-    private Integer cacambas;
+    @Column(unique = true, nullable = true)
+    private String vazamento_fim;
 
-    @Column(name = "hora_abertura", nullable = false)
-    private LocalTime horaAbertura;
+    @Column(unique = true, nullable = false)
+    private Integer minutos;
 
-    @Column(name = "hora_tampa", nullable = false)
-    private LocalTime horaTampa;
+    @Column(unique = true, nullable = true)
+    private Integer conchas;
 
-    @Column(name = "temperatura", nullable = false)
-    private Double temperatura;
+    @Column(unique = true, nullable = true)
+    private Integer silicio_visual;
 
-    @Column(name = "reducao", nullable = true)
-    private Double reducao;
+    @Column(unique = true, nullable = true)
+    private Integer silicio_real;
 
-    @Column(name = "reserva_fundida", nullable = true)
-    private Double reservaFundida;
+    @Column(unique = true, nullable = true)
+    private String fosforo;
 
-    @Column(name = "escoria_visual", nullable = false)
-    private String escoriaVisual;
+    @Column(unique = true, nullable = true)
+    private String manganes;
 
-    @Column(name = "producao", nullable = false)
-    private Double producao;
+    @Column(unique = true, nullable = true)
+    private String silica;
 
-    @Column(name = "producao_acumulada", nullable = true)
-    private Double producaoAcumulada;
+    @Column(unique = true, nullable = true)
+    private String escoria_inicio;
 
-    @Column(name = "media", nullable = true)
-    private Double media;
+    @Column(unique = true, nullable = true)
+    private String escoria_fim;
 
-    @Column(name = "cec_dia_m3", nullable = false)
-    private Double cecDiaM3;
+    @Column(unique = true, nullable = true)
+    private String tipo_escoria;
 
-    @Column(name = "cec_dia_kg", nullable = false)
-    private Double cecDiaKg;
+    @Column(unique = true, nullable = false)
+    private Integer carga_fundida_de;
+
+    @Column(unique = true, nullable = false)
+    private Integer carga_fundida_ate;
+
+    @Column(unique = true, nullable = false)
+    private Integer quantidade;
+
+    @Column(unique = true, nullable = true)
+    private Integer fe_gusa_kg;
+
+    @Column(precision = 10, scale = 2, nullable = true)
+    private BigDecimal ferro;
+
+    @Column(precision = 10, scale = 2, nullable = true)
+    private BigDecimal realTn;
+
+    @Column(unique = true, nullable = true)
+    private BigDecimal tempo_corrida;
+
+
+    @Column(precision = 10, scale = 3, nullable = true)
+    private BigDecimal gusa_minuto;
+
+    @Column(unique = true, nullable = false)
+    private Integer carvao_kg;
+
+    @Column(unique = true, nullable = false)
+    private Integer carvao_metros;
+
+    @Column(precision = 10, scale = 2, nullable = true)
+    private BigDecimal mt;
+
+    @Column(unique = true, nullable = true)
+    private Integer sopradores_1;
+
+    @Column(unique = true, nullable = true)
+    private Integer sopradores_2;
+
+    @Column(unique = true, nullable = true)
+    private Integer sopradores_3;
+
+    @Column(unique = true, nullable = true)
+    private Integer sopradores_4;
+
+    @Column(unique = true, nullable = true)
+    private Integer sopradores_5;
+
+    @Column
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

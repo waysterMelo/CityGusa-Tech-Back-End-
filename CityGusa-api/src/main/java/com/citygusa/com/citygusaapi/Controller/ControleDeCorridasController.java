@@ -35,8 +35,8 @@ public class ControleDeCorridasController {
         return savedCorridas.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(500).build());
     }
 
-    @GetMapping("/date-today")
-    public List<ControleDeCorridasDto> getAllCorridas(@RequestParam("data") String data) {
-        return controleDeCorridasService.getAllCorridasByDate(new ControleCorridas(), data);
-    }
+//    @GetMapping("/date-today")
+//    public List<ControleDeCorridasDto> getAllCorridas(@RequestParam("data") String data) {
+//        return controleDeCorridasService.getAllCorridasByDate(new ControleCorridas(), data);
+//    }
 }

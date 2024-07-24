@@ -10,6 +10,6 @@ public interface ControleDeCorridasService {
 
     Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas);
 
-    List<ControleDeCorridasDto> getAllCorridasByDate(ControleCorridas controleCorridas, String dataCorrida);
+   // List<ControleDeCorridasDto> getAllCorridasByDate(ControleCorridas controleCorridas, String dataCorrida);
 
 }

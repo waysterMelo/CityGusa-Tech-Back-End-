@@ -45,9 +45,9 @@ public class CargasLeitoDeFusaoImpl implements CargasLeitoDeFusaoService {
         logger.info("Tentativa de salvar cargas leito de fusao {}", cargasLeitoDeFusao);
         CargasLeitoDeFusao entity = repository.save(cargasLeitoDeFusao);
 
-        if (cargasLeitoDeFusao != null && cargasLeitoDeFusao.getId() != null) {
+        if (cargasLeitoDeFusao.getId() != null) {
             CargasLeitoDeFusaoDto dto = convertToDto(entity);
-            logger.info("Informaçoes salva com sucesso", dto);
+            logger.info("Informaçoes salva com sucesso, {}", dto);
             return Optional.of(dto);
         } else {
 
