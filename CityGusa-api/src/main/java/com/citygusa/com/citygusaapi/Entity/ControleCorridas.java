@@ -86,9 +86,6 @@ public class ControleCorridas {
     @Column(unique = true, nullable = false)
     private Integer carvao_metros;
 
-    @Column(precision = 10, scale = 2, nullable = true)
-    private BigDecimal mt;
-
     @Column(unique = true, nullable = true)
     private Integer sopradores_1;
 
