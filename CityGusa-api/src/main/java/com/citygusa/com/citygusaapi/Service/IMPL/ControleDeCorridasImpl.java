@@ -30,8 +30,8 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas) {
         ControleDeCorridasDto dto = new ControleDeCorridasDto();
         dto.setId(controleCorridas.getId());
-        dto.setVazamento_inicio(controleCorridas.getVazamento_inicio());
-        dto.setVazamento_fim(controleCorridas.getVazamento_fim());
+        dto.setHoraInicio(controleCorridas.getHoraInicio());
+        dto.setHoraFim(controleCorridas.getHoraFim());
         dto.setMinutos(controleCorridas.getMinutos());
         dto.setConchas(controleCorridas.getConchas());
         dto.setSilicio_visual(controleCorridas.getSilicio_visual());
@@ -52,7 +52,6 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         dto.setGusa_minuto(controleCorridas.getGusa_minuto());
         dto.setCarvao_kg(controleCorridas.getCarvao_kg());
         dto.setCarvao_metros(controleCorridas.getCarvao_metros());
-        dto.setMt(controleCorridas.getMt());
         dto.setSopradores_1(controleCorridas.getSopradores_1());
         dto.setSopradores_2(controleCorridas.getSopradores_2());
         dto.setSopradores_3(controleCorridas.getSopradores_3());

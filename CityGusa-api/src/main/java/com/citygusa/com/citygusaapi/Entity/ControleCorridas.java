@@ -19,52 +19,36 @@ public class ControleCorridas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = true)
-    private String vazamento_inicio;
+    private String horaInicio;
 
-    @Column(unique = true, nullable = true)
-    private String vazamento_fim;
+    private String horaFim;
 
-    @Column(unique = true, nullable = false)
     private Integer minutos;
 
-    @Column(unique = true, nullable = true)
     private Integer conchas;
 
-    @Column(unique = true, nullable = true)
     private Integer silicio_visual;
 
-    @Column(unique = true, nullable = true)
     private Integer silicio_real;
 
-    @Column(unique = true, nullable = true)
     private String fosforo;
 
-    @Column(unique = true, nullable = true)
     private String manganes;
 
-    @Column(unique = true, nullable = true)
     private String silica;
 
-    @Column(unique = true, nullable = true)
     private String escoria_inicio;
 
-    @Column(unique = true, nullable = true)
     private String escoria_fim;
 
-    @Column(unique = true, nullable = true)
     private String tipo_escoria;
 
-    @Column(unique = true, nullable = false)
     private Integer carga_fundida_de;
 
-    @Column(unique = true, nullable = false)
     private Integer carga_fundida_ate;
 
-    @Column(unique = true, nullable = false)
     private Integer quantidade;
 
-    @Column(unique = true, nullable = true)
     private Integer fe_gusa_kg;
 
     @Column(precision = 10, scale = 2, nullable = true)
@@ -73,32 +57,21 @@ public class ControleCorridas {
     @Column(precision = 10, scale = 2, nullable = true)
     private BigDecimal realTn;
 
-    @Column(unique = true, nullable = true)
     private BigDecimal tempo_corrida;
 
-
-    @Column(precision = 10, scale = 3, nullable = true)
     private BigDecimal gusa_minuto;
 
-    @Column(unique = true, nullable = false)
     private Integer carvao_kg;
 
-    @Column(unique = true, nullable = false)
     private Integer carvao_metros;
-
-    @Column(unique = true, nullable = true)
     private Integer sopradores_1;
 
-    @Column(unique = true, nullable = true)
     private Integer sopradores_2;
 
-    @Column(unique = true, nullable = true)
     private Integer sopradores_3;
 
-    @Column(unique = true, nullable = true)
     private Integer sopradores_4;
 
-    @Column(unique = true, nullable = true)
     private Integer sopradores_5;
 
     @Column
