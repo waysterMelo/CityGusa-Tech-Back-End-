@@ -54,7 +54,7 @@ public class ControleCorridas {
     @Column(precision = 10, scale = 2, nullable = true)
     private BigDecimal ferro;
 
-    @Column(precision = 10, scale = 2, nullable = true)
+    @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal realTn;
 
     private BigDecimal tempo_corrida;
@@ -63,7 +63,8 @@ public class ControleCorridas {
 
     private Integer carvao_kg;
 
-    private Integer carvao_metros;
+    private BigDecimal carvao_metros;
+
     private Integer sopradores_1;
 
     private Integer sopradores_2;

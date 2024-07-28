@@ -35,7 +35,7 @@ public class ControleDeCorridasDto {
     private BigDecimal tempo_corrida;
     private BigDecimal gusa_minuto;
     private Integer carvao_kg;
-    private Integer carvao_metros;
+    private BigDecimal carvao_metros;
     private Integer sopradores_1;
     private Integer sopradores_2;
     private Integer sopradores_3;
