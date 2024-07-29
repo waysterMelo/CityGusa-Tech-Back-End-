@@ -48,7 +48,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         dto.setFe_gusa_kg(controleCorridas.getFe_gusa_kg());
         dto.setFerro(controleCorridas.getFerro());
         dto.setRealTn(controleCorridas.getRealTn());
-        dto.setTempo_corrida(controleCorridas.getTempo_corrida());
+        dto.setTempo_corrida_minutos(controleCorridas.getTempo_corrida_minutos());
         dto.setGusa_minuto(controleCorridas.getGusa_minuto());
         dto.setCarvao_kg(controleCorridas.getCarvao_kg());
         dto.setCarvao_metros(controleCorridas.getCarvao_metros());

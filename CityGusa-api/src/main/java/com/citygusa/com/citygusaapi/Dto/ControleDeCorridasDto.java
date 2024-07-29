@@ -32,7 +32,7 @@ public class ControleDeCorridasDto {
     private Integer fe_gusa_kg;
     private BigDecimal ferro;
     private BigDecimal realTn;
-    private BigDecimal tempo_corrida;
+    private Integer tempo_corrida_minutos;
     private BigDecimal gusa_minuto;
     private Integer carvao_kg;
     private BigDecimal carvao_metros;
@@ -64,7 +64,7 @@ public class ControleDeCorridasDto {
         this.fe_gusa_kg = entity.getFe_gusa_kg();
         this.ferro = entity.getFerro();
         this.realTn = entity.getRealTn();
-        this.tempo_corrida = entity.getTempo_corrida();
+        this.tempo_corrida_minutos = entity.getTempo_corrida_minutos();
         this.gusa_minuto = entity.getGusa_minuto();
         this.carvao_kg = entity.getCarvao_kg();
         this.carvao_metros = entity.getCarvao_metros();

@@ -57,7 +57,7 @@ public class ControleCorridas {
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal realTn;
 
-    private BigDecimal tempo_corrida;
+    private Integer tempo_corrida_minutos;
 
     private BigDecimal gusa_minuto;
 
