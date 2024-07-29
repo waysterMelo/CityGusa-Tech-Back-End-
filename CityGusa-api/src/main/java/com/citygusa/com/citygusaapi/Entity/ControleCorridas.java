@@ -59,6 +59,7 @@ public class ControleCorridas {
 
     private Integer tempo_corrida_minutos;
 
+    @Column(name = "gusa_minuto", precision = 38, scale = 3)
     private BigDecimal gusa_minuto;
 
     private Integer carvao_kg;
