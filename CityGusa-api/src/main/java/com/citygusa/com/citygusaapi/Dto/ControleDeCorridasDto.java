@@ -18,8 +18,8 @@ public class ControleDeCorridasDto {
     private String horaFim;
     private Integer minutos;
     private Integer conchas;
-    private Integer silicio_visual;
-    private Integer silicio_real;
+    private Double silicio_visual;
+    private Double silicio_real;
     private String fosforo;
     private String manganes;
     private String silica;

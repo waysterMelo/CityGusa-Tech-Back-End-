@@ -27,9 +27,9 @@ public class ControleCorridas {
 
     private Integer conchas;
 
-    private Integer silicio_visual;
+    private Double silicio_visual;
 
-    private Integer silicio_real;
+    private Double silicio_real;
 
     private String fosforo;
 

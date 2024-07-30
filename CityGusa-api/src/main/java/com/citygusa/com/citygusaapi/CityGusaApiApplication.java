@@ -21,5 +21,5 @@ public class CityGusaApiApplication implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(CityGusaApiApplication.class, args);
     }
-
+            
 }
