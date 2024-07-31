@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.channels.NoConnectionPendingException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -35,8 +37,9 @@ public class ControleDeCorridasController {
         return savedCorridas.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(500).build());
     }
 
-//    @GetMapping("/date-today")
-//    public List<ControleDeCorridasDto> getAllCorridas(@RequestParam("data") String data) {
-//        return controleDeCorridasService.getAllCorridasByDate(new ControleCorridas(), data);
-//    }
+    @GetMapping("/today")
+    public ResponseEntity<List<ControleCorridas>> getAllCorridas() {
+      List<ControleCorridas> corridas =  controleDeCorridasService.getAllCorridasToday(LocalDate.now());
+      return ResponseEntity.ok(corridas);
+    }
 }

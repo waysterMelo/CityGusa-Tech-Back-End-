@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -41,7 +42,7 @@ public class ControleDeCorridasDto {
     private Integer sopradores_3;
     private Integer sopradores_4;
     private Integer sopradores_5;
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     public ControleDeCorridasDto(ControleCorridas entity) {
         // Construtor que aceita uma entidade ControleCorridas

@@ -70,17 +70,15 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         return Optional.of(corridasDto);
     }
 
-    //@Override
-//    public List<ControleDeCorridasDto> getAllCorridasByDate(ControleCorridas controleCorridas, String data) {
-//
-//        LocalDateTime dataCorridaFormatada = LocalDateTime.parse(data, FORMATTED_DATE);
-//
-//        List<ControleCorridas> corridas  = controleDeCorridasRepository.findByData(dataCorridaFormatada);
-//
-//        if (corridas.isEmpty()){
-//            throw new NoCorridasFoundException("Não há corridas para retornar na data informada! " + dataCorridaFormatada);
-//        }
-//
-//        return corridas.stream().map(this::convertToDto).collect(Collectors.toList());
-//    }
+    @Override
+    public List<ControleCorridas> getAllCorridasToday(LocalDate data) {
+
+        List<ControleCorridas> corridas  = controleDeCorridasRepository.findAllByCreatedAt(data);
+
+        if (corridas.isEmpty()){
+            throw new NoCorridasFoundException("Não há corridas para retornar na data informada! " + data);
+        }
+
+        return corridas;
+    }
 }
