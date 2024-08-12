@@ -16,4 +16,6 @@ public interface ControleDeCorridasService {
 
     Double getMediaFosforo(LocalDate createdAt);
 
+    Double getMediaSilica(LocalDate createdAt);
+
 }

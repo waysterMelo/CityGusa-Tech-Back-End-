@@ -28,7 +28,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     @Autowired
     private ControleDeCorridasRepository controleDeCorridasRepository;
 
-    private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas, Integer minutosAcumulados) {
+    private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas) {
         ControleDeCorridasDto dto = new ControleDeCorridasDto();
         dto.setId(controleCorridas.getId());
         dto.setHoraInicio(controleCorridas.getHoraInicio());
@@ -60,7 +60,6 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         dto.setSopradores5(controleCorridas.getSopradores5());
         dto.setCreatedAt(controleCorridas.getCreatedAt());
         dto.setTemperatura(controleCorridas.getTemperatura());
-        dto.setMinutosAcumulados(minutosAcumulados);
         return dto;
     }
 
@@ -68,7 +67,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas) {
         logger.info("Tentando salvar correida : {}", controleCorridas);
         ControleCorridas corridasSaved = controleDeCorridasRepository.save(controleCorridas);
-        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved, null);
+        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved);
         logger.info("Corrida salva com sucesso: {}", corridasDto);
         return Optional.of(corridasDto);
     }
@@ -80,8 +79,15 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     }
 
     @Override
+    @Transactional
     public Double getMediaFosforo(LocalDate createdAt) {
         return controleDeCorridasRepository.findMediaFosforo(createdAt);
+    }
+
+    @Override
+    @Transactional
+    public Double getMediaSilica(LocalDate createdAt) {
+        return controleDeCorridasRepository.findMediaSilica(createdAt);
     }
 
     @Override
@@ -93,11 +99,12 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
             throw new NoCorridasFoundException("Não há corridas para retornar na data informada: " + createdAt);
         }
 
-        Integer minutos=  getMinutosAcumuladosDoDia(createdAt);
+        Integer minutos = getMinutosAcumuladosDoDia(createdAt);
         Double mediaFosforo = getMediaFosforo(createdAt);
+        Double mediaSilica = getMediaSilica(createdAt);
 
         return corridas.stream()
-                .map(corrida -> new ControleDeCorridasDto(corrida, minutos, mediaFosforo))
+                .map(corrida -> new ControleDeCorridasDto(corrida, minutos, mediaFosforo, mediaSilica))
                 .collect(Collectors.toList());
     }
 
