@@ -12,6 +12,6 @@ public interface ControleDeCorridasService {
 
     List<ControleDeCorridasDto> getAllCorridasToday(LocalDate createdAt);
 
-    Integer getMinutosAcumulados(LocalDate createdAt);
+    Integer getMinutosAcumuladosDoDia(LocalDate createdAt);
 
 }

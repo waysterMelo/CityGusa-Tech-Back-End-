@@ -6,6 +6,8 @@ import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
 import com.citygusa.com.citygusaapi.Exceptions.NoCorridasFoundException;
 import com.citygusa.com.citygusaapi.Repository.ControleDeCorridasRepository;
 import com.citygusa.com.citygusaapi.Service.ControleDeCorridasService;
+import jakarta.transaction.TransactionScoped;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,29 +68,33 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas) {
         logger.info("Tentando salvar correida : {}", controleCorridas);
         ControleCorridas corridasSaved = controleDeCorridasRepository.save(controleCorridas);
-        Integer minutosAcumulados = getMinutosAcumulados(corridasSaved.getCreatedAt());
-        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved, minutosAcumulados);
-        logger.info("Corrida salva com sucesso: {}", corridasDto, minutosAcumulados);
+        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved, null);
+        logger.info("Corrida salva com sucesso: {}", corridasDto);
         return Optional.of(corridasDto);
     }
 
+
     @Override
+    @Transactional
     public List<ControleDeCorridasDto> getAllCorridasToday(LocalDate createdAt) {
         List<ControleCorridas> corridas = controleDeCorridasRepository.findAllByCreatedAt(createdAt);
+
         if (corridas.isEmpty()) {
             throw new NoCorridasFoundException("Não há corridas para retornar na data informada: " + createdAt);
         }
 
-        Integer minutosAcumulados = getMinutosAcumulados(createdAt);
+        Integer minutos=  getMinutosAcumuladosDoDia(createdAt);
 
         return corridas.stream()
-                .map(corrida -> new ControleDeCorridasDto(corrida, minutosAcumulados))
+                .map(corrida -> new ControleDeCorridasDto(corrida, minutos))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Integer getMinutosAcumulados(LocalDate createdAt) {
+    @Transactional
+    public Integer getMinutosAcumuladosDoDia(LocalDate createdAt) {
         return controleDeCorridasRepository.findMinutosAcumuladosPorData(createdAt);
     }
+
 
 }

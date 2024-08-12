@@ -7,11 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ControleDeCorridasRepository extends JpaRepository<ControleCorridas, Long> {
 
-    @Query("SELECT SUM(c.minutos) FROM ControleCorridas c WHERE c.createdAt = :data")
+    @Query("SELECT COALESCE(SUM(c.minutos), 0) FROM ControleCorridas c WHERE c.createdAt = :data")
     Integer findMinutosAcumuladosPorData(@Param("data") LocalDate data);
 
     List<ControleCorridas> findAllByCreatedAt(LocalDate createdAt);
