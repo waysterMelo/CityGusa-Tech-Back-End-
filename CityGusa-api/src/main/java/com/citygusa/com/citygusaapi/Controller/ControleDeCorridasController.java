@@ -5,14 +5,10 @@ import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
 import com.citygusa.com.citygusaapi.Exceptions.NoCorridasFoundException;
 import com.citygusa.com.citygusaapi.Service.ControleDeCorridasService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.nio.channels.NoConnectionPendingException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +34,8 @@ public class ControleDeCorridasController {
     }
 
     @GetMapping("/today")
-    public ResponseEntity<List<ControleCorridas>> getAllCorridas() {
-      List<ControleCorridas> corridas =  controleDeCorridasService.getAllCorridasToday(LocalDate.now());
-      return ResponseEntity.ok(corridas);
+    public ResponseEntity<List<ControleDeCorridasDto>> getAllCorridas() {
+        List<ControleDeCorridasDto> corridas = controleDeCorridasService.getAllCorridasToday(LocalDate.now());
+        return ResponseEntity.ok(corridas);
     }
 }

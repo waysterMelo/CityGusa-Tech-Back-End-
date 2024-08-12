@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -27,37 +26,39 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     @Autowired
     private ControleDeCorridasRepository controleDeCorridasRepository;
 
-    private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas) {
+    private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas, Integer minutosAcumulados) {
         ControleDeCorridasDto dto = new ControleDeCorridasDto();
         dto.setId(controleCorridas.getId());
         dto.setHoraInicio(controleCorridas.getHoraInicio());
         dto.setHoraFim(controleCorridas.getHoraFim());
         dto.setMinutos(controleCorridas.getMinutos());
         dto.setConchas(controleCorridas.getConchas());
-        dto.setSilicio_visual(controleCorridas.getSilicio_visual());
-        dto.setSilicio_real(controleCorridas.getSilicio_real());
+        dto.setSilicioVisual(controleCorridas.getSilicioVisual());
+        dto.setSilicioReal(controleCorridas.getSilicioReal());
         dto.setFosforo(controleCorridas.getFosforo());
         dto.setManganes(controleCorridas.getManganes());
         dto.setSilica(controleCorridas.getSilica());
-        dto.setEscoria_inicio(controleCorridas.getEscoria_inicio());
-        dto.setEscoria_fim(controleCorridas.getEscoria_fim());
-        dto.setTipo_escoria(controleCorridas.getTipo_escoria());
-        dto.setCarga_fundida_de(controleCorridas.getCarga_fundida_de());
-        dto.setCarga_fundida_ate(controleCorridas.getCarga_fundida_ate());
+        dto.setEscoriaInicio(controleCorridas.getEscoriaInicio());
+        dto.setEscoriaFim(controleCorridas.getEscoriaFim());
+        dto.setTipoEscoria(controleCorridas.getTipoEscoria());
+        dto.setCargaFundidaDe(controleCorridas.getCargaFundidaDe());
+        dto.setCargaFundidaAte(controleCorridas.getCargaFundidaAte());
         dto.setQuantidade(controleCorridas.getQuantidade());
-        dto.setFe_gusa_kg(controleCorridas.getFe_gusa_kg());
+        dto.setFeGusaKg(controleCorridas.getFeGusaKg());
         dto.setFerro(controleCorridas.getFerro());
         dto.setRealTn(controleCorridas.getRealTn());
-        dto.setTempo_corrida_minutos(controleCorridas.getTempo_corrida_minutos());
-        dto.setGusa_minuto(controleCorridas.getGusa_minuto());
-        dto.setCarvao_kg(controleCorridas.getCarvao_kg());
-        dto.setCarvao_metros(controleCorridas.getCarvao_metros());
-        dto.setSopradores_1(controleCorridas.getSopradores_1());
-        dto.setSopradores_2(controleCorridas.getSopradores_2());
-        dto.setSopradores_3(controleCorridas.getSopradores_3());
-        dto.setSopradores_4(controleCorridas.getSopradores_4());
-        dto.setSopradores_5(controleCorridas.getSopradores_5());
+        dto.setTempoCorridaMinutos(controleCorridas.getTempoCorridaMinutos());
+        dto.setGusaMinuto(controleCorridas.getGusaMinuto());
+        dto.setCarvaoKg(controleCorridas.getCarvaoKg());
+        dto.setCarvaoMetros(controleCorridas.getCarvaoMetros());
+        dto.setSopradores1(controleCorridas.getSopradores1());
+        dto.setSopradores2(controleCorridas.getSopradores2());
+        dto.setSopradores3(controleCorridas.getSopradores3());
+        dto.setSopradores4(controleCorridas.getSopradores4());
+        dto.setSopradores5(controleCorridas.getSopradores5());
         dto.setCreatedAt(controleCorridas.getCreatedAt());
+        dto.setTemperatura(controleCorridas.getTemperatura());
+        dto.setMinutosAcumulados(minutosAcumulados);
         return dto;
     }
 
@@ -65,20 +66,29 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas) {
         logger.info("Tentando salvar correida : {}", controleCorridas);
         ControleCorridas corridasSaved = controleDeCorridasRepository.save(controleCorridas);
-        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved);
-        logger.info("Corrida salva com sucesso: {}", corridasDto);
+        Integer minutosAcumulados = getMinutosAcumulados(corridasSaved.getCreatedAt());
+        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved, minutosAcumulados);
+        logger.info("Corrida salva com sucesso: {}", corridasDto, minutosAcumulados);
         return Optional.of(corridasDto);
     }
 
     @Override
-    public List<ControleCorridas> getAllCorridasToday(LocalDate data) {
-
-        List<ControleCorridas> corridas  = controleDeCorridasRepository.findAllByCreatedAt(data);
-
-        if (corridas.isEmpty()){
-            throw new NoCorridasFoundException("Não há corridas para retornar na data informada! " + data);
+    public List<ControleDeCorridasDto> getAllCorridasToday(LocalDate createdAt) {
+        List<ControleCorridas> corridas = controleDeCorridasRepository.findAllByCreatedAt(createdAt);
+        if (corridas.isEmpty()) {
+            throw new NoCorridasFoundException("Não há corridas para retornar na data informada: " + createdAt);
         }
 
-        return corridas;
+        Integer minutosAcumulados = getMinutosAcumulados(createdAt);
+
+        return corridas.stream()
+                .map(corrida -> new ControleDeCorridasDto(corrida, minutosAcumulados))
+                .collect(Collectors.toList());
     }
+
+    @Override
+    public Integer getMinutosAcumulados(LocalDate createdAt) {
+        return controleDeCorridasRepository.findMinutosAcumuladosPorData(createdAt);
+    }
+
 }
