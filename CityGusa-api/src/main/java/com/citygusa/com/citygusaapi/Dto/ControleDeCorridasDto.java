@@ -22,9 +22,10 @@ public class ControleDeCorridasDto {
     private Integer conchas;
     private Double silicioVisual;
     private Double silicioReal;
-    private String fosforo;
-    private String manganes;
-    private String silica;
+    private Double fosforo;
+    private Double mediaFosforo;
+    private Double manganes;
+    private Double silica;
     private String escoriaInicio;
     private String escoriaFim;
     private String tipoEscoria;
@@ -46,7 +47,7 @@ public class ControleDeCorridasDto {
     private BigInteger temperatura;
     private LocalDate createdAt;
 
-    public ControleDeCorridasDto(ControleCorridas entity, Integer minutosAcumulados) {
+    public ControleDeCorridasDto(ControleCorridas entity, Integer minutosAcumulados, Double mediaFosforo) {
         this.id = entity.getId();
         this.horaInicio = entity.getHoraInicio();
         this.horaFim = entity.getHoraFim();
@@ -78,5 +79,6 @@ public class ControleDeCorridasDto {
         this.sopradores5 = entity.getSopradores5();
         this.temperatura = entity.getTemperatura();
         this.createdAt = entity.getCreatedAt();
+        this.mediaFosforo = mediaFosforo;
     }
 }

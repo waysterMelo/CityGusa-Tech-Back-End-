@@ -25,9 +25,9 @@ public class ControleCorridas {
     private Integer conchas;
     private Double silicioVisual;
     private Double silicioReal;
-    private String fosforo;
-    private String manganes;
-    private String silica;
+    private Double fosforo;
+    private Double manganes;
+    private Double silica;
     private String escoriaInicio;
     private String escoriaFim;
     private String tipoEscoria;

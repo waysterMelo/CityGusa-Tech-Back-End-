@@ -14,4 +14,6 @@ public interface ControleDeCorridasService {
 
     Integer getMinutosAcumuladosDoDia(LocalDate createdAt);
 
+    Double getMediaFosforo(LocalDate createdAt);
+
 }

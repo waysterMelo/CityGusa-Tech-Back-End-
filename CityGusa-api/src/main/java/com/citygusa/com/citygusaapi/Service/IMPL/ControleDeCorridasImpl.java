@@ -73,6 +73,16 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         return Optional.of(corridasDto);
     }
 
+    @Override
+    @Transactional
+    public Integer getMinutosAcumuladosDoDia(LocalDate createdAt) {
+        return controleDeCorridasRepository.findMinutosAcumuladosPorData(createdAt);
+    }
+
+    @Override
+    public Double getMediaFosforo(LocalDate createdAt) {
+        return controleDeCorridasRepository.findMediaFosforo(createdAt);
+    }
 
     @Override
     @Transactional
@@ -84,17 +94,16 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         }
 
         Integer minutos=  getMinutosAcumuladosDoDia(createdAt);
+        Double mediaFosforo = getMediaFosforo(createdAt);
 
         return corridas.stream()
-                .map(corrida -> new ControleDeCorridasDto(corrida, minutos))
+                .map(corrida -> new ControleDeCorridasDto(corrida, minutos, mediaFosforo))
                 .collect(Collectors.toList());
     }
 
-    @Override
-    @Transactional
-    public Integer getMinutosAcumuladosDoDia(LocalDate createdAt) {
-        return controleDeCorridasRepository.findMinutosAcumuladosPorData(createdAt);
-    }
+
+
+
 
 
 }
