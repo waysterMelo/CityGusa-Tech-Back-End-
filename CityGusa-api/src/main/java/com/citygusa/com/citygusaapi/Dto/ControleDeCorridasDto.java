@@ -25,6 +25,7 @@ public class ControleDeCorridasDto {
     private Double fosforo;
     private Double mediaFosforo;
     private Double manganes;
+    private Double mediaManganes;
     private Double silica;
     private Double mediaSilica;
     private String escoriaInicio;
@@ -49,7 +50,8 @@ public class ControleDeCorridasDto {
     private LocalDate createdAt;
 
     public ControleDeCorridasDto(ControleCorridas entity,
-                                 Integer minutosAcumulados, Double mediaFosforo, Double mediaSilica) {
+               Integer minutosAcumulados, Double mediaFosforo,
+               Double mediaSilica, Double mediaManganes) {
         this.id = entity.getId();
         this.horaInicio = entity.getHoraInicio();
         this.horaFim = entity.getHoraFim();
@@ -83,5 +85,6 @@ public class ControleDeCorridasDto {
         this.createdAt = entity.getCreatedAt();
         this.mediaFosforo = mediaFosforo;
         this.mediaSilica = mediaSilica;
+        this.mediaManganes = mediaManganes;
     }
 }

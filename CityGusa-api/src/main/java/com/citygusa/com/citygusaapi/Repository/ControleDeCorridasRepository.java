@@ -12,6 +12,8 @@ import java.util.Optional;
 @Repository
 public interface ControleDeCorridasRepository extends JpaRepository<ControleCorridas, Long> {
 
+    @Query("SELECT COALESCE(AVG(c.manganes), 0) FROM ControleCorridas c where c.createdAt = :data")
+    Double findMediaManganes(@Param("data") LocalDate data);
 
     @Query("SELECT COALESCE(AVG(c.fosforo), 0) FROM ControleCorridas c where c.createdAt = :data")
     Double findMediaFosforo(@Param("data") LocalDate data);

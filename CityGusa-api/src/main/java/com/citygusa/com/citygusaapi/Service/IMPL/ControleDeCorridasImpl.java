@@ -92,6 +92,13 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
 
     @Override
     @Transactional
+    public Double getMediaManganes(LocalDate createdAt) {
+        return controleDeCorridasRepository.findMediaManganes(createdAt);
+    }
+
+
+    @Override
+    @Transactional
     public List<ControleDeCorridasDto> getAllCorridasToday(LocalDate createdAt) {
         List<ControleCorridas> corridas = controleDeCorridasRepository.findAllByCreatedAt(createdAt);
 
@@ -102,9 +109,11 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         Integer minutos = getMinutosAcumuladosDoDia(createdAt);
         Double mediaFosforo = getMediaFosforo(createdAt);
         Double mediaSilica = getMediaSilica(createdAt);
+        Double mediaManganes = getMediaManganes(createdAt);
 
         return corridas.stream()
-                .map(corrida -> new ControleDeCorridasDto(corrida, minutos, mediaFosforo, mediaSilica))
+                .map(corrida -> new ControleDeCorridasDto(corrida, minutos,
+                        mediaFosforo, mediaSilica, mediaManganes))
                 .collect(Collectors.toList());
     }
 
