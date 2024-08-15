@@ -37,6 +37,8 @@ public class ControleDeCorridasDto {
     private Integer feGusaKg;
     private BigDecimal ferro;
     private BigDecimal realTn;
+    private Double ritmo;
+    private BigDecimal realTnAcumulado;
     private Integer tempoCorridaMinutos;
     private BigDecimal gusaMinuto;
     private Integer carvaoKg;
@@ -51,7 +53,7 @@ public class ControleDeCorridasDto {
 
     public ControleDeCorridasDto(ControleCorridas entity,
                Integer minutosAcumulados, Double mediaFosforo,
-               Double mediaSilica, Double mediaManganes) {
+               Double mediaSilica, Double mediaManganes, BigDecimal realTnAcumulado) {
         this.id = entity.getId();
         this.horaInicio = entity.getHoraInicio();
         this.horaFim = entity.getHoraFim();
@@ -86,5 +88,7 @@ public class ControleDeCorridasDto {
         this.mediaFosforo = mediaFosforo;
         this.mediaSilica = mediaSilica;
         this.mediaManganes = mediaManganes;
+        this.realTnAcumulado = realTnAcumulado;
+        this.ritmo = entity.getRitmo();
     }
 }

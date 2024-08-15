@@ -39,6 +39,7 @@ public class ControleCorridas {
     private BigDecimal ferro;
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal realTn;
+    private Double ritmo;
     private Integer tempoCorridaMinutos;
     @Column(precision = 38, scale = 3)
     private BigDecimal gusaMinuto;

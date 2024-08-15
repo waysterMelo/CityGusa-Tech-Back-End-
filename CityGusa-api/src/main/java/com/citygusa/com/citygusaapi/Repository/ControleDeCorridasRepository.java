@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,9 @@ public interface ControleDeCorridasRepository extends JpaRepository<ControleCorr
 
     @Query("SELECT COALESCE(SUM(c.minutos), 0) FROM ControleCorridas c WHERE c.createdAt = :data")
     Integer findMinutosAcumuladosPorData(@Param("data") LocalDate data);
+
+    @Query("SELECT coalesce(sum(c.realTn), 0) from ControleCorridas c where c.createdAt = :data")
+    BigDecimal findRealTnAcumulado(@Param("data") LocalDate data);
 
     List<ControleCorridas> findAllByCreatedAt(LocalDate createdAt);
 

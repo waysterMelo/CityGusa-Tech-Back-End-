@@ -12,6 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -67,6 +70,22 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas) {
         logger.info("Tentando salvar correida : {}", controleCorridas);
         ControleCorridas corridasSaved = controleDeCorridasRepository.save(controleCorridas);
+
+        //calcaular ritmo
+        Integer minutosAcumulados = getMinutosAcumuladosDoDia(controleCorridas.getCreatedAt());
+        BigDecimal realTnAcumulado = getRealTnAcumulado(controleCorridas.getCreatedAt());
+        Integer minutos = 1440;
+
+        BigDecimal minutosAcumuladosBigDecimal = new BigDecimal(minutosAcumulados);
+        BigDecimal minutosConvertidos = new BigDecimal(minutos);
+        BigDecimal ritmo = realTnAcumulado.divide(minutosAcumuladosBigDecimal, MathContext.DECIMAL128);
+        BigDecimal resultadoRitmo=  ritmo.multiply(minutosConvertidos);
+        Double resultadoDouble = resultadoRitmo.doubleValue();
+
+        // Atualiza o campo ritmo na entidade ControleCorridas
+        corridasSaved.setRitmo(resultadoDouble);
+        controleDeCorridasRepository.save(corridasSaved);
+
         ControleDeCorridasDto corridasDto = convertToDto(corridasSaved);
         logger.info("Corrida salva com sucesso: {}", corridasDto);
         return Optional.of(corridasDto);
@@ -96,6 +115,11 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         return controleDeCorridasRepository.findMediaManganes(createdAt);
     }
 
+    @Override
+    public BigDecimal getRealTnAcumulado(LocalDate createdAt) {
+        return controleDeCorridasRepository.findRealTnAcumulado(createdAt);
+    }
+
 
     @Override
     @Transactional
@@ -110,10 +134,11 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         Double mediaFosforo = getMediaFosforo(createdAt);
         Double mediaSilica = getMediaSilica(createdAt);
         Double mediaManganes = getMediaManganes(createdAt);
+        BigDecimal realAcumulado = getRealTnAcumulado(createdAt);
 
         return corridas.stream()
                 .map(corrida -> new ControleDeCorridasDto(corrida, minutos,
-                        mediaFosforo, mediaSilica, mediaManganes))
+                        mediaFosforo, mediaSilica, mediaManganes, realAcumulado))
                 .collect(Collectors.toList());
     }
 
