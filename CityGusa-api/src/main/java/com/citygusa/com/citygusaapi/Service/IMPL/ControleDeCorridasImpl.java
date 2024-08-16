@@ -67,6 +67,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     }
 
     @Override
+    @Transactional
     public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas) {
         logger.info("Tentando salvar correida : {}", controleCorridas);
         ControleCorridas corridasSaved = controleDeCorridasRepository.save(controleCorridas);
@@ -98,19 +99,16 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     }
 
     @Override
-    @Transactional
     public Double getMediaFosforo(LocalDate createdAt) {
         return controleDeCorridasRepository.findMediaFosforo(createdAt);
     }
 
     @Override
-    @Transactional
     public Double getMediaSilica(LocalDate createdAt) {
         return controleDeCorridasRepository.findMediaSilica(createdAt);
     }
 
     @Override
-    @Transactional
     public Double getMediaManganes(LocalDate createdAt) {
         return controleDeCorridasRepository.findMediaManganes(createdAt);
     }
@@ -141,10 +139,4 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
                         mediaFosforo, mediaSilica, mediaManganes, realAcumulado))
                 .collect(Collectors.toList());
     }
-
-
-
-
-
-
 }

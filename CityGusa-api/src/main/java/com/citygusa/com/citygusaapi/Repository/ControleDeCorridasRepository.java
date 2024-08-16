@@ -31,4 +31,5 @@ public interface ControleDeCorridasRepository extends JpaRepository<ControleCorr
 
     List<ControleCorridas> findAllByCreatedAt(LocalDate createdAt);
 
+
 }

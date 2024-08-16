@@ -40,4 +40,12 @@ public class ControleDeCorridasController {
         return ResponseEntity.ok(corridas);
     }
 
+    @GetMapping("/por-data")
+    public ResponseEntity<List<ControleDeCorridasDto>> getAllCorridasPorData(@RequestParam("date") LocalDate date) {
+        List<ControleDeCorridasDto> corridas = controleDeCorridasService.getAllCorridasToday(date);
+        return ResponseEntity.ok(corridas);
+    }
+
+
+
 }
