@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @Table(name = "analise_gusa")
@@ -15,9 +17,6 @@ public class AnaliseGusa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "data_do_dia")
-    private String data;
 
     @Column(name = "produto")
     private String produto;
@@ -31,4 +30,11 @@ public class AnaliseGusa {
     @Column(name = "aluminio")
     private String aluminio;
 
+    @Column(nullable = false)
+    private LocalDate createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDate.now();
+    }
 }

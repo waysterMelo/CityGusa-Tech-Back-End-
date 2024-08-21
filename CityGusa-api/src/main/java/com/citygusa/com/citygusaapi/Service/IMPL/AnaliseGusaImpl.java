@@ -2,12 +2,18 @@ package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
 import com.citygusa.com.citygusaapi.Entity.AnaliseGusa;
+import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseGusaRepository;
 import com.citygusa.com.citygusaapi.Service.AnaliseGusaService;
+import jakarta.transaction.TransactionScoped;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AnaliseGusaImpl implements AnaliseGusaService {
@@ -18,7 +24,6 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
     private AnaliseGusaDto convertToDto(AnaliseGusa entity){
         AnaliseGusaDto analiseGusaDto = new AnaliseGusaDto();
         analiseGusaDto.setId(entity.getId());
-        analiseGusaDto.setData(entity.getData());
         analiseGusaDto.setFerro(entity.getFerro());
         analiseGusaDto.setAluminio(entity.getAluminio());
         analiseGusaDto.setSilicio(entity.getSilicio());
@@ -26,6 +31,7 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<AnaliseGusaDto> save(AnaliseGusa analiseGusa) {
         try {
             AnaliseGusa saved = analiseGusaRepository.save(analiseGusa);
@@ -36,6 +42,13 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
         }
     }
 
-
+    @Override
+    public List<AnaliseGusaDto> getAllCorridasToday(LocalDate createdAt) throws NoAnalisesFoundException {
+        List<AnaliseGusa> analises = analiseGusaRepository.findAllByCreatedAt(createdAt);
+        if (analises.isEmpty()) {
+            throw new NoAnalisesFoundException("Não há análises para retornar na data informada: " + createdAt);
+        }
+        return analises.stream().map(AnaliseGusaDto::new).collect(Collectors.toList());
+    }
 
 }

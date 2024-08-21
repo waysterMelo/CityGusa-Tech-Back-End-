@@ -2,27 +2,33 @@ package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
 import com.citygusa.com.citygusaapi.Entity.AnaliseGusa;
-import com.citygusa.com.citygusaapi.Repository.AnaliseGusaRepository;
+import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
+import com.citygusa.com.citygusaapi.Service.AnaliseGusaService;
 import com.citygusa.com.citygusaapi.Service.IMPL.AnaliseGusaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/analise-gusa")
 public class AnaliseGusaController {
 
     @Autowired
-    private AnaliseGusaRepository analiseGusaRepository;
+    private AnaliseGusaService analiseGusaService;
+
+    @Autowired
+    private AnaliseGusaImpl analiseGusaImpl;
 
     @PostMapping
-    public ResponseEntity<AnaliseGusa> salvarAnaliseGusa(@RequestBody AnaliseGusa analiseGusa) {
+    public ResponseEntity<ResponseEntity<AnaliseGusaDto>> salvarAnaliseGusa(@RequestBody AnaliseGusa analiseGusa) {
          try {
-             AnaliseGusa rs = analiseGusaRepository.save(analiseGusa);
+             ResponseEntity<AnaliseGusaDto> rs = analiseGusaService.save(analiseGusa);
              return new ResponseEntity<>(rs, HttpStatus.CREATED);
          }catch (Exception e) {
              return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -30,4 +36,9 @@ public class AnaliseGusaController {
 
     }
 
+    @GetMapping
+    public ResponseEntity<List<AnaliseGusaDto>> listAnaliseGusa(LocalDate data) throws NoAnalisesFoundException {
+        List<AnaliseGusaDto> lista =  analiseGusaImpl.getAllCorridasToday(data);
+        return new ResponseEntity<>(lista, HttpStatus.CREATED);
+    }
 }
