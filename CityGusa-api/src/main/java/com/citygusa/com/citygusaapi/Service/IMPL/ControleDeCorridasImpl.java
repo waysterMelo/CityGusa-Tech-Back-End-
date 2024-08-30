@@ -28,8 +28,12 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     private static final DateTimeFormatter FORMATTED_DATE = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter FORMATTED_HOUR = DateTimeFormatter.ofPattern("HH:mm");
 
+    private final ControleDeCorridasRepository controleDeCorridasRepository;
+
     @Autowired
-    private ControleDeCorridasRepository controleDeCorridasRepository;
+    public ControleDeCorridasImpl(ControleDeCorridasRepository controleDeCorridasRepository) {
+        this.controleDeCorridasRepository = controleDeCorridasRepository;
+    }
 
     private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas) {
         ControleDeCorridasDto dto = new ControleDeCorridasDto();
@@ -117,7 +121,6 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     public BigDecimal getRealTnAcumulado(LocalDate createdAt) {
         return controleDeCorridasRepository.findRealTnAcumulado(createdAt);
     }
-
 
     @Override
     @Transactional

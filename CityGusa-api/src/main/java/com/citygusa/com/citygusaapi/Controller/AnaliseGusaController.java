@@ -6,6 +6,7 @@ import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Service.AnaliseGusaService;
 import com.citygusa.com.citygusaapi.Service.IMPL.AnaliseGusaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +37,9 @@ public class AnaliseGusaController {
 
     }
 
-    @GetMapping
-    public ResponseEntity<List<AnaliseGusaDto>> listAnaliseGusa(LocalDate data) throws NoAnalisesFoundException {
-        List<AnaliseGusaDto> lista =  analiseGusaImpl.getAllCorridasToday(data);
-        return new ResponseEntity<>(lista, HttpStatus.CREATED);
+    @GetMapping()
+    public ResponseEntity<List<AnaliseGusaDto>> listAnaliseGusa() throws NoAnalisesFoundException {
+        List<AnaliseGusaDto> lista =  analiseGusaImpl.getAllAnalisesGusa(LocalDate.now());
+        return ResponseEntity.ok(lista);
     }
 }

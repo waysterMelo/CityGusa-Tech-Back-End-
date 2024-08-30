@@ -14,13 +14,23 @@ public class AnaliseGusaDto {
     private String produto;
     private String ferro;
     private String silicio;
-    private String aluminio;
+    private String enxofre;
+    private String manganes;
+    private String cromo;
+    private String fosforo;
+    private String titanium;
+    private LocalDate createdAt;
 
     public AnaliseGusaDto(AnaliseGusa entity) {
         this.id = entity.getId();
         this.produto = entity.getProduto();
         this.silicio = entity.getSilicio();
         this.ferro = entity.getFerro();
-        this.aluminio = entity.getAluminio();
+        this.enxofre = entity.getEnxofre();
+        this.manganes = entity.getManganes();
+        this.cromo = entity.getCromo();
+        this.fosforo = entity.getFosforo();
+        this.titanium = entity.getTitanium();
+        this.createdAt = entity.getCreatedAt();
     }
 }

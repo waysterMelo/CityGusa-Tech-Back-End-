@@ -25,8 +25,12 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
         AnaliseGusaDto analiseGusaDto = new AnaliseGusaDto();
         analiseGusaDto.setId(entity.getId());
         analiseGusaDto.setFerro(entity.getFerro());
-        analiseGusaDto.setAluminio(entity.getAluminio());
+        analiseGusaDto.setEnxofre(entity.getEnxofre());
         analiseGusaDto.setSilicio(entity.getSilicio());
+        analiseGusaDto.setCromo(entity.getCromo());
+        analiseGusaDto.setFosforo(entity.getFosforo());
+        analiseGusaDto.setManganes(entity.getManganes());
+        analiseGusaDto.setTitanium(entity.getTitanium());
         return analiseGusaDto;
     }
 
@@ -43,7 +47,7 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
     }
 
     @Override
-    public List<AnaliseGusaDto> getAllCorridasToday(LocalDate createdAt) throws NoAnalisesFoundException {
+    public List<AnaliseGusaDto> getAllAnalisesGusa(LocalDate createdAt) throws NoAnalisesFoundException {
         List<AnaliseGusa> analises = analiseGusaRepository.findAllByCreatedAt(createdAt);
         if (analises.isEmpty()) {
             throw new NoAnalisesFoundException("Não há análises para retornar na data informada: " + createdAt);

@@ -11,6 +11,5 @@ import java.util.List;
 public interface AnaliseGusaService{
 
     ResponseEntity<AnaliseGusaDto> save(AnaliseGusa analiseGusa);
-
-    List<AnaliseGusaDto> getAllCorridasToday(LocalDate createdAt) throws NoAnalisesFoundException;
+    List<AnaliseGusaDto> getAllAnalisesGusa(LocalDate createdAt) throws NoAnalisesFoundException;
 }

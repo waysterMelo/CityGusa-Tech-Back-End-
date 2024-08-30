@@ -27,8 +27,20 @@ public class AnaliseGusa {
     @Column(name = "silicio")
     private String silicio;
 
-    @Column(name = "aluminio")
-    private String aluminio;
+    @Column(name = "enxofre")
+    private String enxofre;
+
+    @Column(name = "manganes")
+    private String manganes;
+
+    @Column(name = "cromo")
+    private String cromo;
+
+    @Column(name = "fosforo")
+    private String fosforo;
+
+    @Column(name = "titanium")
+    private String titanium;
 
     @Column(nullable = false)
     private LocalDate createdAt;
