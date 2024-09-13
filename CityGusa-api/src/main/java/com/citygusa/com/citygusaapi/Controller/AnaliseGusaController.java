@@ -39,7 +39,13 @@ public class AnaliseGusaController {
 
     @GetMapping()
     public ResponseEntity<List<AnaliseGusaDto>> listAnaliseGusa() throws NoAnalisesFoundException {
-        List<AnaliseGusaDto> lista =  analiseGusaImpl.getAllAnalisesGusa(LocalDate.now());
+        List<AnaliseGusaDto> lista = analiseGusaImpl.getAllAnalisesGusa(LocalDate.now());
         return ResponseEntity.ok(lista);
+    }
+
+    @GetMapping("/por-data")
+    public ResponseEntity listAnaliseGusaPorData(@RequestParam("data") LocalDate date ) throws NoAnalisesFoundException {
+     List<AnaliseGusaDto> lista = analiseGusaImpl.getAllAnalisesGusa(date);
+     return ResponseEntity.ok(lista);
     }
 }

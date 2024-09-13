@@ -25,12 +25,14 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
         AnaliseGusaDto analiseGusaDto = new AnaliseGusaDto();
         analiseGusaDto.setId(entity.getId());
         analiseGusaDto.setFerro(entity.getFerro());
+        analiseGusaDto.setProduto(entity.getProduto());
         analiseGusaDto.setEnxofre(entity.getEnxofre());
         analiseGusaDto.setSilicio(entity.getSilicio());
         analiseGusaDto.setCromo(entity.getCromo());
         analiseGusaDto.setFosforo(entity.getFosforo());
         analiseGusaDto.setManganes(entity.getManganes());
         analiseGusaDto.setTitanium(entity.getTitanium());
+        analiseGusaDto.setCreatedAt(entity.getCreatedAt());
         return analiseGusaDto;
     }
 
