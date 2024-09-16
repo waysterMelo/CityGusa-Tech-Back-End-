@@ -1,12 +1,8 @@
 package com.citygusa.com.citygusaapi.Dto;
 
-import com.citygusa.com.citygusaapi.Entity.AnaliseGusa;
-import com.citygusa.com.citygusaapi.Entity.AnaliseQuimicaMineriosEntity;
-import jakarta.persistence.Column;
+import com.citygusa.com.citygusaapi.Entity.AnaliseMineriosEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -25,7 +21,7 @@ public class AnaliseMinerioDto {
     private Double ppc;
     private LocalDate createdAt;
 
-    public AnaliseMinerioDto(AnaliseQuimicaMineriosEntity entity) {
+    public AnaliseMinerioDto(AnaliseMineriosEntity entity) {
         this.id = entity.getId();
         this.minerio = entity.getMinerio();
         this.lote = entity.getLote();

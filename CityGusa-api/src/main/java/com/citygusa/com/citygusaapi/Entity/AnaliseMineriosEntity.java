@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +11,7 @@ import java.time.LocalDate;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnaliseQuimicaMineriosEntity {
+public class AnaliseMineriosEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

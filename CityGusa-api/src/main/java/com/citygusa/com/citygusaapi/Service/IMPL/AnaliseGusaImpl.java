@@ -26,27 +26,12 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
         this.analiseGusaRepository = analiseGusaRepository;
     }
 
-    private AnaliseGusaDto convertToDto(AnaliseGusa entity){
-        AnaliseGusaDto analiseGusaDto = new AnaliseGusaDto();
-        analiseGusaDto.setId(entity.getId());
-        analiseGusaDto.setFerro(entity.getFerro());
-        analiseGusaDto.setProduto(entity.getProduto());
-        analiseGusaDto.setEnxofre(entity.getEnxofre());
-        analiseGusaDto.setSilicio(entity.getSilicio());
-        analiseGusaDto.setCromo(entity.getCromo());
-        analiseGusaDto.setFosforo(entity.getFosforo());
-        analiseGusaDto.setManganes(entity.getManganes());
-        analiseGusaDto.setTitanium(entity.getTitanium());
-        analiseGusaDto.setCreatedAt(entity.getCreatedAt());
-        return analiseGusaDto;
-    }
-
     @Override
     @Transactional
     public ResponseEntity<AnaliseGusaDto> save(AnaliseGusa analiseGusa) {
         try {
             AnaliseGusa saved = analiseGusaRepository.save(analiseGusa);
-            AnaliseGusaDto dto = convertToDto(saved);
+            AnaliseGusaDto dto = new AnaliseGusaDto(saved);
             return new ResponseEntity<>(dto, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
