@@ -69,7 +69,7 @@ public class ControleDeCorridasDto {
         this.escoriaFim = entity.getEscoriaFim();
         this.tipoEscoria = entity.getTipoEscoria();
         this.cargaFundidaDe = entity.getCargaFundidaDe();
-        this.cargaFundidaAte = entity.getCargaFundidaDe();
+        this.cargaFundidaAte = entity.getCargaFundidaAte();
         this.quantidade = entity.getQuantidade();
         this.feGusaKg = entity.getFeGusaKg();
         this.ferro = entity.getFerro();

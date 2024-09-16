@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
@@ -37,6 +38,10 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
 
     @Override
     public List<AnaliseMinerioDto> getAllAnalisesMinerios(LocalDate createdAt) throws NoAnalisesFoundException {
-        return List.of(); // Método a ser implementado
+           List<AnaliseMineriosEntity> lista = analiseMinerioRepository.findAllByCreatedAt(createdAt);
+           if (lista.isEmpty()){
+               throw new NoAnalisesFoundException("Não há análises para retornar na data informada: " + createdAt);
+           }
+           return lista.stream().map(AnaliseMinerioDto::new).collect(Collectors.toList());
     }
 }
