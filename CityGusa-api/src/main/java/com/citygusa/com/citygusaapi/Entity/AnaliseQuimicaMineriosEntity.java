@@ -17,7 +17,7 @@ public class AnaliseQuimicaMineriosEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
     private String minerio;
@@ -37,8 +37,7 @@ public class AnaliseQuimicaMineriosEntity {
     private Double manganes;
     @Column
     private Double ppc;
-    @Column
-    private Double fechamento;
+
     @Column(nullable = false)
     private LocalDate createdAt;
 

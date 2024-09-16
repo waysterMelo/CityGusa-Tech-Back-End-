@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class AnaliseMinerioDto {
 
-    private Long id;
+    private Integer id;
     private String minerio;
     private String lote;
     private Double tonelada;
@@ -23,7 +23,6 @@ public class AnaliseMinerioDto {
     private Double fosforo;
     private Double manganes;
     private Double ppc;
-    private Double fechamento;
     private LocalDate createdAt;
 
     public AnaliseMinerioDto(AnaliseQuimicaMineriosEntity entity) {
@@ -37,7 +36,6 @@ public class AnaliseMinerioDto {
         this.fosforo = entity.getFosforo();
         this.manganes = entity.getManganes();
         this.ppc = entity.getPpc();
-        this.fechamento = entity.getFechamento();
         this.createdAt = entity.getCreatedAt();
     }
 }

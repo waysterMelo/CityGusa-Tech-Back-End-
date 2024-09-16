@@ -18,8 +18,13 @@ import java.util.stream.Collectors;
 @Service
 public class AnaliseGusaImpl implements AnaliseGusaService {
 
+
+    private final AnaliseGusaRepository analiseGusaRepository;
+
     @Autowired
-    private AnaliseGusaRepository analiseGusaRepository;
+    public AnaliseGusaImpl(AnaliseGusaRepository analiseGusaRepository) {
+        this.analiseGusaRepository = analiseGusaRepository;
+    }
 
     private AnaliseGusaDto convertToDto(AnaliseGusa entity){
         AnaliseGusaDto analiseGusaDto = new AnaliseGusaDto();
