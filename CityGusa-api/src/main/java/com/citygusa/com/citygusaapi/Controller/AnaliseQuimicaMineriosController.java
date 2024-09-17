@@ -9,17 +9,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/analise-minerio")
 public class AnaliseQuimicaMineriosController {
 
+    private final AnaliseMinerioServiceImpl service;
+
     @Autowired
-    private AnaliseMinerioServiceImpl service;
+    public AnaliseQuimicaMineriosController(AnaliseMinerioServiceImpl service) {
+        this.service = service;
+    }
 
     @PostMapping
-    public ResponseEntity<AnaliseMinerioDto> salvarAnaliseMinerio(@RequestBody AnaliseMineriosEntity analiseQuimicaMineriosEntity) {
+    public Optional<AnaliseMinerioDto> salvarAnaliseMinerio(@RequestBody AnaliseMineriosEntity analiseQuimicaMineriosEntity) {
         return service.save(analiseQuimicaMineriosEntity);
     }
 
@@ -34,4 +38,16 @@ public class AnaliseQuimicaMineriosController {
         List<AnaliseMinerioDto> analises = service.getAllAnalisesMinerios(date);
         return ResponseEntity.ok(analises);
      }
+
+//     @GetMapping("silica")
+//     public ResponseEntity<Map<String, Double>> getSilica(){
+//        Double silica = service.getSilica(LocalDate.now());
+//
+//         Map<String, Double> rs = new HashMap<String, Double>();
+//         rs.put("silica", silica);
+//         return ResponseEntity.ok(rs);
+//     }
+
+
+
 }

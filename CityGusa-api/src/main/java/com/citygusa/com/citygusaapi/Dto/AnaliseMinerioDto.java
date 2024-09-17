@@ -12,19 +12,22 @@ public class AnaliseMinerioDto {
     private Integer id;
     private String minerio;
     private String lote;
+    private String patio;
     private Double tonelada;
     private Double ferro;
-    private String silica;
+    private Double silica;
     private Double aluminio;
     private Double fosforo;
     private Double manganes;
     private Double ppc;
     private LocalDate createdAt;
+    private Double fechamento;
 
     public AnaliseMinerioDto(AnaliseMineriosEntity entity) {
         this.id = entity.getId();
         this.minerio = entity.getMinerio();
         this.lote = entity.getLote();
+        this.patio = entity.getPatio();
         this.tonelada = entity.getTonelada();
         this.ferro = entity.getFerro();
         this.silica = entity.getSilica();
@@ -32,6 +35,7 @@ public class AnaliseMinerioDto {
         this.fosforo = entity.getFosforo();
         this.manganes = entity.getManganes();
         this.ppc = entity.getPpc();
+        this.fechamento = entity.getFechamento();
         this.createdAt = entity.getCreatedAt();
     }
 }

@@ -22,11 +22,13 @@ public class AnaliseMineriosEntity {
     @Column
     private String lote;
     @Column
+    private String patio;
+    @Column
     private Double tonelada;
     @Column
     private Double ferro;
     @Column
-    private String silica;
+    private Double silica;
     @Column
     private Double aluminio;
     @Column
@@ -35,6 +37,8 @@ public class AnaliseMineriosEntity {
     private Double manganes;
     @Column
     private Double ppc;
+    @Column
+    private Double fechamento;
 
     @Column(nullable = false)
     private LocalDate createdAt;
