@@ -1,6 +1,5 @@
 package com.citygusa.com.citygusaapi.Service.IMPL;
 
-import com.citygusa.com.citygusaapi.Controller.AnaliseQuimicaMineriosController;
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
 import com.citygusa.com.citygusaapi.Entity.AnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
@@ -11,6 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
 
-    private static final Logger logger = LoggerFactory.getLogger(AnaliseQuimicaMineriosController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AnaliseMinerioServiceImpl.class);
 
     private final AnaliseMinerioRepository analiseMinerioRepository;
 
@@ -41,6 +43,8 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
         dto.setFosforo(entity.getFosforo());
         dto.setManganes(entity.getManganes());
         dto.setPpc(entity.getPpc());
+        dto.setCreatedAt(entity.getCreatedAt());
+        dto.setFechamento(entity.getFechamento());
         return dto;
     }
 
@@ -93,15 +97,17 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
 
             //calcula o fechamento
             Double hematita = ferro * random;
-            Double fechamento = hematita + silica + fosforo + aluminio + ppc + manganes + ferro;
+            double fechamento = hematita + silica + fosforo + aluminio + ppc + manganes;
 
-            analiseMinerios.setFechamento(fechamento);
+        BigDecimal fechamentoArredondado = new BigDecimal(fechamento).setScale(2, RoundingMode.HALF_UP);
+
+            analiseMinerios.setFechamento(fechamentoArredondado.doubleValue());
 
             analiseMinerioRepository.save(analiseMinerios);
 
             AnaliseMinerioDto dto = convertToDto(analiseMinerios);
 
-            logger.info("Analise salva com sucesso: {}", dto);
+            logger.info("Analise salva com sucesso: {}", hematita);
 
             return Optional.of(dto);
     }

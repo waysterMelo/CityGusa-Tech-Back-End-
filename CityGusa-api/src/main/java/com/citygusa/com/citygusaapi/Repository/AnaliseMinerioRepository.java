@@ -14,22 +14,22 @@ public interface AnaliseMinerioRepository extends JpaRepository<AnaliseMineriosE
 
     List<AnaliseMineriosEntity> findAllByCreatedAt(LocalDate createdAt);
 
-    @Query("SELECT c.silica FROM AnaliseMineriosEntity c WHERE c.createdAt = :data ORDER BY c.id DESC")
+    @Query("SELECT c.silica FROM AnaliseMineriosEntity c WHERE c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findSilicaByCreatedAt(@Param("data") LocalDate data);
 
-    @Query("SELECT c.aluminio FROM AnaliseMineriosEntity c where c.createdAt = :data")
+    @Query("SELECT c.aluminio FROM AnaliseMineriosEntity c where c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findAluminioByCreatedAt(@Param("data") LocalDate data);
 
-    @Query("SELECT c.fosforo FROM AnaliseMineriosEntity c where c.createdAt = :data")
+    @Query("SELECT c.fosforo FROM AnaliseMineriosEntity c where c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findFosforoByCreatedAt(@Param("data") LocalDate data);
 
-    @Query("SELECT c.manganes FROM AnaliseMineriosEntity c where c.createdAt = :data")
+    @Query("SELECT c.manganes FROM AnaliseMineriosEntity c where c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findManganesByCreatedAt(@Param("data") LocalDate data);
 
-    @Query("SELECT c.ppc FROM AnaliseMineriosEntity c where c.createdAt = :data")
+    @Query("SELECT c.ppc FROM AnaliseMineriosEntity c where c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findPpcByCreatedAt(@Param("data") LocalDate data);
 
-    @Query("SELECT c.ferro FROM AnaliseMineriosEntity c where c.createdAt = :data")
+    @Query("SELECT c.ferro FROM AnaliseMineriosEntity c where c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findFerroByCreatedAt(@Param("data") LocalDate data);
 
 }
