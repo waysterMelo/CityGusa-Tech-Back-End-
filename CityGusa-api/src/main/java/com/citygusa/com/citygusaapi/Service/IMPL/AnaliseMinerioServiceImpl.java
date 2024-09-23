@@ -48,7 +48,6 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
         return dto;
     }
 
-
     @Override
     public Double getSilica(LocalDate createdAt) {
         return analiseMinerioRepository.findSilicaByCreatedAt(createdAt);

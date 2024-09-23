@@ -1,14 +1,12 @@
 package com.citygusa.com.citygusaapi.Dto;
 
 import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CadastrarMineriosDTO {
 
     private Integer id;
@@ -21,7 +19,6 @@ public class CadastrarMineriosDTO {
     private LocalDate createdAt;
 
     public CadastrarMineriosDTO(CadastrarMineriosEntity entity) {
-        CadastrarMineriosDTO dto = new CadastrarMineriosDTO();
         this.id = entity.getId();
         this.minerio = entity.getMinerio();
         this.valorTonelada = entity.getValorTonelada();
