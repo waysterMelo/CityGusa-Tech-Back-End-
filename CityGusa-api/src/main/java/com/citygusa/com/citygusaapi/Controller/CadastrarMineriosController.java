@@ -36,10 +36,19 @@ public class CadastrarMineriosController {
     }
 
     @GetMapping("/por-data")
-    public ResponseEntity<?> getMineriosPorData(@RequestParam("data") LocalDate date) {
+    public ResponseEntity<List<CadastrarMineriosDTO>> getMineriosPorData(@RequestParam("data") LocalDate date) {
         List<CadastrarMineriosDTO> lista = service.returnAllCadastrarMinerios(date);
         if (lista.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum minério encontrado para a data fornecida.");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok().body(lista);
+    }
+
+    @GetMapping("/pesquisar-lote")
+    public ResponseEntity<?> getMineriosPorNomeELote(@RequestParam("lote") String lote) {
+        List<CadastrarMineriosDTO> lista = service.returnPesquisaLote(lote);
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.ok().body(lista);
     }

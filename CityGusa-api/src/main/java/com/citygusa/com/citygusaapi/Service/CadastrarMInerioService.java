@@ -12,4 +12,5 @@ public interface CadastrarMInerioService {
 
     Optional<CadastrarMineriosDTO> save(CadastrarMineriosEntity cadastrarMineriosEntity);
     List<CadastrarMineriosDTO> returnAllCadastrarMinerios(LocalDate data);
+    List<CadastrarMineriosDTO> returnPesquisaLote(String lote);
 }
