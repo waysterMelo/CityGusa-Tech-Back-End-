@@ -1,7 +1,7 @@
 package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
-import com.citygusa.com.citygusaapi.Entity.AnaliseMineriosEntity;
+import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseMinerioRepository;
 import com.citygusa.com.citygusaapi.Service.AnaliseMinerioService;
@@ -30,7 +30,7 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
         this.analiseMinerioRepository = analiseMinerioRepository;
     }
 
-    private AnaliseMinerioDto convertToDto(AnaliseMineriosEntity entity){
+    private AnaliseMinerioDto convertToDto(CadastrarAnaliseMineriosEntity entity){
         AnaliseMinerioDto dto = new AnaliseMinerioDto();
         dto.setId(entity.getId());
         dto.setMinerio(entity.getMinerio());
@@ -80,10 +80,10 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
 
     @Override
     @Transactional
-    public Optional<AnaliseMinerioDto> save(AnaliseMineriosEntity entity) {
+    public Optional<AnaliseMinerioDto> save(CadastrarAnaliseMineriosEntity entity) {
 
             logger.info("Tentando salvar informação : {}", entity);
-            AnaliseMineriosEntity analiseMinerios = analiseMinerioRepository.save(entity);
+            CadastrarAnaliseMineriosEntity analiseMinerios = analiseMinerioRepository.save(entity);
 
             //dados para fechamento
             Double silica = getSilica(analiseMinerios.getCreatedAt());
@@ -113,7 +113,7 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
 
     @Override
     public List<AnaliseMinerioDto> getAllAnalisesMinerios(LocalDate createdAt) throws NoAnalisesFoundException {
-        List<AnaliseMineriosEntity> lista = analiseMinerioRepository.findAllByCreatedAt(createdAt);
+        List<CadastrarAnaliseMineriosEntity> lista = analiseMinerioRepository.findAllByCreatedAt(createdAt);
         if (lista.isEmpty()) {
             throw new NoAnalisesFoundException("Não há análises para retornar na data informada: " + createdAt);
         }

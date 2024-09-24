@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "analise_minerios")
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnaliseMineriosEntity {
+public class CadastrarAnaliseMineriosEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

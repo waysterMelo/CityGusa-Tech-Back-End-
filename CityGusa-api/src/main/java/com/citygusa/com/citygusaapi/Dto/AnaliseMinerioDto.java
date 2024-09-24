@@ -1,6 +1,6 @@
 package com.citygusa.com.citygusaapi.Dto;
 
-import com.citygusa.com.citygusaapi.Entity.AnaliseMineriosEntity;
+import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
@@ -23,7 +23,7 @@ public class AnaliseMinerioDto {
     private LocalDate createdAt;
     private Double fechamento;
 
-    public AnaliseMinerioDto(AnaliseMineriosEntity entity) {
+    public AnaliseMinerioDto(CadastrarAnaliseMineriosEntity entity) {
         this.id = entity.getId();
         this.minerio = entity.getMinerio();
         this.lote = entity.getLote();

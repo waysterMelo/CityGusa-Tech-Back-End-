@@ -1,7 +1,7 @@
 package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
-import com.citygusa.com.citygusaapi.Entity.AnaliseMineriosEntity;
+import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Service.IMPL.AnaliseMinerioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class AnaliseQuimicaMineriosController {
     }
 
     @PostMapping
-    public Optional<AnaliseMinerioDto> salvarAnaliseMinerio(@RequestBody AnaliseMineriosEntity analiseQuimicaMineriosEntity) {
+    public Optional<AnaliseMinerioDto> salvarAnaliseMinerio(@RequestBody CadastrarAnaliseMineriosEntity analiseQuimicaMineriosEntity) {
         return service.save(analiseQuimicaMineriosEntity);
     }
 
@@ -38,16 +38,5 @@ public class AnaliseQuimicaMineriosController {
         List<AnaliseMinerioDto> analises = service.getAllAnalisesMinerios(date);
         return ResponseEntity.ok(analises);
      }
-
-//     @GetMapping("silica")
-//     public ResponseEntity<Map<String, Double>> getSilica(){
-//        Double silica = service.getSilica(LocalDate.now());
-//
-//         Map<String, Double> rs = new HashMap<String, Double>();
-//         rs.put("silica", silica);
-//         return ResponseEntity.ok(rs);
-//     }
-
-
 
 }

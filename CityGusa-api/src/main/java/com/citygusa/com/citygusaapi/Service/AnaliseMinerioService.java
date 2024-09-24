@@ -1,7 +1,7 @@
 package com.citygusa.com.citygusaapi.Service;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
-import com.citygusa.com.citygusaapi.Entity.AnaliseMineriosEntity;
+import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface AnaliseMinerioService {
 
-    Optional<AnaliseMinerioDto> save(AnaliseMineriosEntity entity);
+    Optional<AnaliseMinerioDto> save(CadastrarAnaliseMineriosEntity entity);
 
     List<AnaliseMinerioDto> getAllAnalisesMinerios(LocalDate createdAt) throws NoAnalisesFoundException;
 
