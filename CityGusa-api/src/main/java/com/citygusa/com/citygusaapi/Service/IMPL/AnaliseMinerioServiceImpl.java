@@ -1,7 +1,9 @@
 package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
+import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
 import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
+import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseMinerioRepository;
 import com.citygusa.com.citygusaapi.Service.AnaliseMinerioService;
@@ -120,4 +122,9 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
         return lista.stream().map(AnaliseMinerioDto::new).collect(Collectors.toList());
     }
 
+    @Override
+    public List<CadastrarMineriosDTO> returnPesquisaLote(String lote) {
+        List<CadastrarMineriosEntity> lista = analiseMinerioRepository.findByLote(lote);
+        return lista.stream().map(CadastrarMineriosDTO::new).collect(Collectors.toList());
+    }
 }

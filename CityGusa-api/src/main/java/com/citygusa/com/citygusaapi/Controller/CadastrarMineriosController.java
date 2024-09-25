@@ -43,13 +43,4 @@ public class CadastrarMineriosController {
         }
         return ResponseEntity.ok().body(lista);
     }
-
-    @GetMapping("/pesquisar-lote")
-    public ResponseEntity<?> getMineriosPorNomeELote(@RequestParam("lote") String lote) {
-        List<CadastrarMineriosDTO> lista = service.returnPesquisaLote(lote);
-        if (lista.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-        return ResponseEntity.ok().body(lista);
-    }
 }

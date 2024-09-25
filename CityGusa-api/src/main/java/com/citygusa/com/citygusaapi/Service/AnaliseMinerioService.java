@@ -1,6 +1,7 @@
 package com.citygusa.com.citygusaapi.Service;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
+import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
 import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 
@@ -25,4 +26,6 @@ public interface AnaliseMinerioService {
     Double getManganes(LocalDate createdAt);
 
     Double getFerro(LocalDate createdAt);
+
+    List<CadastrarMineriosDTO> returnPesquisaLote(String lote);
 }

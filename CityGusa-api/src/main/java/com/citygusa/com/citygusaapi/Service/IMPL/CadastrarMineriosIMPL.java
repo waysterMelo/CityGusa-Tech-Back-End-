@@ -46,10 +46,4 @@ public class CadastrarMineriosIMPL implements CadastrarMInerioService {
         }
         return lista.stream().map(CadastrarMineriosDTO::new).collect(Collectors.toList());
     }
-
-    @Override
-    public List<CadastrarMineriosDTO> returnPesquisaLote(String lote) {
-        List<CadastrarMineriosEntity> lista = cadastrarMineriosRepo.findByLote(lote);
-        return lista.stream().map(CadastrarMineriosDTO::new).collect(Collectors.toList());
-    }
 }
