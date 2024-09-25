@@ -6,6 +6,7 @@ import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseMinerioRepository;
+import com.citygusa.com.citygusaapi.Repository.CadastrarMineriosRepo;
 import com.citygusa.com.citygusaapi.Service.AnaliseMinerioService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -26,10 +27,12 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
     private static final Logger logger = LoggerFactory.getLogger(AnaliseMinerioServiceImpl.class);
 
     private final AnaliseMinerioRepository analiseMinerioRepository;
+    private final CadastrarMineriosRepo cadastrarMineriosRepo;
 
     @Autowired
-    public AnaliseMinerioServiceImpl(AnaliseMinerioRepository analiseMinerioRepository) {
+    public AnaliseMinerioServiceImpl(AnaliseMinerioRepository analiseMinerioRepository, CadastrarMineriosRepo cadastrarMineriosRepo) {
         this.analiseMinerioRepository = analiseMinerioRepository;
+        this.cadastrarMineriosRepo = cadastrarMineriosRepo;
     }
 
     private AnaliseMinerioDto convertToDto(CadastrarAnaliseMineriosEntity entity){
@@ -122,9 +125,4 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
         return lista.stream().map(AnaliseMinerioDto::new).collect(Collectors.toList());
     }
 
-    @Override
-    public List<CadastrarMineriosDTO> returnPesquisaLote(String lote) {
-        List<CadastrarMineriosEntity> lista = analiseMinerioRepository.findByLote(lote);
-        return lista.stream().map(CadastrarMineriosDTO::new).collect(Collectors.toList());
-    }
 }

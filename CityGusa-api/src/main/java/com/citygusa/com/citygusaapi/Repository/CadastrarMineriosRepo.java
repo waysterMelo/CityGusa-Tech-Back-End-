@@ -1,6 +1,7 @@
 package com.citygusa.com.citygusaapi.Repository;
 
 import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
+import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
 import jdk.jfr.Registered;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,6 @@ import java.util.List;
 public interface CadastrarMineriosRepo extends JpaRepository<CadastrarMineriosEntity, Integer> {
 
     List<CadastrarMineriosEntity> findCadastrarMineriosByCreatedAt(LocalDate data);
+
+    List<CadastrarMineriosEntity> findByLote(String lote);
 }

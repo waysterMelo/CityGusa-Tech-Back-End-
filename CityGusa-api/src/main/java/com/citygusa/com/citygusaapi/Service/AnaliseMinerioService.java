@@ -26,6 +26,4 @@ public interface AnaliseMinerioService {
     Double getManganes(LocalDate createdAt);
 
     Double getFerro(LocalDate createdAt);
-
-    List<CadastrarMineriosDTO> returnPesquisaLote(String lote);
 }

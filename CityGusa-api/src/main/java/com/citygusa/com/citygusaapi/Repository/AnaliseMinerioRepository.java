@@ -32,6 +32,4 @@ public interface AnaliseMinerioRepository extends JpaRepository<CadastrarAnalise
 
     @Query("SELECT c.ferro FROM CadastrarAnaliseMineriosEntity c where c.createdAt = :data ORDER BY c.id DESC limit 1")
     Double findFerroByCreatedAt(@Param("data") LocalDate data);
-
-    List<CadastrarMineriosEntity> findByLote(String lote);
 }
