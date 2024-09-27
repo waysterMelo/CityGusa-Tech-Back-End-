@@ -3,6 +3,7 @@ package com.citygusa.com.citygusaapi.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Table(name = "analise_escoria")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class AnaliseEscoriaEntity {
 
     @Id
@@ -26,14 +28,14 @@ public class AnaliseEscoriaEntity {
     @Column(name = "aluminio")
     private Double aluminio;
 
-    @Column(name = "magnésio ")
-    private Double magnésio ;
+    @Column(name = "magnesio ")
+    private Double magnesio ;
 
     @Column(name = "ferro")
     private Double ferro;
 
-    @Column(name = "manganês")
-    private Double manganês;
+    @Column(name = "manganes")
+    private Double manganes;
 
     @Column(name = "kilogram_per_ton")
     private Double kgPerT;

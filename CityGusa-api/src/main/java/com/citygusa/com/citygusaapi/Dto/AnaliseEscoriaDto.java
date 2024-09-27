@@ -28,9 +28,9 @@ public class AnaliseEscoriaDto {
         this.calcio = entity.getCalcio();
         this.silicio = entity.getSilicio();
         this.aluminio = entity.getAluminio();
-        this.magnesio = entity.getMagnésio();
+        this.magnesio = entity.getMagnesio();
         this.ferro = entity.getFerro();;
-        this.manganes = entity.getManganês();
+        this.manganes = entity.getManganes();
         this.kgPerT = entity.getKgPerT();
         this.ib = entity.getIb();
         this.createdAt = entity.getCreatedAt();

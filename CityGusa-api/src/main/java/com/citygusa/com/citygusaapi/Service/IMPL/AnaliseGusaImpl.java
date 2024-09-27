@@ -1,6 +1,8 @@
 package com.citygusa.com.citygusaapi.Service.IMPL;
 
+import com.citygusa.com.citygusaapi.Dto.AnaliseEscoriaDto;
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
+import com.citygusa.com.citygusaapi.Entity.AnaliseEscoriaEntity;
 import com.citygusa.com.citygusaapi.Entity.AnaliseGusaEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseGusaRepository;
@@ -36,6 +38,7 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @Override
     public List<AnaliseGusaDto> getAllAnalisesGusa(LocalDate createdAt) throws NoAnalisesFoundException {
