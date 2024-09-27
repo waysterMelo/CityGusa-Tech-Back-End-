@@ -1,11 +1,10 @@
 package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
-import com.citygusa.com.citygusaapi.Entity.AnaliseGusa;
+import com.citygusa.com.citygusaapi.Entity.AnaliseGusaEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseGusaRepository;
 import com.citygusa.com.citygusaapi.Service.AnaliseGusaService;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,9 +27,9 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
 
     @Override
     @Transactional
-    public ResponseEntity<AnaliseGusaDto> save(AnaliseGusa analiseGusa) {
+    public ResponseEntity<AnaliseGusaDto> save(AnaliseGusaEntity analiseGusa) {
         try {
-            AnaliseGusa saved = analiseGusaRepository.save(analiseGusa);
+            AnaliseGusaEntity saved = analiseGusaRepository.save(analiseGusa);
             AnaliseGusaDto dto = new AnaliseGusaDto(saved);
             return new ResponseEntity<>(dto, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -40,7 +39,7 @@ public class AnaliseGusaImpl implements AnaliseGusaService {
 
     @Override
     public List<AnaliseGusaDto> getAllAnalisesGusa(LocalDate createdAt) throws NoAnalisesFoundException {
-        List<AnaliseGusa> analises = analiseGusaRepository.findAllByCreatedAt(createdAt);
+        List<AnaliseGusaEntity> analises = analiseGusaRepository.findAllByCreatedAt(createdAt);
         if (analises.isEmpty()) {
             throw new NoAnalisesFoundException("Não há análises para retornar na data informada: " + createdAt);
         }

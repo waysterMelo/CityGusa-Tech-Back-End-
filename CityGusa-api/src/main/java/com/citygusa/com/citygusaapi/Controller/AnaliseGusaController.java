@@ -1,7 +1,7 @@
 package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
-import com.citygusa.com.citygusaapi.Entity.AnaliseGusa;
+import com.citygusa.com.citygusaapi.Entity.AnaliseGusaEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Service.IMPL.AnaliseGusaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class AnaliseGusaController {
     private AnaliseGusaImpl analiseGusaImpl;
 
     @PostMapping
-    public ResponseEntity<AnaliseGusaDto> salvarAnaliseGusa(@RequestBody AnaliseGusa analiseGusa) {
+    public ResponseEntity<AnaliseGusaDto> salvarAnaliseGusa(@RequestBody AnaliseGusaEntity analiseGusa) {
        return analiseGusaImpl.save(analiseGusa);
     }
 

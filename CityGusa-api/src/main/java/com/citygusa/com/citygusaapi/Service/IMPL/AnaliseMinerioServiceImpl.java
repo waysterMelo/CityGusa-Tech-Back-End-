@@ -1,12 +1,10 @@
 package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
-import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
 import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
-import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseMinerioRepository;
-import com.citygusa.com.citygusaapi.Repository.CadastrarMineriosRepo;
+import com.citygusa.com.citygusaapi.Repository.CadastrarMineriosRepository;
 import com.citygusa.com.citygusaapi.Service.AnaliseMinerioService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -27,10 +25,10 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
     private static final Logger logger = LoggerFactory.getLogger(AnaliseMinerioServiceImpl.class);
 
     private final AnaliseMinerioRepository analiseMinerioRepository;
-    private final CadastrarMineriosRepo cadastrarMineriosRepo;
+    private final CadastrarMineriosRepository cadastrarMineriosRepo;
 
     @Autowired
-    public AnaliseMinerioServiceImpl(AnaliseMinerioRepository analiseMinerioRepository, CadastrarMineriosRepo cadastrarMineriosRepo) {
+    public AnaliseMinerioServiceImpl(AnaliseMinerioRepository analiseMinerioRepository, CadastrarMineriosRepository cadastrarMineriosRepo) {
         this.analiseMinerioRepository = analiseMinerioRepository;
         this.cadastrarMineriosRepo = cadastrarMineriosRepo;
     }

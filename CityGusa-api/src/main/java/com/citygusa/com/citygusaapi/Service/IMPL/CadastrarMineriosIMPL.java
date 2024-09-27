@@ -2,9 +2,8 @@ package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
 import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
-import com.citygusa.com.citygusaapi.Repository.CadastrarMineriosRepo;
+import com.citygusa.com.citygusaapi.Repository.CadastrarMineriosRepository;
 import com.citygusa.com.citygusaapi.Service.CadastrarMInerioService;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +18,12 @@ import java.util.stream.Collectors;
 @Service
 public class CadastrarMineriosIMPL implements CadastrarMInerioService {
 
-    private final CadastrarMineriosRepo cadastrarMineriosRepo;
+    private final CadastrarMineriosRepository cadastrarMineriosRepo;
     private static final Logger log = LoggerFactory.getLogger(CadastrarMineriosIMPL.class);
 
 
     @Autowired
-    public CadastrarMineriosIMPL(CadastrarMineriosRepo cadastrarMineriosRepo) {
+    public CadastrarMineriosIMPL(CadastrarMineriosRepository cadastrarMineriosRepo) {
         this.cadastrarMineriosRepo = cadastrarMineriosRepo;
     }
 

@@ -1,6 +1,6 @@
 package com.citygusa.com.citygusaapi.Dto;
 
-import com.citygusa.com.citygusaapi.Entity.AnaliseGusa;
+import com.citygusa.com.citygusaapi.Entity.AnaliseGusaEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +21,7 @@ public class AnaliseGusaDto {
     private String titanium;
     private LocalDate createdAt;
 
-    public AnaliseGusaDto(AnaliseGusa entity) {
+    public AnaliseGusaDto(AnaliseGusaEntity entity) {
         this.id = entity.getId();
         this.produto = entity.getProduto();
         this.silicio = entity.getSilicio();
