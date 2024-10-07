@@ -11,4 +11,12 @@ import java.util.List;
 public interface AnaliseEscoriaService {
     ResponseEntity<AnaliseEscoriaDto> save(AnaliseEscoriaEntity entity);
     List<AnaliseEscoriaDto> getAllAnalisesEscoria(LocalDate createdAt) throws NoAnalisesFoundException;
+
+    Double getCalcio(LocalDate createdAt) throws NoAnalisesFoundException;
+    Double getSilicio(LocalDate createdAt) throws NoAnalisesFoundException;
+    Double getAluminio(LocalDate createdAt) throws NoAnalisesFoundException;
+    Double getManganes(LocalDate createdAt) throws NoAnalisesFoundException;
+    Double getMagnesio(LocalDate createdAt) throws NoAnalisesFoundException;
+    Double getFerro(LocalDate createdAt) throws NoAnalisesFoundException;
+
 }

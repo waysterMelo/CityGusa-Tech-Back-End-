@@ -18,7 +18,6 @@ public class AnaliseEscoriaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(name = "calcio")
     private Double calcio;
 
@@ -37,11 +36,11 @@ public class AnaliseEscoriaEntity {
     @Column(name = "manganes")
     private Double manganes;
 
-    @Column(name = "kilogram_per_ton")
-    private Double kgPerT;
+    @Column(name = "indexB")
+    private Double indexB;
 
-    @Column(name = "basic_index")
-    private Double ib;
+    @Column(name = "indexF")
+    private Double indexF;
 
     @Column(name = "createdAt")
     private LocalDate createdAt;

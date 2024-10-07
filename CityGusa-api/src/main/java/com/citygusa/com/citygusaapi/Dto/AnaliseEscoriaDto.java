@@ -19,8 +19,8 @@ public class AnaliseEscoriaDto {
     private Double magnesio;
     private Double ferro;
     private Double manganes;
-    private Double kgPerT;
-    private Double ib;
+    private Double indexB;
+    private Double indexF;
     private LocalDate createdAt;
 
     public AnaliseEscoriaDto(AnaliseEscoriaEntity entity) {
@@ -29,10 +29,10 @@ public class AnaliseEscoriaDto {
         this.silicio = entity.getSilicio();
         this.aluminio = entity.getAluminio();
         this.magnesio = entity.getMagnesio();
-        this.ferro = entity.getFerro();;
+        this.ferro = entity.getFerro();
         this.manganes = entity.getManganes();
-        this.kgPerT = entity.getKgPerT();
-        this.ib = entity.getIb();
+        this.indexB = entity.getIndexB();
+        this.indexF = entity.getIndexF();
         this.createdAt = entity.getCreatedAt();
     }
 }

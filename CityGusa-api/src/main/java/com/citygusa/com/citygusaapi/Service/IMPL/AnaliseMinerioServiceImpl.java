@@ -101,7 +101,7 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
             Double hematita = ferro * random;
             double fechamento = hematita + silica + fosforo + aluminio + ppc + manganes;
 
-        BigDecimal fechamentoArredondado = new BigDecimal(fechamento).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal fechamentoArredondado = new BigDecimal(fechamento).setScale(2, RoundingMode.HALF_UP);
 
             analiseMinerios.setFechamento(fechamentoArredondado.doubleValue());
 
