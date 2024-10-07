@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +25,7 @@ public class AnaliseEscoriaDto {
     private Double indexB;
     private Double indexF;
     private LocalDate createdAt;
+    private LocalTime horas;
 
     public AnaliseEscoriaDto(AnaliseEscoriaEntity entity) {
         this.id = entity.getId();
@@ -34,5 +38,8 @@ public class AnaliseEscoriaDto {
         this.indexB = entity.getIndexB();
         this.indexF = entity.getIndexF();
         this.createdAt = entity.getCreatedAt();
+        this.horas = entity.getHoras();
     }
+
+
 }

@@ -1,11 +1,14 @@
 package com.citygusa.com.citygusaapi.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "analise_escoria")
@@ -45,9 +48,13 @@ public class AnaliseEscoriaEntity {
     @Column(name = "createdAt")
     private LocalDate createdAt;
 
+    @Column(name = "horas")
+    private LocalTime horas;
+
     @PrePersist
     protected void onCreate(){
         this.createdAt = LocalDate.now();
+        this.horas = LocalTime.now();
     }
 
 }
