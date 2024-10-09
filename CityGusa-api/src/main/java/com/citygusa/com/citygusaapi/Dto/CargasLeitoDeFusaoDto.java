@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class CargasLeitoDeFusaoDto extends CargasLeitoDeFusao {
 
     private Integer id;
-    private String data_atual;
+    private LocalDate createdAt;
     private String horas;
     private Integer numeroDaCarga;
     private Double porcentagem;
@@ -30,7 +32,7 @@ public class CargasLeitoDeFusaoDto extends CargasLeitoDeFusao {
 
     public CargasLeitoDeFusaoDto(CargasLeitoDeFusao cargasLeitoDeFusao) {
         this.id = cargasLeitoDeFusao.getId();
-        this.data_atual = cargasLeitoDeFusao.getData_atual();
+        this.createdAt = cargasLeitoDeFusao.getCreatedAt();
         this.horas = cargasLeitoDeFusao.getHoras();
         this.numeroDaCarga = cargasLeitoDeFusao.getNumeroDaCarga();
         this.porcentagem = cargasLeitoDeFusao.getPorcentagem();
@@ -44,6 +46,8 @@ public class CargasLeitoDeFusaoDto extends CargasLeitoDeFusao {
         this.sucataGusa = cargasLeitoDeFusao.getSucataGusa();
         this.sucataAco = cargasLeitoDeFusao.getSucataAco();
     }
+
+
 
 
 }

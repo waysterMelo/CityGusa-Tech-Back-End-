@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -19,8 +20,7 @@ public class CargasLeitoDeFusao {
     private Integer id;
 
     @Column(name = "data_atual", nullable = false)
-    private String data_atual;
-
+    private LocalDate createdAt;
     private String horas;
     private Integer numeroDaCarga;
     private Double porcentagem;

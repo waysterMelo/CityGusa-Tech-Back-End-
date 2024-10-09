@@ -28,4 +28,10 @@ public class CadastrarMineriosDTO {
         this.frete = entity.getFrete();
         this.createdAt = entity.getCreatedAt();
     }
+
+
+    public CadastrarMineriosDTO(Integer id, String minerio) {
+    this.id = id;
+    this.minerio = minerio;
+    }
 }

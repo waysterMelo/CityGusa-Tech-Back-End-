@@ -20,11 +20,13 @@ public class CadastrarMineriosIMPL implements CadastrarMInerioService {
 
     private final CadastrarMineriosRepository cadastrarMineriosRepo;
     private static final Logger log = LoggerFactory.getLogger(CadastrarMineriosIMPL.class);
+    private final CadastrarMineriosRepository cadastrarMineriosRepository;
 
 
     @Autowired
-    public CadastrarMineriosIMPL(CadastrarMineriosRepository cadastrarMineriosRepo) {
+    public CadastrarMineriosIMPL(CadastrarMineriosRepository cadastrarMineriosRepo, CadastrarMineriosRepository cadastrarMineriosRepository) {
         this.cadastrarMineriosRepo = cadastrarMineriosRepo;
+        this.cadastrarMineriosRepository = cadastrarMineriosRepository;
     }
 
     @Override
@@ -53,5 +55,14 @@ public class CadastrarMineriosIMPL implements CadastrarMInerioService {
            return Collections.emptyList();
        }
        return lista.stream().map(CadastrarMineriosDTO::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CadastrarMineriosDTO> getMinerios() {
+        List<CadastrarMineriosEntity> lista =  cadastrarMineriosRepository.findAllByMinerio();
+        if (lista.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return lista.stream().map(CadastrarMineriosDTO::new).collect(Collectors.toList());
     }
 }
