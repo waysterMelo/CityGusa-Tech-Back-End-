@@ -25,7 +25,7 @@ public class AnaliseEscoriaDto {
     private Double indexB;
     private Double indexF;
     private LocalDate createdAt;
-    private LocalTime horas;
+    private String horas;
 
     public AnaliseEscoriaDto(AnaliseEscoriaEntity entity) {
         this.id = entity.getId();

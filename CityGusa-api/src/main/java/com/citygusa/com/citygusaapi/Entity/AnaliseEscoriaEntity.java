@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Entity
 @Table(name = "analise_escoria")
@@ -49,12 +51,12 @@ public class AnaliseEscoriaEntity {
     private LocalDate createdAt;
 
     @Column(name = "horas")
-    private LocalTime horas;
+    private String horas;
 
     @PrePersist
     protected void onCreate(){
         this.createdAt = LocalDate.now();
-        this.horas = LocalTime.now();
+        this.horas = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
 }
