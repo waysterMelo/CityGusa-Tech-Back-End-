@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class CadastrarMineriosDTO {
 
     private Integer id;
-    private String minerio;
+    private String minerioNome;
     private Double valorTonelada;
     private String lote;
     private String patio;
@@ -20,7 +20,7 @@ public class CadastrarMineriosDTO {
 
     public CadastrarMineriosDTO(CadastrarMineriosEntity entity) {
         this.id = entity.getId();
-        this.minerio = entity.getMinerio();
+        this.minerioNome = entity.getMinerio();
         this.valorTonelada = entity.getValorTonelada();
         this.lote = entity.getLote();
         this.patio = entity.getPatio();
@@ -32,6 +32,6 @@ public class CadastrarMineriosDTO {
 
     public CadastrarMineriosDTO(Integer id, String minerio) {
     this.id = id;
-    this.minerio = minerio;
+    this.minerioNome = minerio;
     }
 }

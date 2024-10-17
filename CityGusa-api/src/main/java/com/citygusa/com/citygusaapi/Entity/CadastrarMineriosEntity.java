@@ -30,6 +30,7 @@ public class CadastrarMineriosEntity {
     private String transportador;
     @Column
     private Double frete;
+
     @Column(nullable = false)
     private LocalDate createdAt;
 

@@ -22,6 +22,7 @@ public class AnaliseMinerioDto {
     private Double ppc;
     private LocalDate createdAt;
     private Double fechamento;
+    private Integer minerio_id;
 
     public AnaliseMinerioDto(CadastrarAnaliseMineriosEntity entity) {
         this.id = entity.getId();
@@ -37,5 +38,6 @@ public class AnaliseMinerioDto {
         this.ppc = entity.getPpc();
         this.fechamento = entity.getFechamento();
         this.createdAt = entity.getCreatedAt();
+        this.minerio_id = entity.getMinerios().getId();
     }
 }

@@ -16,5 +16,4 @@ public interface CadastrarMineriosRepository extends JpaRepository<CadastrarMine
 
     @Query("select m.id, m.minerio from CadastrarMineriosEntity m")
     List<CadastrarMineriosEntity> findAllByMinerio();
-
 }

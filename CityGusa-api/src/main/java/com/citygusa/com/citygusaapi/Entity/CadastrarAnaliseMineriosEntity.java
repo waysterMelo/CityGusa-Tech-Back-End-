@@ -40,6 +40,10 @@ public class CadastrarAnaliseMineriosEntity {
     @Column
     private Double fechamento;
 
+    @ManyToOne
+    @JoinColumn(name = "minerio_id", nullable = false)
+    private CadastrarMineriosEntity minerios;
+
     @Column(nullable = false)
     private LocalDate createdAt;
 

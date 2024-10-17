@@ -86,7 +86,13 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
     public Optional<AnaliseMinerioDto> save(CadastrarAnaliseMineriosEntity entity) {
 
             logger.info("Tentando salvar informação : {}", entity);
-            CadastrarAnaliseMineriosEntity analiseMinerios = analiseMinerioRepository.save(entity);
+
+            if (entity.getMinerio() == null || entity.getMinerios() == null) {
+                logger.error("Minerio não definido na análise.");
+                return Optional.empty();
+            }
+
+                CadastrarAnaliseMineriosEntity analiseMinerios = analiseMinerioRepository.save(entity);
 
             //dados para fechamento
             Double silica = getSilica(analiseMinerios.getCreatedAt());
