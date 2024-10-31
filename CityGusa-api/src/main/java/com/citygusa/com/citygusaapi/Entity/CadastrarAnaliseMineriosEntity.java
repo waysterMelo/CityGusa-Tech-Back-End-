@@ -18,7 +18,7 @@ public class CadastrarAnaliseMineriosEntity {
     private Integer id;
 
     @Column
-    private String minerio;
+    private String minerioNome;
     @Column
     private String lote;
     @Column
@@ -39,10 +39,6 @@ public class CadastrarAnaliseMineriosEntity {
     private Double ppc;
     @Column
     private Double fechamento;
-
-    @ManyToOne
-    @JoinColumn(name = "minerio_id", nullable = false)
-    private CadastrarMineriosEntity minerios;
 
     @Column(nullable = false)
     private LocalDate createdAt;

@@ -36,7 +36,7 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
     private AnaliseMinerioDto convertToDto(CadastrarAnaliseMineriosEntity entity){
         AnaliseMinerioDto dto = new AnaliseMinerioDto();
         dto.setId(entity.getId());
-        dto.setMinerio(entity.getMinerio());
+        dto.setMinerio(entity.getMinerioNome());
         dto.setLote(entity.getLote());
         dto.setPatio(entity.getPatio());
         dto.setTonelada(entity.getTonelada());
@@ -86,11 +86,6 @@ public class AnaliseMinerioServiceImpl implements AnaliseMinerioService {
     public Optional<AnaliseMinerioDto> save(CadastrarAnaliseMineriosEntity entity) {
 
             logger.info("Tentando salvar informação : {}", entity);
-
-            if (entity.getMinerio() == null || entity.getMinerios() == null) {
-                logger.error("Minerio não definido na análise.");
-                return Optional.empty();
-            }
 
                 CadastrarAnaliseMineriosEntity analiseMinerios = analiseMinerioRepository.save(entity);
 

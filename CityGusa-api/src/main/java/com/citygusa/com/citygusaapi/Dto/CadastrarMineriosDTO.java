@@ -29,9 +29,4 @@ public class CadastrarMineriosDTO {
         this.createdAt = entity.getCreatedAt();
     }
 
-
-    public CadastrarMineriosDTO(Integer id, String minerio) {
-    this.id = id;
-    this.minerioNome = minerio;
-    }
 }
