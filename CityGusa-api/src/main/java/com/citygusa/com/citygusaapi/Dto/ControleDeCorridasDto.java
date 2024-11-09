@@ -1,6 +1,6 @@
 package com.citygusa.com.citygusaapi.Dto;
 
-import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
+import com.citygusa.com.citygusaapi.Entity.ControleCorridasEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,9 +51,9 @@ public class ControleDeCorridasDto {
     private BigInteger temperatura;
     private LocalDate createdAt;
 
-    public ControleDeCorridasDto(ControleCorridas entity,
-               Integer minutosAcumulados, Double mediaFosforo,
-               Double mediaSilica, Double mediaManganes, BigDecimal realTnAcumulado) {
+    public ControleDeCorridasDto(ControleCorridasEntity entity,
+                                 Integer minutosAcumulados, Double mediaFosforo,
+                                 Double mediaSilica, Double mediaManganes, BigDecimal realTnAcumulado) {
         this.id = entity.getId();
         this.horaInicio = entity.getHoraInicio();
         this.horaFim = entity.getHoraFim();

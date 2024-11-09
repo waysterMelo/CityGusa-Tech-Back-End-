@@ -1,11 +1,10 @@
 package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.ControleDeCorridasDto;
-import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
+import com.citygusa.com.citygusaapi.Entity.ControleCorridasEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoCorridasFoundException;
 import com.citygusa.com.citygusaapi.Service.ControleDeCorridasService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ public class ControleDeCorridasController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ControleDeCorridasDto> saveCorridas(@RequestBody ControleCorridas entity) {
+    public ResponseEntity<ControleDeCorridasDto> saveCorridas(@RequestBody ControleCorridasEntity entity) {
         Optional<ControleDeCorridasDto> savedCorridas = controleDeCorridasService.saveCorridas(entity);
         return savedCorridas.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(500).build());
     }

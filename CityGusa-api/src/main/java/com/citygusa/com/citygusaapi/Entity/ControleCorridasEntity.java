@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ControleCorridas {
+public class ControleCorridasEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

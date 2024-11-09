@@ -22,6 +22,9 @@ public class AnaliseEscoriaImpl implements AnaliseEscoriaService {
 
     private final AnaliseEscoriaRepository analiseEscoriaRepository;
 
+
+
+
     @Override
     public Double getCalcio(LocalDate createdAt){
         return analiseEscoriaRepository.findCalcioByCreatedAt(createdAt);

@@ -2,17 +2,16 @@ package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Controller.ControleDeCorridasController;
 import com.citygusa.com.citygusaapi.Dto.ControleDeCorridasDto;
-import com.citygusa.com.citygusaapi.Entity.ControleCorridas;
+import com.citygusa.com.citygusaapi.Entity.ControleCorridasEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoCorridasFoundException;
+import com.citygusa.com.citygusaapi.Mapper.ControleCorridasMapper;
 import com.citygusa.com.citygusaapi.Repository.ControleDeCorridasRepository;
 import com.citygusa.com.citygusaapi.Service.ControleDeCorridasService;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.time.LocalDate;
@@ -29,56 +28,23 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     private static final DateTimeFormatter FORMATTED_HOUR = DateTimeFormatter.ofPattern("HH:mm");
 
     private final ControleDeCorridasRepository controleDeCorridasRepository;
+    private ControleCorridasMapper controleCorridasMapper;
 
     @Autowired
-    public ControleDeCorridasImpl(ControleDeCorridasRepository controleDeCorridasRepository) {
+    public ControleDeCorridasImpl(ControleDeCorridasRepository controleDeCorridasRepository, ControleCorridasMapper controleCorridasMapper) {
         this.controleDeCorridasRepository = controleDeCorridasRepository;
-    }
-
-    private ControleDeCorridasDto convertToDto(ControleCorridas controleCorridas) {
-        ControleDeCorridasDto dto = new ControleDeCorridasDto();
-        dto.setId(controleCorridas.getId());
-        dto.setHoraInicio(controleCorridas.getHoraInicio());
-        dto.setHoraFim(controleCorridas.getHoraFim());
-        dto.setMinutos(controleCorridas.getMinutos());
-        dto.setConchas(controleCorridas.getConchas());
-        dto.setSilicioVisual(controleCorridas.getSilicioVisual());
-        dto.setSilicioReal(controleCorridas.getSilicioReal());
-        dto.setFosforo(controleCorridas.getFosforo());
-        dto.setManganes(controleCorridas.getManganes());
-        dto.setSilica(controleCorridas.getSilica());
-        dto.setEscoriaInicio(controleCorridas.getEscoriaInicio());
-        dto.setEscoriaFim(controleCorridas.getEscoriaFim());
-        dto.setTipoEscoria(controleCorridas.getTipoEscoria());
-        dto.setCargaFundidaDe(controleCorridas.getCargaFundidaDe());
-        dto.setCargaFundidaAte(controleCorridas.getCargaFundidaAte());
-        dto.setQuantidade(controleCorridas.getQuantidade());
-        dto.setFeGusaKg(controleCorridas.getFeGusaKg());
-        dto.setFerro(controleCorridas.getFerro());
-        dto.setRealTn(controleCorridas.getRealTn());
-        dto.setTempoCorridaMinutos(controleCorridas.getTempoCorridaMinutos());
-        dto.setGusaMinuto(controleCorridas.getGusaMinuto());
-        dto.setCarvaoKg(controleCorridas.getCarvaoKg());
-        dto.setCarvaoMetros(controleCorridas.getCarvaoMetros());
-        dto.setSopradores1(controleCorridas.getSopradores1());
-        dto.setSopradores2(controleCorridas.getSopradores2());
-        dto.setSopradores3(controleCorridas.getSopradores3());
-        dto.setSopradores4(controleCorridas.getSopradores4());
-        dto.setSopradores5(controleCorridas.getSopradores5());
-        dto.setCreatedAt(controleCorridas.getCreatedAt());
-        dto.setTemperatura(controleCorridas.getTemperatura());
-        return dto;
+        this.controleCorridasMapper = controleCorridasMapper;
     }
 
     @Override
     @Transactional
-    public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridas controleCorridas) {
-        logger.info("Tentando salvar correida : {}", controleCorridas);
-        ControleCorridas corridasSaved = controleDeCorridasRepository.save(controleCorridas);
+    public Optional<ControleDeCorridasDto> saveCorridas(ControleCorridasEntity controleCorridasEntity) {
+        logger.info("Tentando salvar correida : {}", controleCorridasEntity);
+        ControleCorridasEntity corridasSaved = controleDeCorridasRepository.save(controleCorridasEntity);
 
         //calcaular ritmo
-        Integer minutosAcumulados = getMinutosAcumuladosDoDia(controleCorridas.getCreatedAt());
-        BigDecimal realTnAcumulado = getRealTnAcumulado(controleCorridas.getCreatedAt());
+        Integer minutosAcumulados = getMinutosAcumuladosDoDia(controleCorridasEntity.getCreatedAt());
+        BigDecimal realTnAcumulado = getRealTnAcumulado(controleCorridasEntity.getCreatedAt());
         Integer minutos = 1440;
 
         BigDecimal minutosAcumuladosBigDecimal = new BigDecimal(minutosAcumulados);
@@ -87,11 +53,11 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         BigDecimal resultadoRitmo=  ritmo.multiply(minutosConvertidos);
         Double resultadoDouble = resultadoRitmo.doubleValue();
 
-        // Atualiza o campo ritmo na entidade ControleCorridas
+        // Atualiza o campo ritmo na entidade ControleCorridasEntity
         corridasSaved.setRitmo(resultadoDouble);
         controleDeCorridasRepository.save(corridasSaved);
 
-        ControleDeCorridasDto corridasDto = convertToDto(corridasSaved);
+        ControleDeCorridasDto corridasDto = controleCorridasMapper.toDto(corridasSaved);
         logger.info("Corrida salva com sucesso: {}", corridasDto);
         return Optional.of(corridasDto);
     }
@@ -125,7 +91,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     @Override
     @Transactional
     public List<ControleDeCorridasDto> getAllCorridasToday(LocalDate createdAt) {
-        List<ControleCorridas> corridas = controleDeCorridasRepository.findAllByCreatedAt(createdAt);
+        List<ControleCorridasEntity> corridas = controleDeCorridasRepository.findAllByCreatedAt(createdAt);
 
         if (corridas.isEmpty()) {
             throw new NoCorridasFoundException("Não há corridas para retornar na data informada: " + createdAt);
