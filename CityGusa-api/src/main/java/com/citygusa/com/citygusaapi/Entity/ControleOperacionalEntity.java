@@ -30,6 +30,11 @@ public class ControleOperacionalEntity  {
     private Double pressaoTopo;
     private Integer temperaturaCoroa;
     private Integer temperaturaTopo;
+    private Double sonda;
+    private Integer densidadeKg;
+    private Integer umidade;
+
+
     private Integer acumuladoCarga;
     private Double mediaHoraCarga;
     private Integer ritmo;

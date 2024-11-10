@@ -1,9 +1,15 @@
 package com.citygusa.com.citygusaapi.Dto;
 
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ControleOperacionalDto {
 
     protected LocalDate createdAt;
@@ -17,6 +23,10 @@ public class ControleOperacionalDto {
     private Double pressaoTopo;
     private Integer temperaturaCoroa;
     private Integer temperaturaTopo;
+    private Double sonda;
+    private Integer densidadeKg;
+    private Integer umidade;
+
     private Integer acumuladoCarga;
     private Double mediaHoraCarga;
     private Integer ritmo;
@@ -34,6 +44,10 @@ public class ControleOperacionalDto {
         this.pressaoTopo = entity.getPressaoCoroa();
         this.temperaturaCoroa = entity.getTemperaturaCoroa();
         this.temperaturaTopo = entity.getTemperaturaTopo();
+        this.sonda = entity.getSonda();
+        this.densidadeKg = entity.getDensidadeKg();
+        this.umidade = entity.getUmidade();
+
         this.acumuladoCarga = entity.getAcumuladoCarga();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
         this.ritmo = entity.getRitmo();
