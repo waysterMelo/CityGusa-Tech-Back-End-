@@ -33,11 +33,11 @@ public class ControleOperacionalEntity  {
     private Double sonda;
     private Integer densidadeKg;
     private Integer umidade;
-
+    private Integer gusaKg;
 
     private Integer acumuladoCarga;
     private Double mediaHoraCarga;
-    private Integer ritmo;
+    private Integer rt;
 
     @PrePersist
     protected void onCreate(){

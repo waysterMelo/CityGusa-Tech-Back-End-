@@ -2,7 +2,6 @@ package com.citygusa.com.citygusaapi.Service.IMPL;
 
 import com.citygusa.com.citygusaapi.Controller.CargasLeitoDeFusaoController;
 import com.citygusa.com.citygusaapi.Dto.CargasLeitoDeFusaoDto;
-import com.citygusa.com.citygusaapi.Dto.IdAndMinerioDto;
 import com.citygusa.com.citygusaapi.Entity.CargasLeitoDeFusao;
 import com.citygusa.com.citygusaapi.Repository.CadastrarMineriosRepository;
 import com.citygusa.com.citygusaapi.Repository.CargasLeitoDeFusaoRepository;
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

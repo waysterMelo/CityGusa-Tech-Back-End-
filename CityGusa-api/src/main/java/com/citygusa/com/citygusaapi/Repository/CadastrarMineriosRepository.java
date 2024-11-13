@@ -1,6 +1,5 @@
 package com.citygusa.com.citygusaapi.Repository;
 
-import com.citygusa.com.citygusaapi.Dto.IdAndMinerioDto;
 import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

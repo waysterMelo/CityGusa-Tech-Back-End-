@@ -26,10 +26,11 @@ public class ControleOperacionalDto {
     private Double sonda;
     private Integer densidadeKg;
     private Integer umidade;
+    private Integer gusaKg;
 
     private Integer acumuladoCarga;
     private Double mediaHoraCarga;
-    private Integer ritmo;
+    private Integer rt;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -47,9 +48,10 @@ public class ControleOperacionalDto {
         this.sonda = entity.getSonda();
         this.densidadeKg = entity.getDensidadeKg();
         this.umidade = entity.getUmidade();
+        this.gusaKg = entity.getGusaKg();
 
         this.acumuladoCarga = entity.getAcumuladoCarga();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
-        this.ritmo = entity.getRitmo();
+        this.rt = entity.getRt();
     }
 }

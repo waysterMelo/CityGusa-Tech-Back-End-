@@ -42,7 +42,7 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
         logger.info("Tentando salvar correida : {}", controleCorridasEntity);
         ControleCorridasEntity corridasSaved = controleDeCorridasRepository.save(controleCorridasEntity);
 
-        //calcaular ritmo
+        //calcular ritmo
         Integer minutosAcumulados = getMinutosAcumuladosDoDia(controleCorridasEntity.getCreatedAt());
         BigDecimal realTnAcumulado = getRealTnAcumulado(controleCorridasEntity.getCreatedAt());
         Integer minutos = 1440;

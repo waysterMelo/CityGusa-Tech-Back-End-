@@ -1,17 +1,13 @@
 package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.CargasLeitoDeFusaoDto;
-import com.citygusa.com.citygusaapi.Dto.IdAndMinerioDto;
-import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
 import com.citygusa.com.citygusaapi.Entity.CargasLeitoDeFusao;
 import com.citygusa.com.citygusaapi.Service.IMPL.CargasLeitoDeFusaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/leito-fusao")
