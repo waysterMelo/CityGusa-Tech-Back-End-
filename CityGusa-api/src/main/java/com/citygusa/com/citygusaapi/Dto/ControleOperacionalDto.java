@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -30,7 +31,7 @@ public class ControleOperacionalDto {
 
     private Integer acumuladoCarga;
     private Double mediaHoraCarga;
-    private Integer rt;
+    private BigDecimal rt;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {

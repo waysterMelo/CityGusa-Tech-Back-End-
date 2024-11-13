@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +39,7 @@ public class ControleOperacionalEntity  {
 
     private Integer acumuladoCarga;
     private Double mediaHoraCarga;
-    private Integer rt;
+    private BigDecimal rt;
 
     @PrePersist
     protected void onCreate(){

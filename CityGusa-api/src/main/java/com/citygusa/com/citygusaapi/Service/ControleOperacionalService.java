@@ -13,5 +13,6 @@ public interface ControleOperacionalService {
     Optional<ControleOperacionalDto> save(ControleOperacionalEntity entity);
     Integer getCargaHora(LocalDate createdAt);
     Integer getGusaKg(LocalDate createdAt);
-
+    String getHoras(String horas);
+    Integer getCargaAcumulada(LocalDate createdAt);
 }
