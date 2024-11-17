@@ -30,8 +30,8 @@ public class ControleOperacionalDto {
     private Integer gusaKg;
 
     private Integer acumuladoCarga;
-    private Double mediaHoraCarga;
-    private BigDecimal rt;
+    private BigDecimal mediaHoraCarga;
+    private Integer rt;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {

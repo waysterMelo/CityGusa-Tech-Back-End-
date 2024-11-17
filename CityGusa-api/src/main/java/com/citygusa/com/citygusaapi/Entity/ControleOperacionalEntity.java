@@ -38,8 +38,8 @@ public class ControleOperacionalEntity  {
     private Integer gusaKg;
 
     private Integer acumuladoCarga;
-    private Double mediaHoraCarga;
-    private BigDecimal rt;
+    private BigDecimal mediaHoraCarga;
+    private Integer rt;
 
     @PrePersist
     protected void onCreate(){
