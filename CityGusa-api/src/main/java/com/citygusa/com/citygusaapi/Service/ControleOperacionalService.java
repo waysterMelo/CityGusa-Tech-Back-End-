@@ -6,6 +6,7 @@ import org.springframework.cglib.core.Local;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface ControleOperacionalService {
@@ -17,4 +18,5 @@ public interface ControleOperacionalService {
     Integer getCargaAcumulada(LocalDate createdAt);
     Integer getCargaAcumuladaSeca(LocalDate createdAt);
     Integer getUmidadeMedia(LocalDate createdAt);
+    List<ControleOperacionalDto> getAllDataByDate(LocalDate data);
 }

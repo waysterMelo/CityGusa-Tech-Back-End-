@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface ControleOperacionalRepository extends JpaRepository<ControleOperacionalEntity, Integer> {
@@ -29,4 +30,5 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
     @Query("select AVG(o.umidade) from ControleOperacionalEntity o where o.createdAt = :createdAt")
     Integer findMediaUmidade(@Param("createdAt") LocalDate createdAt);
 
+    List<ControleOperacionalEntity> findAllByCreatedAt(LocalDate data);
 }

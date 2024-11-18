@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,5 +32,26 @@ public class ControleOperacionalController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
     }
 
+    @GetMapping("/today")
+    public ResponseEntity<List<ControleOperacionalDto>> getAllInfo(){
+        List<ControleOperacionalDto> info = service.getAllDataByDate(LocalDate.now());
+        // Verifica se a lista está vazia
+        if (info.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não foram encontradas informações para hoje");
+        }
+
+        return ResponseEntity.ok(info);
+    }
+
+    @GetMapping("/por-data")
+    public ResponseEntity<List<ControleOperacionalDto>> getAllInfoPorData(@RequestParam("data") LocalDate data){
+        List<ControleOperacionalDto> info = service.getAllDataByDate(data);
+        // Verifica se a lista está vazia
+        if (info.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não foram encontradas informações para a data fornecida.");
+        }
+
+        return ResponseEntity.ok(info);
+    }
 
 }

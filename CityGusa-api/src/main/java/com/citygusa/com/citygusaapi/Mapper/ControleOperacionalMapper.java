@@ -8,8 +8,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ControleOperacionalMapper {
 
-    ControleOperacionalMapper INSTANCE = Mappers.getMapper(ControleOperacionalMapper.class);
-
     ControleOperacionalDto toDto(ControleOperacionalEntity entity);
     ControleOperacionalEntity toEntity(ControleOperacionalDto dto);
 

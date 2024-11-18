@@ -89,7 +89,6 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
     }
 
     @Override
-    @Transactional
     public List<ControleDeCorridasDto> getAllCorridasToday(LocalDate createdAt) {
         List<ControleCorridasEntity> corridas = controleDeCorridasRepository.findAllByCreatedAt(createdAt);
 
