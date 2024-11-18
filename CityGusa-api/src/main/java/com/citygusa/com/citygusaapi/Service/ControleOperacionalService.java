@@ -15,4 +15,6 @@ public interface ControleOperacionalService {
     Integer getGusaKg(LocalDate createdAt);
     String getHoras(String horas);
     Integer getCargaAcumulada(LocalDate createdAt);
+    Integer getCargaAcumuladaSeca(LocalDate createdAt);
+    Integer getUmidadeMedia(LocalDate createdAt);
 }

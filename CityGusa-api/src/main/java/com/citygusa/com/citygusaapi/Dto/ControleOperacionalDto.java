@@ -4,7 +4,6 @@ import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -30,8 +29,10 @@ public class ControleOperacionalDto {
     private Integer gusaKg;
 
     private Integer acumuladoCarga;
+    private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
     private Integer rt;
+    private Integer umidadeMedia;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {

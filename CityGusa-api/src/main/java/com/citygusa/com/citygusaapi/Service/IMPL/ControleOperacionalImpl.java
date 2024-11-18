@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -19,8 +18,6 @@ import java.util.Optional;
 public class ControleOperacionalImpl implements ControleOperacionalService {
 
     private static final Logger logger = LoggerFactory.getLogger(ControleOperacionalImpl.class);
-
-
 
     private final ControleOperacionalRepository controleOperacionalRepository;
     private final ControleOperacionalMapper controleOperacionalMapper;
@@ -52,6 +49,16 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         return controleOperacionalRepository.findCargaAcumulado(createdAt);
     }
 
+    @Override
+    public Integer getCargaAcumuladaSeca(LocalDate createdAt) {
+        return controleOperacionalRepository.findCargaAcumuladoSeca(createdAt);
+    }
+
+    @Override
+    public Integer getUmidadeMedia(LocalDate createdAt) {
+        return controleOperacionalRepository.findMediaUmidade(createdAt);
+    }
+
 
     @Override
     public Optional<ControleOperacionalDto> save(ControleOperacionalEntity entity) {
@@ -60,13 +67,20 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         //pegar horas e somar mais 1
        String horas = getHoras(rs.getHoras());
        String horasFormatada = horas.substring(0,2);
-       Integer horasInteiro = Integer.parseInt(horasFormatada) - 1;
+       Integer horasInteiro = Integer.parseInt(horasFormatada) + 1;
         logger.info("Valor de horas: {}", horasInteiro);
 
-        //retornar carga acumulada
+        //salvar carga acumulada
         Integer cargaAcumulada = getCargaAcumulada(entity.getCreatedAt());
         rs.setAcumuladoCarga(cargaAcumulada);
         logger.info("Valor de carga acumulada: {}", cargaAcumulada);
+
+
+        //salvar cargaseca acumulada
+        Integer cargaSecaAcumulada = getCargaAcumuladaSeca(entity.getCreatedAt());
+        rs.setAcumuladoCargaSeca(cargaSecaAcumulada);
+        logger.info("Valor de carga seca acumulada é: {}", cargaSecaAcumulada);
+
 
         //calcular MEDIA/HORA
         Integer gusaKg = getGusaKg(entity.getCreatedAt());
@@ -75,12 +89,19 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         rs.setMediaHoraCarga(mediaHoraArredondado);
         logger.info("Valor de Media/Hora: {}", mediaHoraArredondado);
 
+
         //calcular rt
         BigDecimal gusaConvertido = new BigDecimal(gusaKg);
         BigDecimal rtCalculado = mediaHoraArredondado.multiply(gusaConvertido).multiply(new BigDecimal(24));
         Integer rtConvertido = rtCalculado.divide(new BigDecimal(1000), 0, RoundingMode.DOWN).intValue();
         rs.setRt(rtConvertido);
         logger.info("Valor de Rt: {}", rtConvertido);
+
+        //calcular e salvar umidade media
+        Integer umidadeMedia = getUmidadeMedia(entity.getCreatedAt());
+        rs.setUmidadeMedia(umidadeMedia);
+        logger.info("Valor de Media da umidade e: {}", umidadeMedia);
+
 
         //salvar novamente
         controleOperacionalRepository.save(rs);

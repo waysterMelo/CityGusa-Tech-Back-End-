@@ -23,4 +23,10 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
     @Query("SELECT SUM(o.cargaHora) from ControleOperacionalEntity o where o.createdAt = :createdAt")
     Integer findCargaAcumulado(@Param("createdAt") LocalDate createdAt);
 
+    @Query("SELECT SUM(o.cargaSeca) from ControleOperacionalEntity o where o.createdAt = :createdAt")
+    Integer findCargaAcumuladoSeca(@Param("createdAt") LocalDate createdAt);
+
+    @Query("select AVG(o.umidade) from ControleOperacionalEntity o where o.createdAt = :createdAt")
+    Integer findMediaUmidade(@Param("createdAt") LocalDate createdAt);
+
 }
