@@ -53,7 +53,9 @@ public class ControleOperacionalDto {
         this.gusaKg = entity.getGusaKg();
 
         this.acumuladoCarga = entity.getAcumuladoCarga();
+        this.acumuladoCargaSeca = entity.getAcumuladoCargaSeca();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
         this.rt = entity.getRt();
+        this.umidadeMedia = entity.getUmidadeMedia();
     }
 }
