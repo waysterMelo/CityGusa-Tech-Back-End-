@@ -33,15 +33,20 @@ public class ControleOperacionalEntity  {
     private Integer temperaturaCoroa;
     private Integer temperaturaTopo;
     private Double sonda;
+
     private Integer densidadeKg;
+    private Double densidadeMedia;
     private Integer umidade;
+    private BigDecimal umidadeMedia;
+
     private Integer gusaKg;
+    private Double acumuladoKilos;
 
     private Integer acumuladoCarga;
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
     private Integer rt;
-    private Integer umidadeMedia;
+
 
     @PrePersist
     protected void onCreate(){

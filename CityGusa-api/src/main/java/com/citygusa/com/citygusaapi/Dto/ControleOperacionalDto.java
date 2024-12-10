@@ -24,15 +24,19 @@ public class ControleOperacionalDto {
     private Integer temperaturaCoroa;
     private Integer temperaturaTopo;
     private Double sonda;
-    private Integer densidadeKg;
-    private Integer umidade;
-    private Integer gusaKg;
 
+    private Integer densidadeKg;
+    private Double densidadeMedia;
+
+    private Integer umidade;
+    private BigDecimal umidadeMedia;
+
+    private Integer gusaKg;
+    private Double acumuladoKilos;
     private Integer acumuladoCarga;
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
     private Integer rt;
-    private Integer umidadeMedia;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -49,13 +53,16 @@ public class ControleOperacionalDto {
         this.temperaturaTopo = entity.getTemperaturaTopo();
         this.sonda = entity.getSonda();
         this.densidadeKg = entity.getDensidadeKg();
+        this.densidadeMedia = entity.getDensidadeMedia();
         this.umidade = entity.getUmidade();
+        this.umidadeMedia = entity.getUmidadeMedia();
         this.gusaKg = entity.getGusaKg();
+        this.acumuladoKilos = entity.getAcumuladoKilos();
 
         this.acumuladoCarga = entity.getAcumuladoCarga();
         this.acumuladoCargaSeca = entity.getAcumuladoCargaSeca();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
         this.rt = entity.getRt();
-        this.umidadeMedia = entity.getUmidadeMedia();
+
     }
 }

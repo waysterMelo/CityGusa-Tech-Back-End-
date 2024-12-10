@@ -5,6 +5,7 @@ import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.ResponseEntity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public interface ControleOperacionalService {
     String getHoras(String horas);
     Integer getCargaAcumulada(LocalDate createdAt);
     Integer getCargaAcumuladaSeca(LocalDate createdAt);
-    Integer getUmidadeMedia(LocalDate createdAt);
+    BigDecimal getUmidadeMedia(LocalDate createdAt);
+    Double getDensidadeKgMedia(LocalDate createdAt);
     List<ControleOperacionalDto> getAllDataByDate(LocalDate data);
 }

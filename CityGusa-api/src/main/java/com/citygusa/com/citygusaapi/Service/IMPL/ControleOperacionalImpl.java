@@ -60,8 +60,14 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
     }
 
     @Override
-    public Integer getUmidadeMedia(LocalDate createdAt) {
+    public BigDecimal getUmidadeMedia(LocalDate createdAt) {
         return controleOperacionalRepository.findMediaUmidade(createdAt);
+    }
+
+
+    @Override
+    public Double getDensidadeKgMedia(LocalDate createdAt) {
+        return controleOperacionalRepository.findMediaDensidade(createdAt);
     }
 
     //pegar horas e somar mais 1
@@ -107,9 +113,14 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         logger.info("Valor de Rt: {}", rtConvertido);
 
         //calcular e salvar umidade media
-        Integer umidadeMedia = getUmidadeMedia(entity.getCreatedAt());
+        BigDecimal umidadeMedia = getUmidadeMedia(entity.getCreatedAt());
         rs.setUmidadeMedia(umidadeMedia);
-        logger.info("Valor de Media da umidade e: {}", umidadeMedia);
+        logger.info("Valor de Media da umidade é: {}", umidadeMedia);
+
+        //calcular e salvar densidade media
+        Double densidadeKgMedia = getDensidadeKgMedia(entity.getCreatedAt());
+        rs.setDensidadeMedia(densidadeKgMedia);
+        logger.info("Valor de Media da densidade é: {}", densidadeKgMedia);
 
 
         //salvar novamente

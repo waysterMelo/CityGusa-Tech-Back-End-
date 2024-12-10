@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,7 +29,10 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
     Integer findCargaAcumuladoSeca(@Param("createdAt") LocalDate createdAt);
 
     @Query("select AVG(o.umidade) from ControleOperacionalEntity o where o.createdAt = :createdAt")
-    Integer findMediaUmidade(@Param("createdAt") LocalDate createdAt);
+    BigDecimal findMediaUmidade(@Param("createdAt") LocalDate createdAt);
+
+    @Query("select AVG(o.densidadeKg) from ControleOperacionalEntity o where o.createdAt = :createdAt")
+    Double findMediaDensidade(@Param("createdAt") LocalDate createdAt);
 
     List<ControleOperacionalEntity> findAllByCreatedAt(LocalDate data);
 }
