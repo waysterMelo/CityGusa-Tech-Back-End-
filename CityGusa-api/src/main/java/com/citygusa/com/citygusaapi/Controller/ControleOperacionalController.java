@@ -1,6 +1,7 @@
 package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.ControleOperacionalDto;
+import com.citygusa.com.citygusaapi.Dto.RetornarCalculosDoDia;
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
 import com.citygusa.com.citygusaapi.Service.IMPL.ControleOperacionalImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -33,14 +35,25 @@ public class ControleOperacionalController {
     }
 
     @GetMapping("/today")
-    public ResponseEntity<List<ControleOperacionalDto>> getAllInfo(){
+    public ResponseEntity<RetornarCalculosDoDia> getAllInfo(){
         List<ControleOperacionalDto> info = service.getAllDataByDate(LocalDate.now());
         // Verifica se a lista está vazia
         if (info.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não foram encontradas informações para hoje");
         }
 
-        return ResponseEntity.ok(info);
+        // calculaMediaDensidadeTotalDia
+         Double densidadeMedia = service.getDensidadeKgMedia(LocalDate.now());
+
+        //calcular umidadeMediaTotalDoDia
+        BigDecimal umidadeMedia  = service.getUmidadeMedia(LocalDate.now());
+
+        //criar resposta com os dados e a media
+        RetornarCalculosDoDia infoMaisDensidade = new RetornarCalculosDoDia(info, densidadeMedia, umidadeMedia);
+
+        return ResponseEntity.ok(infoMaisDensidade);
+
+
     }
 
     @GetMapping("/por-data")
