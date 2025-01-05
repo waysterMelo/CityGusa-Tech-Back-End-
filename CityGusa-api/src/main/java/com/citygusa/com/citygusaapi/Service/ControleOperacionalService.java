@@ -21,4 +21,5 @@ public interface ControleOperacionalService {
     BigDecimal getUmidadeMedia(LocalDate createdAt);
     Double getDensidadeKgMedia(LocalDate createdAt);
     List<ControleOperacionalDto> getAllDataByDate(LocalDate data);
+    BigDecimal getMediaHora(LocalDate data);
 }

@@ -34,5 +34,8 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
     @Query("select AVG(o.densidadeKg) from ControleOperacionalEntity o where o.createdAt = :createdAt")
     Double findMediaDensidade(@Param("createdAt") LocalDate createdAt);
 
+    @Query("select AVG(o.cargaHora) from ControleOperacionalEntity o where o.createdAt = :createdAt")
+    BigDecimal findMediaHora(@Param("createdAt") LocalDate createdAt);
+
     List<ControleOperacionalEntity> findAllByCreatedAt(LocalDate data);
 }

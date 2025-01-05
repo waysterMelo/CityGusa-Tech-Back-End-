@@ -79,6 +79,10 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         return horasInteiro;
     }
 
+    @Override
+    public BigDecimal getMediaHora(LocalDate data) {
+        return controleOperacionalRepository.findMediaHora(data);
+    }
 
     @Override
     public Optional<ControleOperacionalDto> save(ControleOperacionalEntity entity) {
@@ -99,19 +103,18 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
 
 
         //calcular MEDIA/HORA
-        Integer gusaKg = getGusaKg(entity.getCreatedAt());
-        Double mediaHora = (double) cargaAcumulada / horasInteiro;
-        BigDecimal mediaHoraArredondado = new BigDecimal(mediaHora).setScale(2, RoundingMode.HALF_UP);
-        rs.setMediaHoraCarga(mediaHoraArredondado);
-        logger.info("Valor de Media/Hora: {}", mediaHoraArredondado);
+        BigDecimal media_hora = getMediaHora(entity.getCreatedAt());
+        rs.setMediaHoraCarga(media_hora);
+        logger.info("Valor de media hora : {}", media_hora);
+
 
 
         //calcular rt
-        BigDecimal gusaConvertido = new BigDecimal(gusaKg);
-        BigDecimal rtCalculado = mediaHoraArredondado.multiply(gusaConvertido).multiply(new BigDecimal(24));
-        Integer rtConvertido = rtCalculado.divide(new BigDecimal(1000), 0, RoundingMode.DOWN).intValue();
-        rs.setRt(rtConvertido);
-        logger.info("Valor de Rt: {}", rtConvertido);
+//        BigDecimal gusaConvertido = new BigDecimal(gusaKg);
+//        BigDecimal rtCalculado = mediaHoraArredondado.multiply(gusaConvertido).multiply(new BigDecimal(24));
+//        Integer rtConvertido = rtCalculado.divide(new BigDecimal(1000), 0, RoundingMode.DOWN).intValue();
+//        rs.setRt(rtConvertido);
+//        logger.info("Valor de Rt: {}", rtConvertido);
 
         //calcular e salvar umidade media
         BigDecimal umidadeMedia = getUmidadeMedia(entity.getCreatedAt());
