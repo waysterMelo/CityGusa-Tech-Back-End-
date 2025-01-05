@@ -45,7 +45,7 @@ public class ControleOperacionalEntity  {
     private Integer acumuladoCarga;
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
-    private Integer rt;
+    private BigDecimal rt;
 
 
     @PrePersist

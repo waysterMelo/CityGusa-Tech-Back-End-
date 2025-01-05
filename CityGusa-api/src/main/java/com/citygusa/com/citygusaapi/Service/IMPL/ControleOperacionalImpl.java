@@ -110,11 +110,13 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
 
 
         //calcular rt
-//        BigDecimal gusaConvertido = new BigDecimal(gusaKg);
-//        BigDecimal rtCalculado = mediaHoraArredondado.multiply(gusaConvertido).multiply(new BigDecimal(24));
-//        Integer rtConvertido = rtCalculado.divide(new BigDecimal(1000), 0, RoundingMode.DOWN).intValue();
-//        rs.setRt(rtConvertido);
-//        logger.info("Valor de Rt: {}", rtConvertido);
+        BigDecimal horasDoDia = BigDecimal.valueOf(24);
+        BigDecimal gusaConvertido = BigDecimal.valueOf(entity.getGusaKg());
+        BigDecimal rt = media_hora.multiply(gusaConvertido).multiply(horasDoDia);
+        BigDecimal rtArredondado = rt.setScale(2, RoundingMode.HALF_UP);
+        rs.setRt(rtArredondado);
+        logger.info("Valor de RT : {}", rtArredondado);
+
 
         //calcular e salvar umidade media
         BigDecimal umidadeMedia = getUmidadeMedia(entity.getCreatedAt());
