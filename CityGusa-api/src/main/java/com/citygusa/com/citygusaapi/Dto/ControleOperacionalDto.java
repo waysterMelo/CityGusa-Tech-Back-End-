@@ -38,6 +38,7 @@ public class ControleOperacionalDto {
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
     private BigDecimal rt;
+    private BigInteger fatorBaseDensidadeSeca;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -64,6 +65,7 @@ public class ControleOperacionalDto {
         this.acumuladoCargaSeca = entity.getAcumuladoCargaSeca();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
         this.rt = entity.getRt();
+        this.fatorBaseDensidadeSeca = getFatorBaseDensidadeSeca();
 
     }
 }

@@ -108,7 +108,6 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         logger.info("Valor de media hora : {}", media_hora);
 
 
-
         //calcular rt
         BigDecimal horasDoDia = BigDecimal.valueOf(24);
         BigDecimal gusaConvertido = BigDecimal.valueOf(entity.getGusaKg());

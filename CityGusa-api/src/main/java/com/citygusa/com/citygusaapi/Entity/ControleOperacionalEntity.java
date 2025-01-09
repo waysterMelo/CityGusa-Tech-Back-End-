@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +47,7 @@ public class ControleOperacionalEntity  {
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
     private BigDecimal rt;
+    private BigInteger fatorBaseDensidadeSeca;
 
 
     @PrePersist
