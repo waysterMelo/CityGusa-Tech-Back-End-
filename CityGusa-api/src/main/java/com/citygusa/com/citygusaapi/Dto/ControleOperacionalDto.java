@@ -25,13 +25,10 @@ public class ControleOperacionalDto {
     private Integer temperaturaCoroa;
     private Integer temperaturaTopo;
     private Double sonda;
-
     private Integer densidadeKg;
     private Double densidadeMedia;
-
     private Integer umidade;
     private BigDecimal umidadeMedia;
-
     private Integer gusaKg;
     private Double acumuladoKilos;
     private Integer acumuladoCarga;
@@ -65,8 +62,8 @@ public class ControleOperacionalDto {
         this.acumuladoCargaSeca = entity.getAcumuladoCargaSeca();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
         this.rt = entity.getRt();
-        this.fatorBaseDensidadeSeca = getFatorBaseDensidadeSeca();
-        this.pesoCarvaoCalc = getPesoCarvaoCalc();
+        this.fatorBaseDensidadeSeca = entity.getFatorBaseDensidadeSeca();
+        this.pesoCarvaoCalc = entity.getPesoCarvaoCalc();
 
     }
 }

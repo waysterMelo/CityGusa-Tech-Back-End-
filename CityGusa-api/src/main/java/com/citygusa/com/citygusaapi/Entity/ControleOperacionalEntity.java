@@ -41,7 +41,6 @@ public class ControleOperacionalEntity  {
     private Integer gusaKg;
     private Double acumuladoKilos;
     private BigDecimal pesoCarvaoCalc;
-
     private Integer acumuladoCarga;
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
