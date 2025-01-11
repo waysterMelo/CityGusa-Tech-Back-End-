@@ -1,8 +1,6 @@
-package com.citygusa.com.citygusaapi.Service.IMPL;
+package com.citygusa.com.citygusaapi.Service.Impl;
 
-import com.citygusa.com.citygusaapi.Dto.AnaliseEscoriaDto;
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
-import com.citygusa.com.citygusaapi.Entity.AnaliseEscoriaEntity;
 import com.citygusa.com.citygusaapi.Entity.AnaliseGusaEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
 import com.citygusa.com.citygusaapi.Repository.AnaliseGusaRepository;

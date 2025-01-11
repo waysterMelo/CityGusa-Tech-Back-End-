@@ -1,12 +1,10 @@
 package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
-import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
 import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
-import com.citygusa.com.citygusaapi.Service.IMPL.AnaliseMinerioServiceImpl;
+import com.citygusa.com.citygusaapi.Service.Impl.AnaliseMinerioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;

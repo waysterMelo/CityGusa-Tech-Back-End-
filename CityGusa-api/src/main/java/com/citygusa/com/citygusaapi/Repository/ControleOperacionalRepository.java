@@ -19,8 +19,6 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
     @Query("select o.gusaKg from ControleOperacionalEntity o where o.createdAt = :createdAt order by o.id desc limit 1")
     Integer findGusaKgByCreatedAt(LocalDate createdAt);
 
-    @Query("select o.horas from ControleOperacionalEntity o order by o.id desc limit 1")
-    String findHoras();
 
     @Query("SELECT SUM(o.cargaHora) from ControleOperacionalEntity o where o.createdAt = :createdAt")
     Integer findCargaAcumulado(@Param("createdAt") LocalDate createdAt);
@@ -36,6 +34,10 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
 
     @Query("select AVG(o.cargaHora) from ControleOperacionalEntity o where o.createdAt = :createdAt")
     BigDecimal findMediaHora(@Param("createdAt") LocalDate createdAt);
+
+    @Query("select o.densidadeKg from ControleOperacionalEntity o where o.createdAt = :createdAt order by o.id desc limit 1")
+    Integer findUltimaDensidade(@Param("createdAt") LocalDate createdAt);
+
 
     List<ControleOperacionalEntity> findAllByCreatedAt(LocalDate data);
 }

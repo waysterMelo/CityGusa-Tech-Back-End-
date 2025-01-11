@@ -2,7 +2,7 @@ package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.CadastrarMineriosDTO;
 import com.citygusa.com.citygusaapi.Entity.CadastrarMineriosEntity;
-import com.citygusa.com.citygusaapi.Service.IMPL.CadastrarMineriosIMPL;
+import com.citygusa.com.citygusaapi.Service.Impl.CadastrarMineriosIMPL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

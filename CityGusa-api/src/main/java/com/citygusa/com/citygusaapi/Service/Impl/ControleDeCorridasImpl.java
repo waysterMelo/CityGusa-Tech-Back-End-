@@ -1,4 +1,4 @@
-package com.citygusa.com.citygusaapi.Service.IMPL;
+package com.citygusa.com.citygusaapi.Service.Impl;
 
 import com.citygusa.com.citygusaapi.Controller.ControleDeCorridasController;
 import com.citygusa.com.citygusaapi.Dto.ControleDeCorridasDto;
@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ControleDeCorridasImpl implements ControleDeCorridasService {
@@ -104,7 +103,6 @@ public class ControleDeCorridasImpl implements ControleDeCorridasService {
 
         return corridas.stream()
                 .map(corrida -> new ControleDeCorridasDto(corrida, minutos,
-                        mediaFosforo, mediaSilica, mediaManganes, realAcumulado))
-                .collect(Collectors.toList());
+                        mediaFosforo, mediaSilica, mediaManganes, realAcumulado)).toList();
     }
 }

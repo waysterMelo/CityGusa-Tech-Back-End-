@@ -3,7 +3,7 @@ package com.citygusa.com.citygusaapi.Controller;
 import com.citygusa.com.citygusaapi.Dto.UserDto;
 import com.citygusa.com.citygusaapi.Entity.UserEntity;
 import com.citygusa.com.citygusaapi.Exceptions.ErrorAuthentication;
-import com.citygusa.com.citygusaapi.Service.IMPL.UserServiceImpl;
+import com.citygusa.com.citygusaapi.Service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

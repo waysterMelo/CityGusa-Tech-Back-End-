@@ -3,7 +3,7 @@ package com.citygusa.com.citygusaapi.Controller;
 import com.citygusa.com.citygusaapi.Dto.AnaliseGusaDto;
 import com.citygusa.com.citygusaapi.Entity.AnaliseGusaEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoAnalisesFoundException;
-import com.citygusa.com.citygusaapi.Service.IMPL.AnaliseGusaImpl;
+import com.citygusa.com.citygusaapi.Service.Impl.AnaliseGusaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

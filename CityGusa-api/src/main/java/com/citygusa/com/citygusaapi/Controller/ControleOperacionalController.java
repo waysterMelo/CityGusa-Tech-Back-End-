@@ -3,7 +3,7 @@ package com.citygusa.com.citygusaapi.Controller;
 import com.citygusa.com.citygusaapi.Dto.ControleOperacionalDto;
 import com.citygusa.com.citygusaapi.Dto.RetornarCalculosDoDia;
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
-import com.citygusa.com.citygusaapi.Service.IMPL.ControleOperacionalImpl;
+import com.citygusa.com.citygusaapi.Service.Impl.ControleOperacionalImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

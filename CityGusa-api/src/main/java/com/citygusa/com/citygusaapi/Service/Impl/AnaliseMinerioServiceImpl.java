@@ -1,4 +1,4 @@
-package com.citygusa.com.citygusaapi.Service.IMPL;
+package com.citygusa.com.citygusaapi.Service.Impl;
 
 import com.citygusa.com.citygusaapi.Dto.AnaliseMinerioDto;
 import com.citygusa.com.citygusaapi.Entity.CadastrarAnaliseMineriosEntity;

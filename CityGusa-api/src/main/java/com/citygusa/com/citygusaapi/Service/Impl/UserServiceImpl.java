@@ -1,4 +1,4 @@
-package com.citygusa.com.citygusaapi.Service.IMPL;
+package com.citygusa.com.citygusaapi.Service.Impl;
 
 import com.citygusa.com.citygusaapi.Entity.UserEntity;
 import com.citygusa.com.citygusaapi.Exceptions.ErrorAuthentication;

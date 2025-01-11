@@ -2,7 +2,7 @@ package com.citygusa.com.citygusaapi.Controller;
 
 import com.citygusa.com.citygusaapi.Dto.CargasLeitoDeFusaoDto;
 import com.citygusa.com.citygusaapi.Entity.CargasLeitoDeFusao;
-import com.citygusa.com.citygusaapi.Service.IMPL.CargasLeitoDeFusaoImpl;
+import com.citygusa.com.citygusaapi.Service.Impl.CargasLeitoDeFusaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

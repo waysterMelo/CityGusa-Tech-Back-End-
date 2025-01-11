@@ -1,24 +1,20 @@
-package com.citygusa.com.citygusaapi.Service.IMPL;
+package com.citygusa.com.citygusaapi.Service.Impl;
 
 import com.citygusa.com.citygusaapi.Dto.ControleOperacionalDto;
-import com.citygusa.com.citygusaapi.Entity.ControleCorridasEntity;
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
 import com.citygusa.com.citygusaapi.Exceptions.NoOperacionalFound;
 import com.citygusa.com.citygusaapi.Mapper.ControleOperacionalMapper;
 import com.citygusa.com.citygusaapi.Repository.ControleOperacionalRepository;
 import com.citygusa.com.citygusaapi.Service.ControleOperacionalService;
-import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ControleOperacionalImpl implements ControleOperacionalService {
@@ -46,11 +42,6 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
     }
 
     @Override
-    public String getHoras(String horas) {
-        return controleOperacionalRepository.findHoras();
-    }
-
-    @Override
     public Integer getCargaAcumulada(LocalDate createdAt) {
         return controleOperacionalRepository.findCargaAcumulado(createdAt);
     }
@@ -71,24 +62,20 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         return controleOperacionalRepository.findMediaDensidade(createdAt);
     }
 
-    //pegar horas e somar mais 1
-    public Integer getHorasPlus(ControleOperacionalEntity entity){
-        String horas = getHoras(entity.getHoras());
-        String horasFormatada = horas.substring(0,2);
-        Integer horasInteiro = Integer.parseInt(horasFormatada) + 1;
-        return horasInteiro;
-    }
-
     @Override
     public BigDecimal getMediaHora(LocalDate data) {
         return controleOperacionalRepository.findMediaHora(data);
     }
 
     @Override
+    public Integer getUltimaDensidade(LocalDate data) {
+        return controleOperacionalRepository.findUltimaDensidade(data);
+    }
+
+    @Override
     public Optional<ControleOperacionalDto> save(ControleOperacionalEntity entity) {
        ControleOperacionalEntity rs = controleOperacionalRepository.save(entity);
 
-        Integer horasInteiro = getHorasPlus(entity);
 
         //salvar carga acumulada
         Integer cargaAcumulada = getCargaAcumulada(entity.getCreatedAt());
@@ -103,15 +90,15 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
 
 
         //calcular MEDIA/HORA
-        BigDecimal media_hora = getMediaHora(entity.getCreatedAt());
-        rs.setMediaHoraCarga(media_hora);
-        logger.info("Valor de media hora : {}", media_hora);
+        BigDecimal mediaHora = getMediaHora(entity.getCreatedAt());
+        rs.setMediaHoraCarga(mediaHora);
+        logger.info("Valor de media hora : {}", mediaHora);
 
 
         //calcular rt
         BigDecimal horasDoDia = BigDecimal.valueOf(24);
         BigDecimal gusaConvertido = BigDecimal.valueOf(entity.getGusaKg());
-        BigDecimal rt = media_hora.multiply(gusaConvertido).multiply(horasDoDia);
+        BigDecimal rt = mediaHora.multiply(gusaConvertido).multiply(horasDoDia);
         BigDecimal rtArredondado = rt.setScale(2, RoundingMode.HALF_UP);
         rs.setRt(rtArredondado);
         logger.info("Valor de RT : {}", rtArredondado);
@@ -141,7 +128,7 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         if (rs.isEmpty()){
             throw new NoOperacionalFound("Não há informações a serem retornadas");
         }
-        return rs.stream().map(result -> new ControleOperacionalDto(result)).collect(Collectors.toList());
+        return rs.stream().map(ControleOperacionalDto::new).toList();
     }
 
 }
