@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
@@ -113,6 +114,21 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         Double densidadeKgMedia = getDensidadeKgMedia(entity.getCreatedAt());
         rs.setDensidadeMedia(densidadeKgMedia);
         logger.info("Valor de Media da densidade é: {}", densidadeKgMedia);
+
+        //calcular carvao peso CALC
+        BigInteger fator =  entity.getFatorBaseDensidadeSeca();
+        BigDecimal umidade = BigDecimal.valueOf(entity.getUmidade());
+        BigDecimal diferencaUmidadePercentual = BigDecimal.ZERO;
+
+        if (umidade.compareTo(BigDecimal.valueOf(7)) > 0){
+            BigDecimal diferencaUmidade  = umidade.subtract(BigDecimal.valueOf(7));
+            diferencaUmidadePercentual = diferencaUmidade.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        }
+        BigDecimal fatorDecimal = new BigDecimal(fator);
+        BigDecimal ajuste = fatorDecimal.multiply(diferencaUmidadePercentual);
+        BigDecimal resultadoCalc = fatorDecimal.add(ajuste);
+        rs.setPesoCarvaoCalc(resultadoCalc);
+        logger.info("Valor CALC: {}", resultadoCalc);
 
 
         //salvar novamente

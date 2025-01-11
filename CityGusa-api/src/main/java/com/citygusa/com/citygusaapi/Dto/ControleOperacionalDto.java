@@ -39,6 +39,7 @@ public class ControleOperacionalDto {
     private BigDecimal mediaHoraCarga;
     private BigDecimal rt;
     private BigInteger fatorBaseDensidadeSeca;
+    private BigDecimal pesoCarvaoCalc;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -60,12 +61,12 @@ public class ControleOperacionalDto {
         this.umidadeMedia = entity.getUmidadeMedia();
         this.gusaKg = entity.getGusaKg();
         this.acumuladoKilos = entity.getAcumuladoKilos();
-
         this.acumuladoCarga = entity.getAcumuladoCarga();
         this.acumuladoCargaSeca = entity.getAcumuladoCargaSeca();
         this.mediaHoraCarga = entity.getMediaHoraCarga();
         this.rt = entity.getRt();
         this.fatorBaseDensidadeSeca = getFatorBaseDensidadeSeca();
+        this.pesoCarvaoCalc = getPesoCarvaoCalc();
 
     }
 }
