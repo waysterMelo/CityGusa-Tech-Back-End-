@@ -131,6 +131,15 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         logger.info("Valor CALC: {}", resultadoCalc);
 
 
+        //calcular carao enfornado
+        BigDecimal carvaoAcumulado = BigDecimal.valueOf(entity.getAcumuladoKilos());
+        BigDecimal cargaHora = BigDecimal.valueOf(entity.getCargaHora());
+        BigDecimal carvaoEnfornado = carvaoAcumulado.divide(cargaHora, 2, RoundingMode.HALF_UP);
+        rs.setCarvaoEnfornado(carvaoEnfornado);
+        logger.info("Valor de carvao enfornado é: {}", carvaoEnfornado);
+
+
+
         //salvar novamente
         controleOperacionalRepository.save(rs);
 
