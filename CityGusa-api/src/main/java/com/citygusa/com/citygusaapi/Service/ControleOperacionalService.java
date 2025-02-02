@@ -6,6 +6,7 @@ import org.springframework.cglib.core.Local;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +23,5 @@ public interface ControleOperacionalService {
     List<ControleOperacionalDto> getAllDataByDate(LocalDate data);
     BigDecimal getMediaHora(LocalDate data);
     Integer getUltimaDensidade(LocalDate data);
+    BigInteger getMediaCarvaoEnfornado(LocalDate data);
 }

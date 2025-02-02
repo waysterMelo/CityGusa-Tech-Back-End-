@@ -47,6 +47,7 @@ public class ControleOperacionalEntity  {
     private BigDecimal rt;
     private BigInteger fatorBaseDensidadeSeca;
     private BigDecimal carvaoEnfornado;
+    private BigInteger carvaoEnfornadoMedia;
 
 
     @PrePersist

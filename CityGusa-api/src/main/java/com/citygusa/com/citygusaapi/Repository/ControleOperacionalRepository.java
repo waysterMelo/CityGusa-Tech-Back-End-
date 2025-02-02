@@ -1,12 +1,14 @@
 package com.citygusa.com.citygusaapi.Repository;
 
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
+import org.mapstruct.EnumMapping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,6 +39,9 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
 
     @Query("select o.densidadeKg from ControleOperacionalEntity o where o.createdAt = :createdAt order by o.id desc limit 1")
     Integer findUltimaDensidade(@Param("createdAt") LocalDate createdAt);
+
+    @Query("select o.carvaoEnfornado from ControleOperacionalEntity o where o.createdAt = :createdAt")
+    BigInteger findMediaPesoCarvao(@Param("createdAt") LocalDate createdAt);
 
 
     List<ControleOperacionalEntity> findAllByCreatedAt(LocalDate data);

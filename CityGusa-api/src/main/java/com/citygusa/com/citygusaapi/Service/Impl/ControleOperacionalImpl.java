@@ -74,6 +74,11 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
     }
 
     @Override
+    public BigInteger getMediaCarvaoEnfornado(LocalDate data) {
+        return controleOperacionalRepository.findMediaPesoCarvao(data);
+    }
+
+    @Override
     public Optional<ControleOperacionalDto> save(ControleOperacionalEntity entity) {
        ControleOperacionalEntity rs = controleOperacionalRepository.save(entity);
 
@@ -137,6 +142,12 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         BigDecimal carvaoEnfornado = carvaoAcumulado.divide(cargaHora, 2, RoundingMode.HALF_UP);
         rs.setCarvaoEnfornado(carvaoEnfornado);
         logger.info("Valor de carvao enfornado é: {}", carvaoEnfornado);
+
+
+        //calcular media carvao enfornado
+        BigInteger mediaCarvaoEnfornado = getMediaCarvaoEnfornado(entity.getCreatedAt());
+        rs.setCarvaoEnfornadoMedia(mediaCarvaoEnfornado);
+        logger.info("Valor de media de carvao enfornado é: {}", mediaCarvaoEnfornado);
 
 
 

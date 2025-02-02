@@ -38,6 +38,7 @@ public class ControleOperacionalDto {
     private BigInteger fatorBaseDensidadeSeca;
     private BigDecimal pesoCarvaoCalc;
     private BigDecimal carvaoEnfornado;
+    private BigInteger carvaoEnfornadoMedia;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -66,6 +67,8 @@ public class ControleOperacionalDto {
         this.fatorBaseDensidadeSeca = entity.getFatorBaseDensidadeSeca();
         this.pesoCarvaoCalc = entity.getPesoCarvaoCalc();
         this.carvaoEnfornado = entity.getCarvaoEnfornado();
+        this.carvaoEnfornadoMedia = entity.getCarvaoEnfornadoMedia();
+
 
     }
 }

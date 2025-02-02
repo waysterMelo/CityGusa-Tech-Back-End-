@@ -1,16 +1,16 @@
 package com.citygusa.com.citygusaapi.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "controle_de_corridas")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ControleCorridasEntity {
@@ -51,6 +51,7 @@ public class ControleCorridasEntity {
     private Integer sopradores4;
     private Integer sopradores5;
     private BigInteger temperatura;
+
 
     @Column(nullable = false)
     private LocalDate createdAt;
