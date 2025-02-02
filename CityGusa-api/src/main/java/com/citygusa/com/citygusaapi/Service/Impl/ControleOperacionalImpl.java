@@ -80,82 +80,83 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
 
     @Override
     public Optional<ControleOperacionalDto> save(ControleOperacionalEntity entity) {
-       ControleOperacionalEntity rs = controleOperacionalRepository.save(entity);
+        // Salvar entidade inicialmente para garantir que o primeiro registro exista
+        ControleOperacionalEntity rs = controleOperacionalRepository.save(entity);
 
+        // Salvar carga acumulada
+        rs.setAcumuladoCarga(getCargaAcumulada(entity.getCreatedAt()));
+        logger.info("Valor de carga acumulada: {}", rs.getAcumuladoCarga());
 
-        //salvar carga acumulada
-        Integer cargaAcumulada = getCargaAcumulada(entity.getCreatedAt());
-        rs.setAcumuladoCarga(cargaAcumulada);
-        logger.info("Valor de carga acumulada: {}", cargaAcumulada);
+        // Salvar carga seca acumulada
+        rs.setAcumuladoCargaSeca(getCargaAcumuladaSeca(entity.getCreatedAt()));
+        logger.info("Valor de carga seca acumulada: {}", rs.getAcumuladoCargaSeca());
 
+        // Calcular MEDIA/HORA
+        rs.setMediaHoraCarga(getMediaHora(entity.getCreatedAt()));
+        logger.info("Valor de média hora: {}", rs.getMediaHoraCarga());
 
-        //salvar cargaseca acumulada
-        Integer cargaSecaAcumulada = getCargaAcumuladaSeca(entity.getCreatedAt());
-        rs.setAcumuladoCargaSeca(cargaSecaAcumulada);
-        logger.info("Valor de carga seca acumulada é: {}", cargaSecaAcumulada);
-
-
-        //calcular MEDIA/HORA
-        BigDecimal mediaHora = getMediaHora(entity.getCreatedAt());
-        rs.setMediaHoraCarga(mediaHora);
-        logger.info("Valor de media hora : {}", mediaHora);
-
-
-        //calcular rt
+        // Calcular RT
         BigDecimal horasDoDia = BigDecimal.valueOf(24);
         BigDecimal gusaConvertido = BigDecimal.valueOf(entity.getGusaKg());
-        BigDecimal rt = mediaHora.multiply(gusaConvertido).multiply(horasDoDia);
-        BigDecimal rtArredondado = rt.setScale(2, RoundingMode.HALF_UP);
-        rs.setRt(rtArredondado);
-        logger.info("Valor de RT : {}", rtArredondado);
+        BigDecimal rt = rs.getMediaHoraCarga().multiply(gusaConvertido).multiply(horasDoDia)
+                .setScale(2, RoundingMode.HALF_UP);
+        rs.setRt(rt);
+        logger.info("Valor de RT: {}", rt);
 
+        // Calcular e salvar umidade média
+        rs.setUmidadeMedia(getUmidadeMedia(entity.getCreatedAt()));
+        logger.info("Valor de Média da umidade: {}", rs.getUmidadeMedia());
 
-        //calcular e salvar umidade media
-        BigDecimal umidadeMedia = getUmidadeMedia(entity.getCreatedAt());
-        rs.setUmidadeMedia(umidadeMedia);
-        logger.info("Valor de Media da umidade é: {}", umidadeMedia);
+        // Calcular e salvar densidade média
+        rs.setDensidadeMedia(getDensidadeKgMedia(entity.getCreatedAt()));
+        logger.info("Valor de Média da densidade: {}", rs.getDensidadeMedia());
 
-        //calcular e salvar densidade media
-        Double densidadeKgMedia = getDensidadeKgMedia(entity.getCreatedAt());
-        rs.setDensidadeMedia(densidadeKgMedia);
-        logger.info("Valor de Media da densidade é: {}", densidadeKgMedia);
-
-        //calcular carvao peso CALC
-        BigInteger fator =  entity.getFatorBaseDensidadeSeca();
+        // Calcular carvão peso CALC
+        BigDecimal fatorDecimal = new BigDecimal(entity.getFatorBaseDensidadeSeca());
         BigDecimal umidade = BigDecimal.valueOf(entity.getUmidade());
-        BigDecimal diferencaUmidadePercentual = BigDecimal.ZERO;
+        BigDecimal diferencaUmidadePercentual = umidade.compareTo(BigDecimal.valueOf(7)) > 0
+                ? umidade.subtract(BigDecimal.valueOf(7)).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
+                : BigDecimal.ZERO;
 
-        if (umidade.compareTo(BigDecimal.valueOf(7)) > 0){
-            BigDecimal diferencaUmidade  = umidade.subtract(BigDecimal.valueOf(7));
-            diferencaUmidadePercentual = diferencaUmidade.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-        }
-        BigDecimal fatorDecimal = new BigDecimal(fator);
-        BigDecimal ajuste = fatorDecimal.multiply(diferencaUmidadePercentual);
-        BigDecimal resultadoCalc = fatorDecimal.add(ajuste);
-        rs.setPesoCarvaoCalc(resultadoCalc);
-        logger.info("Valor CALC: {}", resultadoCalc);
+        rs.setPesoCarvaoCalc(fatorDecimal.add(fatorDecimal.multiply(diferencaUmidadePercentual)));
+        logger.info("Valor CALC: {}", rs.getPesoCarvaoCalc());
 
-
-        //calcular carao enfornado
+        // Calcular carvão enfornado
         BigDecimal carvaoAcumulado = BigDecimal.valueOf(entity.getAcumuladoKilos());
         BigDecimal cargaHora = BigDecimal.valueOf(entity.getCargaHora());
-        BigDecimal carvaoEnfornado = carvaoAcumulado.divide(cargaHora, 2, RoundingMode.HALF_UP);
-        rs.setCarvaoEnfornado(carvaoEnfornado);
-        logger.info("Valor de carvao enfornado é: {}", carvaoEnfornado);
+        rs.setCarvaoEnfornado(carvaoAcumulado.divide(cargaHora, 2, RoundingMode.HALF_UP));
+        logger.info("Valor de carvão enfornado: {}", rs.getCarvaoEnfornado());
 
+        // Salvar novamente para persistir os valores atualizados antes de calcular a média
+        rs = controleOperacionalRepository.save(rs);
 
-        //calcular media carvao enfornado
-        BigInteger mediaCarvaoEnfornado = getMediaCarvaoEnfornado(entity.getCreatedAt());
+        // Calcular média do carvão enfornado e evitar null usando Optional
+        BigInteger mediaCarvaoEnfornado = Optional.ofNullable(getMediaCarvaoEnfornado(entity.getCreatedAt()))
+                .orElse(BigInteger.ZERO);
         rs.setCarvaoEnfornadoMedia(mediaCarvaoEnfornado);
-        logger.info("Valor de media de carvao enfornado é: {}", mediaCarvaoEnfornado);
+        logger.info("Valor da média de carvão enfornado: {}", mediaCarvaoEnfornado);
+
+        //calcular consumo em kilos por tonelada
+        Integer carga = entity.getCargaHora();
+        Integer gusa = entity.getGusaKg();
+        Double acumuloKg = entity.getAcumuladoKilos();
+
+        // Evitar divisão por zero
+        if (gusa == 0 || carga == 0) {
+            rs.setConsumoKg(BigDecimal.ZERO);
+            logger.warn("Gusa ou carga é zero, evitando divisão por zero. Definindo consumo kg/t como 0.");
+        } else {
+            BigDecimal kilosTonelada = BigDecimal.valueOf(acumuloKg / (gusa * carga) * 1000)
+                    .setScale(0, RoundingMode.HALF_UP); // Arredondar para inteiro
+            rs.setConsumoKg(kilosTonelada);
+            logger.info("Valor de consumo kg/t: {}", kilosTonelada);
+        }
 
 
-
-        //salvar novamente
+        // Salvar apenas uma última vez com a média calculada
         controleOperacionalRepository.save(rs);
 
-       ControleOperacionalDto dto = controleOperacionalMapper.toDto(rs);
-        return Optional.of(dto);
+        return Optional.of(controleOperacionalMapper.toDto(rs));
     }
 
     @Override

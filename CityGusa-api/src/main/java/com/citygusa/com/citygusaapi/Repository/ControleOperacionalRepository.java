@@ -40,7 +40,7 @@ public interface ControleOperacionalRepository extends JpaRepository<ControleOpe
     @Query("select o.densidadeKg from ControleOperacionalEntity o where o.createdAt = :createdAt order by o.id desc limit 1")
     Integer findUltimaDensidade(@Param("createdAt") LocalDate createdAt);
 
-    @Query("select o.carvaoEnfornado from ControleOperacionalEntity o where o.createdAt = :createdAt")
+    @Query("select AVG(o.carvaoEnfornado) from ControleOperacionalEntity o where o.createdAt = :createdAt")
     BigInteger findMediaPesoCarvao(@Param("createdAt") LocalDate createdAt);
 
 

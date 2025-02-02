@@ -39,6 +39,8 @@ public class ControleOperacionalDto {
     private BigDecimal pesoCarvaoCalc;
     private BigDecimal carvaoEnfornado;
     private BigInteger carvaoEnfornadoMedia;
+    private BigDecimal consumoKg;
+    private BigDecimal consumoMetros;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -68,6 +70,8 @@ public class ControleOperacionalDto {
         this.pesoCarvaoCalc = entity.getPesoCarvaoCalc();
         this.carvaoEnfornado = entity.getCarvaoEnfornado();
         this.carvaoEnfornadoMedia = entity.getCarvaoEnfornadoMedia();
+        this.consumoKg = entity.getConsumoKg();
+        this.consumoMetros = entity.getConsumoMetros();
 
 
     }
