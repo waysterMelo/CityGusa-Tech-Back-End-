@@ -153,6 +153,12 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         }
 
 
+        //calculos de M3/T
+        //ainda nao foi feito , entao utilizar null
+        rs.setConsumoMetros(null);
+
+
+
         // Salvar apenas uma última vez com a média calculada
         controleOperacionalRepository.save(rs);
 
