@@ -157,6 +157,11 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         //ainda nao foi feito , entao utilizar null
         rs.setConsumoMetros(null);
 
+        //calculo de +/-
+        BigDecimal enfornadoCarvao = entity.getCarvaoEnfornado();
+        BigDecimal calculadoCarvao = entity.getCarvaoEnfornado();
+        BigDecimal diferencaPositoOuNegativo = enfornadoCarvao.subtract(calculadoCarvao);
+        rs.setPositivoNegativo(diferencaPositoOuNegativo);
 
 
         // Salvar apenas uma última vez com a média calculada

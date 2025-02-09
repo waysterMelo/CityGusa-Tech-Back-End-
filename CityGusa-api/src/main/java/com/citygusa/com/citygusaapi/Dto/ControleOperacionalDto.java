@@ -41,6 +41,7 @@ public class ControleOperacionalDto {
     private BigInteger carvaoEnfornadoMedia;
     private BigDecimal consumoKg;
     private BigDecimal consumoMetros;
+    private BigDecimal positivoNegativo;
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
@@ -72,7 +73,7 @@ public class ControleOperacionalDto {
         this.carvaoEnfornadoMedia = entity.getCarvaoEnfornadoMedia();
         this.consumoKg = entity.getConsumoKg();
         this.consumoMetros = entity.getConsumoMetros();
-
+        this.positivoNegativo = entity.getPositivoNegativo();
 
     }
 }

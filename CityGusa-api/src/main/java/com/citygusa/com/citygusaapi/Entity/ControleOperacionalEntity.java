@@ -50,6 +50,7 @@ public class ControleOperacionalEntity  {
     private BigInteger carvaoEnfornadoMedia;
     private BigDecimal consumoKg;
     private BigDecimal consumoMetros;
+    private BigDecimal positivoNegativo;
 
 
     @PrePersist
