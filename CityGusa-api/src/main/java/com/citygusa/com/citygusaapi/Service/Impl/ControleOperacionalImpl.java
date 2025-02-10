@@ -159,9 +159,12 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
 
         //calculo de +/-
         BigDecimal enfornadoCarvao = entity.getCarvaoEnfornado();
-        BigDecimal calculadoCarvao = entity.getCarvaoEnfornado();
+        BigDecimal calculadoCarvao = entity.getPesoCarvaoCalc();
         BigDecimal diferencaPositoOuNegativo = enfornadoCarvao.subtract(calculadoCarvao);
         rs.setPositivoNegativo(diferencaPositoOuNegativo);
+        logger.info("Valor de enf {}", enfornadoCarvao);
+        logger.info("Valor de calc {}", calculadoCarvao);
+        logger.info("Valor de +/- {}", diferencaPositoOuNegativo);
 
 
         // Salvar apenas uma última vez com a média calculada
