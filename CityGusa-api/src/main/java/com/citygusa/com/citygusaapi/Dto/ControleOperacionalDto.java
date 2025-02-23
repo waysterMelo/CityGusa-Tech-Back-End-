@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ControleOperacionalDto {
 
+    private Integer id;
     protected LocalDate createdAt;
     protected String horas;
     private Integer a;
@@ -45,6 +46,7 @@ public class ControleOperacionalDto {
 
 
     public ControleOperacionalDto(ControleOperacionalEntity entity) {
+        this.id = entity.getId();
         this.createdAt = entity.getCreatedAt();
         this.horas = entity.getHoras();
         this.a = entity.getA();

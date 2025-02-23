@@ -142,20 +142,30 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         Double acumuloKg = entity.getAcumuladoKilos();
 
         // Evitar divisão por zero
+        BigDecimal kilosTonelada = null;
         if (gusa == 0 || carga == 0) {
             rs.setConsumoKg(BigDecimal.ZERO);
             logger.warn("Gusa ou carga é zero, evitando divisão por zero. Definindo consumo kg/t como 0.");
         } else {
-            BigDecimal kilosTonelada = BigDecimal.valueOf(acumuloKg / (gusa * carga) * 1000)
-                    .setScale(0, RoundingMode.HALF_UP); // Arredondar para inteiro
+            kilosTonelada = BigDecimal.valueOf(acumuloKg / (gusa * carga) * 1000)
+                    .setScale(0, RoundingMode.HALF_UP);
             rs.setConsumoKg(kilosTonelada);
             logger.info("Valor de consumo kg/t: {}", kilosTonelada);
         }
 
 
         //calculos de M3/T
-        //ainda nao foi feito , entao utilizar null
-        rs.setConsumoMetros(null);
+        kilosTonelada = entity.getConsumoKg();
+        Integer densidade = entity.getDensidadeKg();
+
+        if (kilosTonelada != null && densidade != null && densidade != 0){
+            BigDecimal consumoMetros = BigDecimal.valueOf(kilosTonelada.doubleValue()).divide(BigDecimal.valueOf(densidade), 4 , RoundingMode.HALF_UP);
+            rs.setConsumoMetros(consumoMetros);
+            logger.info("Valor de Consumo M3/T: {}", consumoMetros);
+        }else {
+            rs.setConsumoMetros(BigDecimal.ZERO); // Evita valores nulos
+            logger.warn("Densidade é zero ou nula, definindo Consumo M3/T como 0.");
+        }
 
         //calculo de +/-
         BigDecimal enfornadoCarvao = entity.getCarvaoEnfornado();
