@@ -108,7 +108,7 @@ public class ControleOperacionalImpl implements ControleOperacionalService {
         logger.info("Valor de Média da umidade: {}", rs.getUmidadeMedia());
 
         // Calcular e salvar densidade média
-        rs.setDensidadeMedia(getDensidadeKgMedia(entity.getCreatedAt()));
+        rs.setDensidadeMedia(getDensidadeKgMedia(rs.getCreatedAt()));
         logger.info("Valor de Média da densidade: {}", rs.getDensidadeMedia());
 
         // Calcular carvão peso CALC

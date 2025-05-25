@@ -12,13 +12,13 @@ import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class AnaliseEscoriaDto {
+    @AllArgsConstructor
+    public class AnaliseEscoriaDto {
 
-    private Long id;
-    private Double calcio;
-    private Double silicio;
-    private Double aluminio;
+        private Long id;
+        private Double calcio;
+        private Double silicio;
+        private Double aluminio;
     private Double magnesio;
     private Double ferro;
     private Double manganes;
