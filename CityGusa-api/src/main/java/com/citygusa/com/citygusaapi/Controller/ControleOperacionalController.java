@@ -4,6 +4,7 @@ import com.citygusa.com.citygusaapi.Dto.ControleOperacionalDto;
 import com.citygusa.com.citygusaapi.Dto.RetornarCalculosDoDia;
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
 import com.citygusa.com.citygusaapi.Service.Impl.ControleOperacionalImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class ControleOperacionalController {
     }
 
     @PostMapping
-    public ResponseEntity<ControleOperacionalDto> salvar(@RequestBody ControleOperacionalEntity entity) {
+    public ResponseEntity<ControleOperacionalDto> salvar(@RequestBody @Valid ControleOperacionalEntity entity) {
         Optional<ControleOperacionalDto> savedInfo = service.save(entity);
         return savedInfo.map(dto -> ResponseEntity.status(HttpStatus.CREATED).body(dto))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());

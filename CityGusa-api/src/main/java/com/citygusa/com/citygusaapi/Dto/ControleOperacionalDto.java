@@ -1,6 +1,9 @@
 package com.citygusa.com.citygusaapi.Dto;
 
 import com.citygusa.com.citygusaapi.Entity.ControleOperacionalEntity;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +39,9 @@ public class ControleOperacionalDto {
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;
     private BigDecimal rt;
-    private BigInteger fatorBaseDensidadeSeca;
+    private @NotNull(message = "Fator Base Densidade Seca não pode ser nulo.")
+    @Positive(message = "Fator Base Densidade Seca deve ser positivo.")
+    @Digits(integer = 5, fraction = 4, message = "Fator Base Densidade Seca inválido.") BigDecimal fatorBaseDensidadeSeca;
     private BigDecimal pesoCarvaoCalc;
     private BigDecimal carvaoEnfornado;
     private BigInteger carvaoEnfornadoMedia;
