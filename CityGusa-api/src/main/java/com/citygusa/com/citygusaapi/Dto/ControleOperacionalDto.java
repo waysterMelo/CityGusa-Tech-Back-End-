@@ -34,7 +34,7 @@ public class ControleOperacionalDto {
     private Integer umidade;
     private BigDecimal umidadeMedia;
     private Integer gusaKg;
-    private Double acumuladoKilos;
+    private BigDecimal acumuladoKilos;
     private Integer acumuladoCarga;
     private Integer acumuladoCargaSeca;
     private BigDecimal mediaHoraCarga;

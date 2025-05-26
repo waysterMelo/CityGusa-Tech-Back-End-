@@ -73,10 +73,7 @@ public class ControleOperacionalEntity  {
     @Positive(message = "Densidade (kg) deve ser positiva.") // Densidade geralmente não é zero
     private Integer densidadeKg;
 
-    // Campos calculados geralmente não precisam de validação de entrada,
-    // mas se forem persistidos e tiverem regras, podem ter.
-    // Ex: @Digits para precisão e escala se necessário.
-    @Digits(integer = 10, fraction = 2, message = "Densidade Média deve ter no máximo 10 dígitos inteiros e 2 fracionários.")
+
     private Double densidadeMedia;
 
     @NotNull(message = "Umidade não pode ser nula.")
@@ -84,57 +81,38 @@ public class ControleOperacionalEntity  {
     @Max(value = 100, message = "Umidade não pode ser maior que 100.") // Assumindo percentual
     private Integer umidade;
 
-    @Digits(integer = 5, fraction = 2, message = "Umidade Média deve ter no máximo 5 dígitos inteiros e 2 fracionários.")
     private BigDecimal umidadeMedia;
 
     @NotNull(message = "Gusa (kg) não pode ser nulo.")
     @Positive(message = "Gusa (kg) deve ser positivo.") // Gusa produzido geralmente não é zero
     private Integer gusaKg;
 
-    // Acumulado Kilos é calculado, mas se tiver regras de valor ao ser persistido:
     @PositiveOrZero(message = "Acumulado Kilos não pode ser negativo.")
     @Digits(integer = 12, fraction = 2, message = "Acumulado Kilos inválido.")
-    private Double acumuladoKilos; // Considere BigDecimal para valores monetários ou que exigem precisão
+    private BigDecimal acumuladoKilos;
 
-    @Digits(integer = 10, fraction = 4, message = "Peso Carvão Calculado inválido.")
     private BigDecimal pesoCarvaoCalc;
 
-    @PositiveOrZero(message = "Acumulado Carga não pode ser negativo.")
     private Integer acumuladoCarga;
 
-    @PositiveOrZero(message = "Acumulado Carga Seca não pode ser negativo.")
     private Integer acumuladoCargaSeca;
 
-    @Digits(integer = 10, fraction = 2, message = "Média Hora Carga inválida.")
     private BigDecimal mediaHoraCarga;
 
-    @Digits(integer = 10, fraction = 2, message = "RT inválido.")
     private BigDecimal rt;
 
-    // Se fatorBaseDensidadeSeca é um valor que vem da entrada e não calculado:
     @NotNull(message = "Fator Base Densidade Seca não pode ser nulo.")
     @Positive(message = "Fator Base Densidade Seca deve ser positivo.")
-    // Se for Double na entrada, ajuste o tipo aqui e no DTO. BigInteger é incomum para um fator.
-    // Assumindo que era para ser Double ou BigDecimal na entrada e foi mapeado para BigInteger por engano.
-    // Se for realmente BigInteger e obrigatório, @NotNull é suficiente.
-    // Vou assumir que deveria ser BigDecimal para consistência com outros fatores/valores decimais.
-    @Digits(integer = 5, fraction = 4, message = "Fator Base Densidade Seca inválido.")
-    private BigDecimal fatorBaseDensidadeSeca; // Alterado de BigInteger para BigDecimal
+    private BigDecimal fatorBaseDensidadeSeca;
 
-    @Digits(integer = 10, fraction = 2, message = "Carvão Enfornado inválido.")
     private BigDecimal carvaoEnfornado;
 
-    // Se for BigInteger, @NotNull pode ser suficiente se vier da entrada.
-    // Se calculado, a validação é mais na lógica de cálculo.
     private BigInteger carvaoEnfornadoMedia;
 
-    @Digits(integer = 10, fraction = 2, message = "Consumo Kg inválido.")
     private BigDecimal consumoKg;
 
-    @Digits(integer = 10, fraction = 4, message = "Consumo Metros inválido.")
     private BigDecimal consumoMetros;
 
-    @Digits(integer = 10, fraction = 2, message = "Positivo/Negativo inválido.")
     private BigDecimal positivoNegativo;
 
 
